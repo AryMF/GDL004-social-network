@@ -1,0 +1,169 @@
+@import "reset.css";
+@import "welcomeScreen.css";
+@import "profileScreen.css";
+:root {
+    /*Background colors*/
+    --gullGray: #93b0b6;
+    --roseBud: #f7aaad;
+    --goldenGrass: #dcaf25;
+    --backgroundWhite: #ffffff;
+    /* Text colors */
+    --darkText: #000000;
+    --lightText: #ffffff;
+    /* Highlights */
+    --elephant: #14444b;
+    --flamingo: #ee5334;
+    --bayOfMany: #24367b;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--darkText);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 15px 15px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+.largeText {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.normalText {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.smallText {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.largeTextBold {
+    font-size: 20px;
+    font-weight: normal;
+    font-weight: bold;
+}
+
+.normalTextBold {
+    font-size: 18px;
+    font-weight: normal;
+    font-weight: bold;
+}
+
+.smallTextBold {
+    font-size: 16px;
+    font-weight: normal;
+    font-weight: bold;
+}
+
+
+/*Assets*/
+
+button {
+    margin: 10px;
+    padding: 12px 35px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all .6s ease;
+}
+
+button.flamingo {
+    border-radius: 20px;
+    border: 2.5px solid var(--flamingo);
+    background: linear-gradient(to right, transparent 50%, var(--flamingo) 50%);
+    background-size: 201% 100%;
+    background-position: left bottom;
+}
+
+button.bayOfMany {
+    border-radius: 20px;
+    border: 2.5px solid var(--bayOfMany);
+    background: linear-gradient(to right, transparent 50%, var(--bayOfMany) 50%);
+    background-size: 201% 100%;
+    background-position: left bottom;
+}
+
+button.elephant {
+    border-radius: 20px;
+    border: 2.5px solid var(--elephant);
+    background: linear-gradient(to right, transparent 50%, var(--elephant) 50%);
+    background-size: 201% 100%;
+    background-position: left bottom;
+}
+
+button.ghost {
+    background-color: transparent;
+    border-color: #FFFFFF;
+}
+
+button:active,
+button.bayOfMany:active,
+button.ghost:active {
+    transition: transform 80ms ease-in;
+    transform: scale(0.95);
+}
+
+button:focus,
+button:hover,
+button.bayOfMany:focus,
+button.bayOfMany:hover,
+button.elephant:focus,
+button.elephant:hover {
+    background-position: right bottom;
+    color: var(--lightText);
+}
+
+
+/*Responsive*/
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+}
+
+@media only screen and (min-width: 769px) {
+    /*768?*/
+    /* For desktop: */
+    h1 {
+        font-size: 80px;
+    }
+    h2 {
+        font-size: 60px;
+    }
+    h3 {
+        font-size: 34px;
+    }
+    h4 {
+        font-size: 28px;
+    }
+    .largeText {
+        font-size: 28px;
+    }
+    .normalText {
+        font-size: 22px;
+    }
+    .smallText {
+        font-size: 18px;
+    }
+}
