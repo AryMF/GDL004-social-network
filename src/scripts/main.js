@@ -9,8 +9,13 @@ firebase.auth().getRedirectResult()
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        alert("Ocurrio un error en la autenticación.");
         console.error("Error " + errorCode + ": " + errorMessage);
+        if (errorCode == "auth/account-exists-with-different-credential") {
+            formErrorMsj.setAttribute("style", "visibility: visible;");
+            formErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
+        } else {
+            alert("Ocurrio un error en la autenticación 0.");
+        }
     });
 
 //Github authentication
@@ -89,7 +94,7 @@ const submitFormFunction = () => {
                         formErrorMsj.setAttribute("style", "visibility:visible;");
                         formErrorMsj.innerHTML = "Password should be at least 6 characters"
                     } else {
-                        alert("Ocurrio un error en la autenticación.");
+                        alert("Ocurrio un error en la autenticación 1.");
                     }
                 });
         } else {
@@ -111,7 +116,7 @@ const loginWithEmail = () => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.error("Error " + errorCode + ": " + errorMessage);
-            alert("Ocurrio un error en la autenticación.");
+            alert("Ocurrio un error en la autenticación 2.");
         });
 }
 
