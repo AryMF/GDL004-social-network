@@ -1,4 +1,5 @@
-#welcomeScreen, #profileScreen {
+#welcomeScreen,
+#profileScreen {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -8,7 +9,7 @@
     background-color: var(--gullGray);
 }
 
-#loginWindow{
+#loginWindow {
     position: relative;
     left: 50%;
     top: 50%;
@@ -16,17 +17,15 @@
     width: 88%;
     background-color: var(--backgroundWhite);
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     padding: 0px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,26 +38,28 @@ form img {
     margin: 10px;
 }
 
-#socialNetworkButtons i{
-    font-size:50px;
+#socialNetworkButtons i {
+    font-size: 50px;
     color: var(--flamingo);
     margin: 0px 25px;
+    cursor: pointer;
 }
 
-#socialNetworkButtons i:hover, #socialNetworkButtons i:focus{
+#socialNetworkButtons i:hover,
+#socialNetworkButtons i:focus {
     color: var(--bayOfMany);
 }
 
 input {
     color: var(--elephant);
     background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 10px 0;
-	width: 70%;
+    border: none;
+    padding: 12px 15px;
+    margin: 10px 0;
+    width: 70%;
 }
 
-.formErrorMsj{
+.formErrorMsj {
     color: var(--flamingo);
     visibility: hidden;
     text-align: center;
@@ -71,9 +72,15 @@ input {
     border-radius: 0px 0px 10px 10px;
 }
 
-@media only screen and (min-width: 769px) { /*768?*/
+@media only screen and (min-width: 769px) {
+    /*768?*/
     /* For desktop: */
-    #loginWindow{
+    #loginWindow {
         width: 40%;
     }
+}
+
+#submitForm,
+#loginButton {
+    cursor: pointer;
 }
