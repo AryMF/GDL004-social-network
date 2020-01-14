@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,26 +12,46 @@
 <body>
     <div id="welcomeScreen">
         <div id="loginWindow">
-            <form id="registrationForm">
-                <img src="src\assets\imgs\logo.png">
-                <h3 style="color: var(--elephant);"> Welcome! </h3>
-                <h3 style="color: var(--elephant);"> Create an account with: </h3>
-                <div id="socialNetworkButtons">
-                    <i class="fa fa-google" tabindex="0"></i>
-                    <i class="fa fa-facebook-square" tabindex="0"></i>
-                    <i class="fa fa-github" tabindex="0"></i>
-                </div>
-                <h4 style="color: var(--elephant);"> Or use your email instead:</h4>
-                <p class="formErrorMsj smallText"> Mensaje de error </p>
-                <input id="userName" class="normalText" type="text" placeholder="User name">
-                <input id="userEmail" class="normalText" type="email" placeholder="Email">
-                <input id="userPassword" class="normalText" type="password" placeholder="Password">
-                <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
-            </form>
-            <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
-            <button id="loginButton" class="elephant normalTextBold"> Login </button>
+          <img src="src\assets\imgs\logo.png">
+            <div id="loginForm">
+              <h3 style="color: var(--elephant);"> Sign in with </h3>
+              <div id="socialNetworkButtons">
+                <i class="fa fa-google" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div>
+              <h4 style="color: var(--elephant);"> Or use your email account</h4>
+              <p class="formErrorMsj smallText"> Mensaje de error </p>
+              <input id="loginFormUserEmail" class="normalText" type="email" placeholder="Email">
+              <input id="loginFormUserPassword" class="normalText" type="password" placeholder="Password">
+              <button id="loginButton" class="flamingo normalTextBold"> Login </button>
+            </div>
+            <div id="registrationForm">
+              <!-- <img src="src\assets\imgs\logo.png"> -->
+              <h3 style="color: var(--elephant);"> Account creation </h3>
+              <!-- <div id="socialNetworkButtons">
+                <i class="fa fa-google" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div> -->
+              <h4 style="color: var(--elephant);"> Or use your email account</h4>
+              <p class="formErrorMsj smallText"> Mensaje de error </p>
+              <input id="userName" class="normalText" type="text" placeholder="User name">
+              <input id="userEmail" class="normalText" type="email" placeholder="Email">
+              <input id="userPassword" class="normalText" type="password" placeholder="Password">
+              <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
+              <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
+            </div>
             <div id="slideSecction">
-                <p> Holi! :D </p>
+              <!-- <div id="slideSecctionRight"> -->
+                <h2 id="slideSecctionHeader" style="color: var(--bayOfMany);"> Hey you! </h2>
+                <p id="slideSecctionText" class="normalText" style="color: var(--lightText); text-align: center;"> Get on board and join our <br> amazing community </p>
+                <button id="slideSecctionButton" class="ghost smallTextBold smallButton">Get started</button>
+              <!-- <div id="slideSecctionLeft">
+                <h2 id="slideSecctionHeader" style="color: var(--bayOfMany);"> Welcome back! </h2>
+                <p id="slideSecctionText" class="normalText" style="color: var(--lightText); text-align: center;"> Get connected to continue making great things</p>
+                <button id="slideSecctionButton" class="ghost smallTextBold smallButton">Sign In</button>
+              </div> -->
             </div>
         </div>
     </div>
@@ -71,6 +90,8 @@
     </script>
 
     <script src="src\scripts\main.js" async defer></script>
+    <script src="src\scripts\authentication.js" async defer></script>
+    <script src="src\scripts\data.js" async defer></script>
 </body>
 
 </html>
