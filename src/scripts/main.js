@@ -16,6 +16,9 @@ firebase.auth().getRedirectResult()
 //Github authentication
 var providerGit = new firebase.auth.GithubAuthProvider();
 
+//Facebook authentication
+var providerFacebook = new firebase.auth.FacebookAuthProvider();
+
 //Email\Password authentication || Usuario con sesion activa
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -136,6 +139,13 @@ document.querySelector(".fa-github").addEventListener("click", () => {
     console.log("Click en boton Github");
     firebase.auth().signInWithRedirect(providerGit);
 });
+
+//Event listener facebook button
+document.querySelector(".fa-facebook-square").addEventListener("click", () => {
+    console.log("Click en boton Facebook");
+    firebase.auth().signInWithRedirect(providerFacebook);
+});
+
 
 
 
