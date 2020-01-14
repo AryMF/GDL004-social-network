@@ -82,6 +82,12 @@ const submitFormFunction = () => {
                     if (errorCode == "auth/email-already-in-use") {
                         formErrorMsj.setAttribute("style", "visibility: visible;");
                         formErrorMsj.innerHTML = "The email address is already in use by another account.";
+                    } else if (errorCode == "auth/invalid-email") {
+                        formErrorMsj.setAttribute("style", "visibility: visible;");
+                        formErrorMsj.innerHTML = "Invalid Email Address"
+                    } else if (errorCode == "auth/weak-password") {
+                        formErrorMsj.setAttribute("style", "visibility:visible;");
+                        formErrorMsj.innerHTML = "Password should be at least 6 characters"
                     } else {
                         alert("Ocurrio un error en la autenticación.");
                     }
