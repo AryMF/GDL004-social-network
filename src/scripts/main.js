@@ -18,11 +18,7 @@ firebase.auth().getRedirectResult()
         }
     });
 
-//Github authentication
-var providerGit = new firebase.auth.GithubAuthProvider();
 
-//Facebook authentication
-var providerFacebook = new firebase.auth.FacebookAuthProvider();
 
 //Email\Password authentication || Usuario con sesion activa
 firebase.auth().onAuthStateChanged(function(user) {
@@ -145,17 +141,16 @@ document.querySelector(".fa-google").addEventListener("click", () => {
     */
 });
 
-//Event listener github button
-document.querySelector(".fa-github").addEventListener("click", () => {
-    console.log("Click en boton Github");
+//Github authentication
+var providerGit = new firebase.auth.GithubAuthProvider();
+const gitLogin = (providerGit) => {
     firebase.auth().signInWithRedirect(providerGit);
-});
+}
 
-//Event listener facebook button
-document.querySelector(".fa-facebook-square").addEventListener("click", () => {
-    console.log("Click en boton Facebook");
-    firebase.auth().signInWithRedirect(providerFacebook);
-});
+
+//Event listener github button
+document.querySelector(".fa-github").addEventListener("click", gitLogin);
+
 
 
 
