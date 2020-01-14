@@ -18,7 +18,7 @@
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
-    padding: 0px;
+    padding: 15px 0px 0px 0px;
 
     display: flex;
     flex-direction: column;
@@ -26,35 +26,35 @@
     align-items: center;
 }
 
-form{
+#registrationForm, #loginForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-form img {
+#registrationForm img, #loginForm img {
     width: 50%;
     height: auto;
     margin: 10px;
 }
 
-#socialNetworkButtons i{
-    font-size:50px;
+#socialNetworkButtons i{ /*Cambios para mobile*/
+    font-size:40px;
     color: var(--flamingo);
-    margin: 0px 25px;
+    margin: 0px 15px;
 }
 
 #socialNetworkButtons i:hover, #socialNetworkButtons i:focus{
     color: var(--bayOfMany);
 }
 
-input {
+input { /*Cambio para mobile*/
     color: var(--elephant);
     background-color: #eee;
 	border: none;
-	padding: 12px 15px;
-	margin: 10px 0;
+	padding: 5px 5px;
+	margin: 0px 0px 5px;
 	width: 70%;
 }
 
@@ -66,14 +66,54 @@ input {
 
 #slideSecction {
     width: 100%;
-    height: 100px;
-    background-color: var(--bayOfMany);
+    height: 125px;
+    background-color: var(--goldenGrass);
     border-radius: 0px 0px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.smallButton {
+    padding: 2px 5px;
 }
 
 @media only screen and (min-width: 769px) { /*768?*/
     /* For desktop: */
     #loginWindow{
-        width: 40%;
+        width: 60%;
+        flex-direction: row;
+    }
+    #loginForm{
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 50%;
+    }
+    #registrationForm{
+        width: 50%;
+    }
+    #socialNetworkButtons i{
+        font-size:50px;
+        margin: 0px 25px;
+    }
+    input {
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 70%;
+    }
+    #slideSecction {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 50%;
+        height: 100%;
+        border-radius: 0px 10px 10px 0px;
+        justify-content: center;
+        /* visibility: hidden; */
+    }
+    .smallButton {
+        padding: 10px 15px;
     }
 }

@@ -62,19 +62,16 @@ h4 {
 
 .largeTextBold {
     font-size: 20px;
-    font-weight: normal;
     font-weight: bold;
 }
 
 .normalTextBold {
     font-size: 18px;
-    font-weight: normal;
     font-weight: bold;
 }
 
 .smallTextBold {
     font-size: 16px;
-    font-weight: normal;
     font-weight: bold;
 }
 
@@ -82,57 +79,51 @@ h4 {
 /*Assets*/
 
 button {
-    margin: 10px;
-    padding: 12px 35px;
+    margin: 8px; /*cambio para mobile*/
+    padding: 5px 35px; /* Cambio de padding en mobile*/
+    border-radius: 20px; /*DRY*/
+    border: 2.5px solid;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: all .6s ease;
 }
 
 button.flamingo {
-    border-radius: 20px;
-    border: 2.5px solid var(--flamingo);
+    border-color: var(--flamingo);
     background: linear-gradient(to right, transparent 50%, var(--flamingo) 50%);
     background-size: 201% 100%;
     background-position: left bottom;
 }
 
 button.bayOfMany {
-    border-radius: 20px;
-    border: 2.5px solid var(--bayOfMany);
+    border-color: var(--bayOfMany);
     background: linear-gradient(to right, transparent 50%, var(--bayOfMany) 50%);
     background-size: 201% 100%;
     background-position: left bottom;
 }
 
 button.elephant {
-    border-radius: 20px;
-    border: 2.5px solid var(--elephant);
+    border-color: var(--elephant);
     background: linear-gradient(to right, transparent 50%, var(--elephant) 50%);
     background-size: 201% 100%;
     background-position: left bottom;
 }
 
-button.ghost {
-    background-color: transparent;
-    border-color: #FFFFFF;
+button:focus,
+button:hover {
+    background-position: right bottom;
+    color: var(--lightText);
 }
 
-button:active,
-button.bayOfMany:active,
+button.ghost {
+    background-color: transparent;
+    border-color: var(--lightText);
+    color: var(--bayOfMany);
+}
+
 button.ghost:active {
     transition: transform 80ms ease-in;
     transform: scale(0.95);
-}
-
-button:focus,
-button:hover,
-button.bayOfMany:focus,
-button.bayOfMany:hover,
-button.elephant:focus,
-button.elephant:hover {
-    background-position: right bottom;
-    color: var(--lightText);
 }
 
 
@@ -165,5 +156,10 @@ button.elephant:hover {
     }
     .smallText {
         font-size: 18px;
+    }
+
+    button {
+        margin: 10px;
+        padding: 10px 35px;
     }
 }

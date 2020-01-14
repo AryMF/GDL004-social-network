@@ -1,12 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> DIYers </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src\styles\style.css">
 </head>
+
 <body>
-  <script type="module" src="src\scripts\main.js"></script>
+    <div id="welcomeScreen">
+        <div id="loginWindow">
+            <div id="loginForm">
+              <!-- <img src="src\assets\imgs\logo.png"> -->
+              <h3 style="color: var(--elephant);"> Sign in with </h3>
+              <div id="socialNetworkButtons">
+                <i class="fa fa-google-plus-circle" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div>
+              <h4 style="color: var(--elephant);"> Or use your email account</h4>
+              <p class="formErrorMsj smallText"> Mensaje de error </p>
+              <input id="userEmail" class="normalText" type="email" placeholder="Email">
+              <input id="userPassword" class="normalText" type="password" placeholder="Password">
+              <button id="loginButton" class="flamingo normalTextBold"> Login </button>
+            </div>
+            <div id="registrationForm">
+              <!-- <img src="src\assets\imgs\logo.png"> -->
+              <h3 style="color: var(--elephant);"> Account creation </h3>
+              <div id="socialNetworkButtons">
+                <i class="fa fa-google-plus-circle" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div>
+              <h4 style="color: var(--elephant);"> Or use your email account</h4>
+              <p class="formErrorMsj smallText"> Mensaje de error </p>
+              <input id="userName" class="normalText" type="text" placeholder="User name">
+              <input id="userEmail" class="normalText" type="email" placeholder="Email">
+              <input id="userPassword" class="normalText" type="password" placeholder="Password">
+              <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
+              <button id="submitForm" class="flamingo normalTextBold"> Sign up </button
+            </div>
+            <div id="slideSecction">
+              <h2 style="color: var(--bayOfMany);"> Hey you! </h2>
+              <p class="normalText" style="color: var(--lightText); text-align: center;"> Get on board and join our amazing community </p>
+              <button id="signUp" class="ghost smallTextBold smallButton"> Get started </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="profileScreen" style="visibility: hidden;">
+        <div id="userProfile">
+            <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png">
+            <h3 id="userProfileName" style="color: var(--bayOfMany);"> User Name </h3>
+            <h4 id="userProfileEmail" class="largeText"> Email </h4>
+            <button id="signOutButton" class="bayOfMany normalTextBold"> Sign out </button>
+        </div>
+    </div>
+
+    <!-- Firebase configuration -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDROFPzPW5vfLBcNdhzTDgQckscpjqWq2Y",
+            authDomain: "laboratoriadiyers.firebaseapp.com",
+            databaseURL: "https://laboratoriadiyers.firebaseio.com",
+            projectId: "laboratoriadiyers",
+            storageBucket: "laboratoriadiyers.appspot.com",
+            messagingSenderId: "914638901843",
+            appId: "1:914638901843:web:1132fcf7f0e0066d8b6ca6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="src\scripts\main.js" async defer></script>
 </body>
+
 </html>
