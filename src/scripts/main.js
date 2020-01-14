@@ -1,22 +1,26 @@
 //Google authentication
 var provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().getRedirectResult()
-        .then(function(result) {
-            if(result.user != null) {
-                profileCreation(result.user.uid, result.user.displayName, result.user.email, result.user.photoURL);
-            }
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert("Ocurrio un error en la autenticación.");
-            console.error("Error " + errorCode + ": " + errorMessage);
-        });
+    .then(function(result) {
+        if (result.user != null) {
+            profileCreation(result.user.uid, result.user.displayName, result.user.email, result.user.photoURL);
+        }
+    }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert("Ocurrio un error en la autenticación.");
+        console.error("Error " + errorCode + ": " + errorMessage);
+    });
+
+//Github authentication
+var providerGit = new firebase.auth.GithubAuthProvider();
+
 //Email\Password authentication || Usuario con sesion activa
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-    // User is signed in.
-        user.providerData.forEach(function (profile) {
+        // User is signed in.
+        user.providerData.forEach(function(profile) {
             console.log("Sign-in provider: " + profile.providerId);
             console.log("  Provider-specific UID: " + profile.uid);
             console.log("  Name: " + profile.displayName);
@@ -25,9 +29,9 @@ firebase.auth().onAuthStateChanged(function(user) {
             showProfile(profile.photoURL, profile.displayName, profile.email);
         });
     } else {
-    // No user is signed in.
+        // No user is signed in.
     }
-  });
+});
 /************************************************/
 
 //QuerySelectors
@@ -44,7 +48,7 @@ let profileScreen = document.querySelector("#profileScreen")
 let userProfilePicture = document.querySelector("#userProfilePicture")
 let userProfileName = document.querySelector("#userProfileName")
 let userProfileEmail = document.querySelector("#userProfileEmail")
-/************************************************/
+    /************************************************/
 
 //Functions
 const showProfile = (photoURL, displayName, email) => {
@@ -57,12 +61,12 @@ const showProfile = (photoURL, displayName, email) => {
 
 const submitFormFunction = () => {
     //TODO: Validación de correo y seguridad de contraseña.
-    if(userName.value != "" && userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != ""){
-        if(userPassword.value === userPasswordConfirmation.value){
+    if (userName.value != "" && userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != "") {
+        if (userPassword.value === userPasswordConfirmation.value) {
             //Si paso todas las validaciones 
             formErrorMsj.setAttribute("style", "visibility: hidden;");
             firebase.auth().createUserWithEmailAndPassword(userEmail.value, userPassword.value)
-                .then(function(){
+                .then(function() {
                     //TODO: uid con Email authentication
                     let user = firebase.auth().currentUser;
                     profileCreation(user.uid, userName.value, user.email, "default");
@@ -72,7 +76,7 @@ const submitFormFunction = () => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.error("Error " + errorCode + ": " + errorMessage);
-                    if(errorCode == "auth/email-already-in-use"){
+                    if (errorCode == "auth/email-already-in-use") {
                         formErrorMsj.setAttribute("style", "visibility: visible;");
                         formErrorMsj.innerHTML = "The email address is already in use by another account.";
                     } else {
@@ -83,11 +87,11 @@ const submitFormFunction = () => {
             formErrorMsj.setAttribute("style", "visibility: visible;");
             formErrorMsj.innerHTML = "The password confirmation does not match";
         }
-        
-    }else{
+
+    } else {
         formErrorMsj.setAttribute("style", "visibility: visible;");
         formErrorMsj.innerHTML = "All fields are required";
-        
+
     }
 }
 
@@ -115,6 +119,7 @@ const profileCreation = (userID, name, email, picture) => {
 
 /**********************************************************************************/
 //Buttons event listener
+//Event listener google button
 document.querySelector(".fa-google-plus-circle").addEventListener("click", () => {
     console.log("Click en boton Google");
     firebase.auth().signInWithRedirect(provider);
@@ -125,6 +130,14 @@ document.querySelector(".fa-google-plus-circle").addEventListener("click", () =>
     });
     */
 });
+
+//Event listener github button
+document.querySelector(".fa-github").addEventListener("click", () => {
+    console.log("Click en boton Github");
+    firebase.auth().signInWithRedirect(providerGit);
+});
+
+
 
 document.querySelector("#submitForm").addEventListener("click", () => { submitFormFunction() });
 
@@ -138,11 +151,8 @@ document.querySelector("#signOutButton").addEventListener("click", () => {
         useruserProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
         userProfileName.innerHTML = "";
         userProfileEmail.innerHTML = "";
-      }).catch(function(error) {
+    }).catch(function(error) {
         // An error happened.
-      });
+    });
 });
 /***************************************************************************************/
-
-
-
