@@ -134,7 +134,7 @@ const profileCreation = (userID, name, email, picture) => {
 /**********************************************************************************/
 //Buttons event listener
 //Event listener google button
-document.querySelector(".fa-google-plus-circle").addEventListener("click", () => {
+document.querySelector(".fa-google").addEventListener("click", () => {
     console.log("Click en boton Google");
     firebase.auth().signInWithRedirect(provider);
     /* PopUp
