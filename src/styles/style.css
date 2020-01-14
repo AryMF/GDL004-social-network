@@ -21,12 +21,10 @@ body {
     color: var(--darkText);
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
     margin: 15px 15px;
     font-weight: bold;
+    text-align: center;
 }
 
 h1 {
@@ -48,31 +46,37 @@ h4 {
 .largeText {
     font-size: 20px;
     font-weight: normal;
+    text-align: center;
 }
 
 .normalText {
     font-size: 18px;
     font-weight: normal;
+    text-align: center;
 }
 
 .smallText {
     font-size: 16px;
     font-weight: normal;
+    text-align: center;
 }
 
 .largeTextBold {
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
 .normalTextBold {
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
 }
 
 .smallTextBold {
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 
 
