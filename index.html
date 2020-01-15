@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,38 +13,69 @@
 
 <body>
     <div id="welcomeScreen">
-        <div id="loginWindow">
-            <form id="registrationForm">
-                <img src="src\assets\imgs\logo.png">
-                <h3 style="color: var(--elephant);"> Welcome! </h3>
-                <h3 style="color: var(--elephant);"> Create an account with: </h3>
-                <div id="socialNetworkButtons">
-                    <i class="fa fa-google" tabindex="0"></i>
-                    <i class="fa fa-facebook-square" tabindex="0"></i>
-                    <i class="fa fa-github" tabindex="0"></i>
+        <div class="signInsignUpWindow">
+
+            <div id="loginForm">
+              <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
+              <h3 style="color: var(--elephant);"> Sign in with </h3>
+              <div class="socialNetworkButtons">
+                <i class="fa fa-google" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div>
+              <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
+              <p class="loginFormErrorMsj smallText"> Mensaje de error </p>
+              <input id="loginFormUserEmail" class="normalText" type="email" placeholder="Email">
+              <input id="loginFormUserPassword" class="normalText" type="password" placeholder="Password">
+              <button id="loginButton" class="flamingo normalTextBold"> Login </button>
+            </div>
+
+            <div id="registrationForm">
+              <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
+              <h3 style="color: var(--elephant);"> Account creation </h3>
+              <div class="socialNetworkButtons">
+                <i class="fa fa-google" tabindex="0"></i>
+                <i class="fa fa-facebook-square" tabindex="0"></i>
+                <i class="fa fa-github" tabindex="0"></i>
+              </div>
+              <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
+              <p class="formErrorMsj smallText"> Mensaje de error </p>
+              <input id="userName" class="normalText" type="text" placeholder="User name">
+              <input id="userEmail" class="normalText" type="email" placeholder="Email">
+              <input id="userPassword" class="normalText" type="password" placeholder="Password">
+              <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
+              <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
+            </div>
+
+            <div class="slideSecction">
+              <div class="slideSecctionMidLayer">
+
+                <div class="slideSecctionPanel slideSecctionRight">
+                  <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Hey you! </p>
+                  <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get on board and join our<br>amazing community </p>
+                  <button id="slideSecctionSignIn" class="ghost smallButton">Get started</button>
                 </div>
-                <h4 style="color: var(--elephant);"> Or use your email instead:</h4>
-                <p class="formErrorMsj smallText"> Mensaje de error </p>
-                <input id="userName" class="normalText" type="text" placeholder="User name">
-                <input id="userEmail" class="normalText" type="email" placeholder="Email">
-                <input id="userPassword" class="normalText" type="password" placeholder="Password">
-                <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
-            </form>
-            <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
-            <button id="loginButton" class="elephant normalTextBold"> Login </button>
-            <div id="slideSecction">
-                <p> Holi! :D </p>
+                <div class="slideSecctionPanel slideSecctionLeft">
+                  <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Welcome back! </p>
+                  <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get connected to keep on<br>making great things</p>
+                  <button id="slideSecctionSignUp" class="ghost smallButton">Sign In</button>
+                </div>
+              </div>
             </div>
         </div>
     </div>
 
     <div id="profileScreen" style="visibility: hidden;">
         <div id="userProfile">
-            <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png">
+            <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png" alt="Default avatar">
             <h3 id="userProfileName" style="color: var(--bayOfMany);"> User Name </h3>
             <h4 id="userProfileEmail" class="largeText"> Email </h4>
-            <button id="signOutButton" class="bayOfMany normalTextBold"> Sign out </button>
+            <button id="signOutButton" class="bayOfMany normalTextBold" style="transition: none;"> Sign out </button>
         </div>
+    </div>
+
+    <div class="loader">
+      <img class="loaderIMG" src="src\assets\imgs\loader.gif" alt="Loading">
     </div>
 
     <!-- Firebase configuration -->
@@ -55,7 +85,9 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
     <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script> TODO: Borrar por que ya no se usa-->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+    
 
     <script>
         // Your web app's Firebase configuration
@@ -73,6 +105,8 @@
     </script>
 
     <script src="src\scripts\main.js" async defer></script>
+    <script src="src\scripts\authentication.js" async defer></script>
+    <script src="src\scripts\data.js" async defer></script>
 </body>
 
 </html>
