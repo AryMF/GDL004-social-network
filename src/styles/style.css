@@ -1,6 +1,8 @@
 @import "reset.css";
 @import "welcomeScreen.css";
 @import "profileScreen.css";
+@import "profileInfo.css";
+
 :root {
     /*Background colors*/
     --gullGray: #93b0b6;
@@ -29,6 +31,8 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #002F4D;
+    display: none;
+    /*Descomentar esto
     display: flex; /*Aqui*/
     justify-content: center;
     align-items: center;    

@@ -17,9 +17,11 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     } else {
         // No user is signed in.
+        /* TODO: Descomentar esto
         welcomeScreen.setAttribute("style", "display: block;");
         loader.setAttribute("style", "display: none;"); //Flex
         profileScreen.setAttribute("style", "display:none;");
+        */
     }
 });
 
