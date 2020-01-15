@@ -21,6 +21,23 @@ body {
     color: var(--darkText);
 }
 
+.loader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: #002F4D;
+    display: flex; /*Aqui*/
+    justify-content: center;
+    align-items: center;    
+}
+
+.loaderIMG {
+    width: 50%;
+}
+
 h1, h2, h3, h4 {
     margin: 15px 15px;
     font-weight: bold;
@@ -130,7 +147,6 @@ button.ghost:active {
     transform: scale(0.95);
 }
 
-
 /*Responsive*/
 
 @media only screen and (min-width: 600px) {
@@ -165,5 +181,9 @@ button.ghost:active {
     button {
         margin: 10px;
         padding: 10px 35px;
+    }
+
+    .loaderIMG {
+        width: 15%;
     }
 }
