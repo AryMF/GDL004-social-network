@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title> DIYers </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="src\styles\style.css">
+
 </head>
 
 <body>
@@ -14,51 +17,51 @@
         <div class="signInsignUpWindow">
 
             <div id="loginForm">
-              <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
-              <h3 style="color: var(--elephant);"> Sign in with </h3>
-              <div class="socialNetworkButtons">
-                <i class="fa fa-google" tabindex="0"></i>
-                <i class="fa fa-facebook-square" tabindex="0"></i>
-                <i class="fa fa-github" tabindex="0"></i>
-              </div>
-              <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
-              <p class="loginFormErrorMsj smallText"> Mensaje de error </p>
-              <input id="loginFormUserEmail" class="normalText" type="email" placeholder="Email">
-              <input id="loginFormUserPassword" class="normalText" type="password" placeholder="Password">
-              <button id="loginButton" class="flamingo normalTextBold"> Login </button>
+                <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
+                <h3 style="color: var(--elephant);"> Sign in with </h3>
+                <div class="socialNetworkButtons">
+                    <i class="fa fa-google" tabindex="0"></i>
+                    <i class="fa fa-twitter" tabindex="0"></i>
+                    <i class="fa fa-github-alt" tabindex="0"></i>
+                </div>
+                <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
+                <p class="loginFormErrorMsj smallText"> Mensaje de error </p>
+                <input id="loginFormUserEmail" class="normalText" type="email" placeholder="Email">
+                <input id="loginFormUserPassword" class="normalText" type="password" placeholder="Password">
+                <button id="loginButton" class="flamingo normalTextBold"> Login </button>
             </div>
 
             <div id="registrationForm">
-              <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
-              <h3 style="color: var(--elephant);"> Account creation </h3>
-              <div class="socialNetworkButtons">
-                <i class="fa fa-google" tabindex="0"></i>
-                <i class="fa fa-facebook-square" tabindex="0"></i>
-                <i class="fa fa-github" tabindex="0"></i>
-              </div>
-              <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
-              <p class="formErrorMsj smallText"> Mensaje de error </p>
-              <input id="userName" class="normalText" type="text" placeholder="User name">
-              <input id="userEmail" class="normalText" type="email" placeholder="Email">
-              <input id="userPassword" class="normalText" type="password" placeholder="Password">
-              <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
-              <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
+                <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
+                <h3 style="color: var(--elephant);"> Account creation </h3>
+                <div class="socialNetworkButtons">
+                    <i class="fa fa-google" tabindex="0"></i>
+                    <i class="fa fa-twitter" tabindex="0"></i>
+                    <i class="fa fa-github-alt" tabindex="0"></i>
+                </div>
+                <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
+                <p class="formErrorMsj smallText"> Mensaje de error </p>
+                <input id="userName" class="normalText" type="text" placeholder="User name">
+                <input id="userEmail" class="normalText" type="email" placeholder="Email">
+                <input id="userPassword" class="normalText" type="password" placeholder="Password">
+                <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
+                <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
             </div>
 
             <div class="slideSecction">
-              <div class="slideSecctionMidLayer">
+                <div class="slideSecctionMidLayer">
 
-                <div class="slideSecctionPanel slideSecctionRight">
-                  <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Hey you! </p>
-                  <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get on board and join our<br>amazing community </p>
-                  <button id="slideSecctionSignIn" class="ghost smallButton">Get started</button>
+                    <div class="slideSecctionPanel slideSecctionRight">
+                        <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Hey you! </p>
+                        <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get on board and join our<br>amazing community </p>
+                        <button id="slideSecctionSignIn" class="ghost smallButton">Get started</button>
+                    </div>
+                    <div class="slideSecctionPanel slideSecctionLeft">
+                        <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Welcome back! </p>
+                        <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get connected to keep on<br>making great things</p>
+                        <button id="slideSecctionSignUp" class="ghost smallButton">Sign In</button>
+                    </div>
                 </div>
-                <div class="slideSecctionPanel slideSecctionLeft">
-                  <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Welcome back! </p>
-                  <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get connected to keep on<br>making great things</p>
-                  <button id="slideSecctionSignUp" class="ghost smallButton">Sign In</button>
-                </div>
-              </div>
             </div>
         </div>
     </div>
@@ -85,7 +88,7 @@
     </div>
 
     <div class="loader">
-      <img class="loaderIMG" src="src\assets\imgs\loader.gif" alt="Loading">
+        <img class="loaderIMG" src="src\assets\imgs\loader.gif" alt="Loading">
     </div>
 
     <!-- Firebase configuration -->
@@ -97,7 +100,7 @@
     <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
     <!-- <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script> TODO: Borrar por que ya no se usa-->
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
-    
+
 
     <script>
         // Your web app's Firebase configuration

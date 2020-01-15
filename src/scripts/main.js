@@ -25,7 +25,7 @@ let loader = document.querySelector(".loader");
 let userProfilePicture = document.querySelector("#userProfilePicture")
 let userProfileName = document.querySelector("#userProfileName")
 let userProfileEmail = document.querySelector("#userProfileEmail")
-/*******************************************************/
+    /*******************************************************/
 
 /*******************Functions***************************/
 const submitRegistrationForm = () => {
@@ -91,12 +91,12 @@ document.querySelectorAll(".fa-google").forEach((element) => {
 });
 
 //Event listener github button
-document.querySelectorAll(".fa-github").forEach((element) => {
+document.querySelectorAll(".fa-github-alt").forEach((element) => {
     element.addEventListener("click", () => { loginWithProvider(2); });
 });
 
-//Event listener facebook button
-document.querySelectorAll(".fa-facebook-square").forEach((element) => {
+//Event listener twitter button
+document.querySelectorAll(".fa-twitter").forEach((element) => {
     element.addEventListener("click", () => { loginWithProvider(3); });
 });
 

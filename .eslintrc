@@ -5,7 +5,7 @@
     "jest/globals": true
   },
   "extends": [
-    "airbnb-base"
+  //"airbnb-base"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -26,6 +26,10 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "indent": 0,
+    "camelcase": "error",
+    "no-redeclare": "error",
+    "quotes": "off"
   }
 }
