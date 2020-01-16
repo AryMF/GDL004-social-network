@@ -67,17 +67,17 @@
     </div>
 
     <div class="profileInfoInput-container">
-            <div class="profileInfoInput-screen">
-              <form>
+        <div class="profileInfoInput-screen">
+            <form>
                 <h3> Tell us more about you! </h3>
                 <p id="profileInfoWarning" class="smallTextBold" style="color: var(--bayOfMany);"> *User name field required</p>
                 <input id="userName" class="largeText" style="color: var(--flamingo);" type="text" placeholder="User name" required>
-                <textarea id="userAbout" class="normalText" rows="5" cols="50" maxlength = "100" placeholder="Time to be creative! Describe yourself in 100 character or less "></textarea>
+                <textarea id="userAbout" class="normalText" rows="5" cols="50" maxlength="100" placeholder="Time to be creative! Describe yourself in 100 character or less "></textarea>
                 <input id="userCountry" class="normalText" type="text" placeholder="Country">
                 <p class="smallText"> We want to know your birthday, so we can celebrate with you!:</p>
-                <input id="userBirthday"  class="normalText" type="date">
-              </form> 
-              <div class="profileInfoInputSecondColumn">
+                <input id="userBirthday" class="normalText" type="date">
+            </form>
+            <div class="profileInfoInputSecondColumn">
                 <p class="smallText"> Profile picture</p>
                 <div class="userPictureContainer">
                     <img id="userPicture" src="src\assets\imgs\avatar128.png">
@@ -85,8 +85,26 @@
                 <br>
                 <i class="fa fa-camera normalText" style="color: var(--bayOfMany);"></i>
                 <button id="profileInfoInputContinue" class="flamingo normalTextBold" type="submit"> Continue </button>
-              </div>
             </div>
+        </div>
+
+    </div>
+    <div class="profileInfoInputTopics">
+        <div class="profileInfoInput-screen2">
+            <form>
+                <input type="checkbox" name="circuits" id="circuitsTopic">
+                <input type="checkbox" name="Workshop" id="workshopTopic">
+                <input type="checkbox" name="Crafting" id="CraftTopic">
+                <input type="checkbox" name="Cooking" id="cookingTopic">
+                <input type="checkbox" name="Living" id="livingTopic">
+                <input type="checkbox" name="Outside" id="outsideTopic">
+            </form>
+
+        </div>
+
+
+
+
     </div>
 
     <div id="profileScreen" style="visibility: hidden;">
