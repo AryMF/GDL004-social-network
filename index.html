@@ -80,7 +80,7 @@
               <div class="profileInfoInputSecondColumn">
                 <p class="smallText"> Profile picture</p>
                 <div class="userPictureContainer">
-                    <img id="userPicture" src="src\assets\imgs\avatar128.png">
+                    <img id="userPicture" src="src\assets\imgs\avatar128.png" alt="Default avatar">
                 </div>
                 <br>
                 <i class="fa fa-camera normalText" style="color: var(--bayOfMany);"></i>
@@ -91,11 +91,21 @@
 
     <div id="profileScreen" style="visibility: hidden;">
         <div id="userProfile">
-            <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png" alt="Default avatar">
-            <h3 id="userProfileName" style="color: var(--bayOfMany);"> User Name </h3>
-            <h4 id="userProfileEmail" class="largeText"> Email </h4>
+            <div class="userProfileTop"> 
+                <img class="cover" src="src\assets\imgs\coverBackground.jpg" alt="Default avatar">
+                <div class="userPictureContainer">
+                    <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png" alt="Default avatar">
+                </div>
+            </div>
+            <div class="userProfileBottom">
+                <h3 id="userProfileName" style="color: var(--bayOfMany);"> User Name </h3>
+                <p id="userProfileAbout" class="normalText"> BlaBlaBla</p>
+                <p id="userProfileEmail" class="normalText"> Email </p>
+                <p id="userProfileCountry" class="normalText"> Email </p>
+            </div>      
             <button id="signOutButton" class="bayOfMany normalTextBold" style="transition: none;"> Sign out </button>
         </div>
+    </div>>
     </div>
 
     <div class="loader">
