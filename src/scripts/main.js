@@ -130,6 +130,26 @@ const profileInfoUpdate = () => {
     }
 }
 
+//Funcion para cargar datos adicionales
+// const profileInfoUpdate = (_email) => {
+//     screenSelector(false, false, false, true);
+//     profileInfoWarning.setAttribute("style", "display: none;");
+//     if(userNameInput.value != "") {
+//         let profileInfo = {
+//             email: _email,
+//             displayName: userNameInput.value,
+//             userAbout: userAboutInput.value,
+//             userCountry: userCountryInput.value,
+//             userBirthday: userBirthdayInput.value,
+//             profilePicture: null
+//         }
+//         console.log(profileInfo);
+//         showProfile();
+//     } else {
+//         profileInfoWarning.setAttribute("style", "display: block;");
+//     }
+// }
+
 /*************Buttons event listener**********************/
 //Event listener google button
 document.querySelectorAll(".fa-google").forEach((element) => {
@@ -164,5 +184,9 @@ document.querySelector("#loginButton").addEventListener("click", () => { submitL
 document.querySelector("#signOutButton").addEventListener("click", () => { signOut(); });
 
 //Profile info update button
-profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
+//profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
+
+//Profile info update button // temporal funcion de solo mostrar, falta añadir funcionalidad de Guardar datos perfil (profileInfoUpdate)
+profileInfoInputContinue.addEventListener("click", () => { showInputTopics(); });
+
 /***************************************************************************************/
