@@ -1,25 +1,32 @@
 //Variables globales
 let idLoggedUser;
+let isNewUser = false;
 
 //Session listener
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // User is signed in.
+        // User is signed in. 
         user.providerData.forEach(function(profile) {
-            console.log(profile);
             console.log("Sign-in provider: " + profile.providerId);
             console.log("  Provider-specific UID: " + profile.uid);
             console.log("  Name: " + profile.displayName);
             console.log("  Email: " + profile.email);
             console.log("  Photo URL: " + profile.photoURL);
             idLoggedUser = profile.email;
-            showProfile();
         });
+
+        if(isNewUser == true){
+            showProfileInfoInput();
+        }else {
+            showProfile();
+        }
     } else {
         // No user is signed in.
+        /* TODO: Descomentar esto*/
         welcomeScreen.setAttribute("style", "display: block;");
         loader.setAttribute("style", "display: none;"); //Flex
         profileScreen.setAttribute("style", "display:none;");
+        
     }
 });
 
@@ -51,10 +58,11 @@ const loginWithProvider = (provider) => {
 firebase.auth().getRedirectResult()
     .then(function(result) {
         if (result.user != null) {
-            //TODO: fix blinker
-            console.log(result.user)
-            profileCreation(result.user.displayName, result.user.email, result.user.photoURL);
-
+            //Verifica si es un nuevo usuario
+            isNewUser = result.additionalUserInfo.isNewUser;
+            console.log("isNewUser: ", isNewUser);
+            
+            // profileCreation(result.user.displayName, result.user.email, result.user.photoURL); TODO: borrar linea una vez que todo funcione
         }
     }).catch(function(error) {
         welcomeScreen.setAttribute("style", "display: block;");
@@ -78,9 +86,10 @@ firebase.auth().getRedirectResult()
 const emailRegistration = (userEmail, userPassword, userName) => {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
         .then(function() {
-            //TODO: uid con Email authentication
-            let user = firebase.auth().currentUser;
-            profileCreation(userName, user.email, null);
+            isNewUser = true;
+            showProfileInfoInput();
+            // let user = firebase.auth().currentUser;
+            // profileCreation(userName, user.email, null); TODO: borrar linea una vez que todo funcione
 
         }).catch(function(error) {
             // Handle Errors here.
@@ -108,7 +117,13 @@ const emailRegistration = (userEmail, userPassword, userName) => {
 //Login  with email/password
 const loginWithEmail = (loginFormUserEmail, loginFormUserPassword) => {
     firebase.auth().signInWithEmailAndPassword(loginFormUserEmail, loginFormUserPassword)
-        .catch(function(error) {
+        .then(() => {
+            isNewUser = false;
+        }).catch(function(error) {
+            welcomeScreen.setAttribute("style", "display: block;");
+            loader.setAttribute("style", "display: none;"); //Flex
+            profileScreen.setAttribute("style", "display:none;");
+            profileInfoInputContainer.setAttribute("style", "display:none;");
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;

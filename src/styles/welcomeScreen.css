@@ -7,10 +7,10 @@
     height: 100vh;
     border: 0px 0px;
     background-color: var(--gullGray);
-    display: none; /* Aqui*/
+    /*display: none; /*TODO: borrar*/
 }
 
-.signInsignUpWindow {
+.signInsignUpWindow, .profileInfoInput-screen {
     position: relative;
     left: 50%;
     top: 50%;
@@ -28,7 +28,7 @@
     align-items: center;
 }
 
-#registrationForm, #loginForm{
+#registrationForm, #loginForm {
     position: absolute;
     top: 0;
     width: 100%;
@@ -138,7 +138,7 @@
     color: var(--bayOfMany);
 }
 
-input { /*Cambio para mobile*/
+input, textarea{ /*Cambio para mobile*/
     color: var(--elephant);
     background-color: #eee;
 	border: none;

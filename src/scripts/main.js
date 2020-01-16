@@ -1,9 +1,11 @@
 //TODO: import  * as auth from "./authentication.js";
 
+
+
 /******************QuerySelectors************************/
 //Account creation
 let formErrorMsj = document.querySelector(".formErrorMsj");
-let userName = document.querySelector("#userName");
+// let userName = document.querySelector("#userName");
 let userEmail = document.querySelector("#userEmail");
 let userPassword = document.querySelector("#userPassword");
 let userPasswordConfirmation = document.querySelector("#userPasswordConfirmation");
@@ -25,18 +27,32 @@ let loader = document.querySelector(".loader");
 let userProfilePicture = document.querySelector("#userProfilePicture")
 let userProfileName = document.querySelector("#userProfileName")
 let userProfileEmail = document.querySelector("#userProfileEmail")
-    /*******************************************************/
+
+//Profile Info Input
+let profileInfoInputContainer = document.querySelector(".profileInfoInput-container");
+let profileInfoWarning = document.querySelector("#profileInfoWarning");
+let userNameInput = document.querySelector("#userName");
+let userAboutInput = document.querySelector("#userAbout");
+let userCountryInput = document.querySelector("#userCountry");
+let userBirthdayInput = document.querySelector("#userBirthday");
+let userPicture = document.querySelector("userPicture");
+let changePictureButton = document.querySelector(".fa-camera");
+let profileInfoInputContinue = document.querySelector("#profileInfoInputContinue");
+/*******************************************************/
 
 /*******************Functions***************************/
 const submitRegistrationForm = () => {
     formErrorMsj.setAttribute("style", "visibility: hidden;");
-    if (userName.value != "" && userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != "") {
+    if (userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != "") {
         if (userPassword.value === userPasswordConfirmation.value) {
             //Si paso todas las validaciones 
             welcomeScreen.setAttribute("style", "display: none;");
-            loader.setAttribute("style", "display: none;"); //Flex
-            profileScreen.setAttribute("style", "display:block;");
+            loader.setAttribute("style", "display: flex;"); //Flex
+            profileScreen.setAttribute("style", "display:none;");
             emailRegistration(userEmail.value, userPassword.value, userName.value);
+            userEmail.value = "";
+            userPassword.value = ""; 
+            userPasswordConfirmation.value = "";
         } else {
             formErrorMsj.setAttribute("style", "visibility: visible;");
             formErrorMsj.innerHTML = "The password confirmation does not match";
@@ -57,6 +73,8 @@ const submitLoginForm = () => {
         loader.setAttribute("style", "display: Flex;"); //Flex
         profileScreen.setAttribute("style", "display:none;");
         loginWithEmail(loginFormUserEmail.value, loginFormUserPassword.value);
+        loginFormUserEmail.value = "";
+        loginFormUserPassword.value = "";
     } else {
         loginFormErrorMsj.setAttribute("style", "visibility: visible;");
         loginFormErrorMsj.innerHTML = "All fields are required";
@@ -68,6 +86,7 @@ const showProfile = () => {
     welcomeScreen.setAttribute("style", "display: none;");
     loader.setAttribute("style", "display: none;"); //Flex
     profileScreen.setAttribute("style", "display:block;");
+    profileInfoInputContainer.setAttribute("style", "display:none;");
     fetchData("user", idLoggedUser).then(function(profileData) {
         if (profileData.exists) {
             const { displayName, email, profilePicture } = profileData.data();
@@ -82,6 +101,32 @@ const showProfile = () => {
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
+}
+
+//TODO: Funcion temporal para cambio de pantalla
+const showProfileInfoInput = () => {
+    welcomeScreen.setAttribute("style", "display: none;");
+    loader.setAttribute("style", "display: none;"); //Flex
+    profileScreen.setAttribute("style", "display:none;");
+    profileInfoInputContainer.setAttribute("style", "display:block;");
+}
+
+const profileInfoUpdate = (_email) => {
+    profileInfoWarning.setAttribute("style", "display: none;");
+    if(userNameInput.value != "") {
+        let profileInfo = {
+            email: _email,
+            displayName: userNameInput.value,
+            userAbout: userAboutInput.value,
+            userCountry: userCountryInput.value,
+            userBirthday: userBirthdayInput.value,
+            profilePicture: null
+        }
+        console.log(profileInfo);
+        showProfile();
+    } else {
+        profileInfoWarning.setAttribute("style", "display: block;");
+    }
 }
 
 /*************Buttons event listener**********************/
@@ -116,4 +161,7 @@ slideSecctionSignUp.addEventListener("click", () => {
 document.querySelector("#submitForm").addEventListener("click", () => { submitRegistrationForm() });
 document.querySelector("#loginButton").addEventListener("click", () => { submitLoginForm() });
 document.querySelector("#signOutButton").addEventListener("click", () => { signOut(); });
+
+//Profile info update button
+profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 /***************************************************************************************/

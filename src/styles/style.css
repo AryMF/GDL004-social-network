@@ -1,6 +1,8 @@
 @import "reset.css";
 @import "welcomeScreen.css";
 @import "profileScreen.css";
+@import "profileInfo.css";
+
 :root {
     /*Background colors*/
     --gullGray: #93b0b6;
@@ -29,9 +31,10 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #002F4D;
-    display: flex; /*Aqui*/
+        display: flex; 
     justify-content: center;
-    align-items: center;    
+    align-items: center;   
+    /*display: none; /*TODO: borrar*/ 
 }
 
 .loaderIMG {
@@ -53,7 +56,7 @@ h2 {
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 28px;
 }
 
 h4 {
