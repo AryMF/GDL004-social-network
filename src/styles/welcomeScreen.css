@@ -59,7 +59,7 @@
     transform: translateY(28%);
     opacity: 1;
     z-index: 5;
-    animation: show 0.6ss;
+    animation: show 0.6s;
 }
 
 @keyframes show {
