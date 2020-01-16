@@ -1,7 +1,5 @@
 //TODO: import  * as auth from "./authentication.js";
 
-
-
 /******************QuerySelectors************************/
 //Account creation
 let formErrorMsj = document.querySelector(".formErrorMsj");
@@ -49,9 +47,11 @@ const submitRegistrationForm = () => {
     if (userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != "") {
         if (userPassword.value === userPasswordConfirmation.value) {
             //Si paso todas las validaciones 
+            /*TODO: Borrar esto
             welcomeScreen.setAttribute("style", "display: none;");
             loader.setAttribute("style", "display: flex;"); //Flex
-            profileScreen.setAttribute("style", "display:none;");
+            profileScreen.setAttribute("style", "display:none;");*/
+            screenSelector(true, false, false, false);
             emailRegistration(userEmail.value, userPassword.value, userName.value);
             userEmail.value = "";
             userPassword.value = "";
@@ -72,9 +72,11 @@ const submitLoginForm = () => {
     loginFormErrorMsj.setAttribute("style", "visibility: hidden;");
     if (loginFormUserEmail.value != "" && loginFormUserPassword.value != "") {
         //Si paso todas las validaciones 
+        /*TODO: Borrar esto
         welcomeScreen.setAttribute("style", "display: none;");
         loader.setAttribute("style", "display: Flex;"); //Flex
-        profileScreen.setAttribute("style", "display:none;");
+        profileScreen.setAttribute("style", "display:none;");*/
+        screenSelector(true, false, false, false);
         loginWithEmail(loginFormUserEmail.value, loginFormUserPassword.value);
         loginFormUserEmail.value = "";
         loginFormUserPassword.value = "";
@@ -86,10 +88,12 @@ const submitLoginForm = () => {
 }
 
 const showProfile = () => {
+    /*TODO: Borrar esto
     welcomeScreen.setAttribute("style", "display: none;");
     loader.setAttribute("style", "display: none;"); //Flex
     profileScreen.setAttribute("style", "display:block;");
-    profileInfoInputContainer.setAttribute("style", "display:none;");
+    profileInfoInputContainer.setAttribute("style", "display:none;");*/
+    screenSelector(false, false, true, false);
     fetchData("user", idLoggedUser).then(function(profileData) {
         if (profileData.exists) {
             const { displayName, email, profilePicture } = profileData.data();
@@ -107,11 +111,16 @@ const showProfile = () => {
 }
 
 //TODO: Funcion temporal para cambio de pantalla
-const showProfileInfoInput = () => {
-    welcomeScreen.setAttribute("style", "display: none;");
-    loader.setAttribute("style", "display: none;"); //Flex
-    profileScreen.setAttribute("style", "display:none;");
-    profileInfoInputContainer.setAttribute("style", "display:block;");
+const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInputContainer) => {
+    console.log(_loader, _welcomeScreen, _profileScreen, _profileInfoInputContainer);
+    _loader === true ? loader.setAttribute("style", "display: Flex;") :
+        loader.setAttribute("style", "display: none;"); //Flex
+    _welcomeScreen === true ? welcomeScreen.setAttribute("style", "display: block;") :
+        welcomeScreen.setAttribute("style", "display: none;");
+    _profileScreen === true ? profileScreen.setAttribute("style", "display: block;") :
+        profileScreen.setAttribute("style", "display: none;");
+    _profileInfoInputContainer === true ? profileInfoInputContainer.setAttribute("style", "display: block;") :
+        profileInfoInputContainer.setAttribute("style", "display: none;");
 }
 
 const showInputTopics = () => {
@@ -120,9 +129,12 @@ const showInputTopics = () => {
     profileInfoInputScreen2.setAttribute("style", "display: block;");
 }
 
+
+//Funcion para cargar datos adicionales
 // const profileInfoUpdate = (_email) => {
+//     screenSelector(false, false, false, true);
 //     profileInfoWarning.setAttribute("style", "display: none;");
-//     if (userNameInput.value != "") {
+//     if(userNameInput.value != "") {
 //         let profileInfo = {
 //             email: _email,
 //             displayName: userNameInput.value,
@@ -176,5 +188,4 @@ document.querySelector("#signOutButton").addEventListener("click", () => { signO
 
 //Profile info update button // temporal funcion de solo mostrar, falta añadir funcionalidad de Guardar datos perfil (profileInfoUpdate)
 profileInfoInputContinue.addEventListener("click", () => { showInputTopics(); });
-/***************************************************************************************/
 /***************************************************************************************/
