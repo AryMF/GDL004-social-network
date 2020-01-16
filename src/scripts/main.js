@@ -49,7 +49,7 @@ const submitRegistrationForm = () => {
             screenSelector(true, false, false, false);
             emailRegistration(userEmail.value, userPassword.value, userName.value);
             userEmail.value = "";
-            userPassword.value = ""; 
+            userPassword.value = "";
             userPasswordConfirmation.value = "";
         } else {
             formErrorMsj.setAttribute("style", "visibility: visible;");
@@ -82,7 +82,7 @@ const showProfile = () => {
     screenSelector(false, false, true, false);
     fetchData("user", idLoggedUser).then(function(profileData) {
         if (profileData.exists) {
-            const { displayName, email, profilePicture, userAbout, userCountry} = profileData.data();
+            const { displayName, email, profilePicture, userAbout, userCountry } = profileData.data();
             profilePicture != null ? userProfilePicture.setAttribute("src", profilePicture) : userProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
             userProfilePicture.setAttribute("alt", "Avatar");
             userProfileName.innerHTML = displayName;
@@ -100,21 +100,41 @@ const showProfile = () => {
 
 //TODO: Funcion temporal para cambio de pantalla
 const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInputContainer) => {
-    _loader === true ? loader.setAttribute("style", "display: Flex;") 
-        : loader.setAttribute("style", "display: none;"); //Flex
-    _welcomeScreen === true ? welcomeScreen.setAttribute("style", "display: block;") 
-        : welcomeScreen.setAttribute("style", "display: none;");
-    _profileScreen === true ? profileScreen.setAttribute("style", "display: block;") 
-        : profileScreen.setAttribute("style", "display: none;");
-    _profileInfoInputContainer === true ? profileInfoInputContainer.setAttribute("style", "display: block;") 
-        : profileInfoInputContainer.setAttribute("style", "display: none;");
+    _loader === true ? loader.setAttribute("style", "display: Flex;") :
+        loader.setAttribute("style", "display: none;"); //Flex
+    _welcomeScreen === true ? welcomeScreen.setAttribute("style", "display: block;") :
+        welcomeScreen.setAttribute("style", "display: none;");
+    _profileScreen === true ? profileScreen.setAttribute("style", "display: block;") :
+        profileScreen.setAttribute("style", "display: none;");
+    _profileInfoInputContainer === true ? profileInfoInputContainer.setAttribute("style", "display: block;") :
+        profileInfoInputContainer.setAttribute("style", "display: none;");
 }
 
 //Funcion para cargar datos adicionales
 const profileInfoUpdate = () => {
     screenSelector(false, false, false, true);
     profileInfoWarning.setAttribute("style", "display: none;");
-    if(userNameInput.value != "") {
+    if (userNameInput.value != "") {
+        let profileInfo = {
+            email: idLoggedUser,
+            displayName: userNameInput.value,
+            userAbout: userAboutInput.value,
+            userCountry: userCountryInput.value,
+            userBirthday: userBirthdayInput.value,
+            profilePicture: profilePicGlobal
+        }
+        profileCreation(profileInfo);
+        showProfile();
+    } else {
+        profileInfoWarning.setAttribute("style", "display: block;");
+    }
+}
+
+//Funcion para cargar datos adicionales
+const profileInfoUpdate = () => {
+    screenSelector(false, false, false, true);
+    profileInfoWarning.setAttribute("style", "display: none;");
+    if (userNameInput.value != "") {
         let profileInfo = {
             email: idLoggedUser,
             displayName: userNameInput.value,

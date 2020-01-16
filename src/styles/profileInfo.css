@@ -9,7 +9,7 @@
     display: none;
 }
 
-.profileInfoInput-screen{
+.profileInfoInput-screen {
     position: relative;
     left: 50%;
     top: 50%;
@@ -17,17 +17,16 @@
     width: 90%;
     background-color: var(--backgroundWhite);
     border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-			0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     padding: 15px 0px 0px 0px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
 }
 
-.profileInfoInput-screen input, .profileInfoInput-screen textarea {
+.profileInfoInput-screen input,
+.profileInfoInput-screen textarea {
     text-transform: initial;
     width: 80%;
     height: auto;
@@ -40,7 +39,7 @@
     display: none;
 }
 
-.profileInfoInputName{
+.profileInfoInputName {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -52,7 +51,8 @@
     color: var(--flamingo);
 }
 
-.profileInfoInputSecondColumn, .profileInfoInput-screen form {
+.profileInfoInputSecondColumn,
+.profileInfoInput-screen form {
     width: 100%;
     height: 100%;
     display: flex;
@@ -84,10 +84,9 @@
 }
 
 @media only screen and (min-width: 769px) {
-    .profileInfoInput-screen{
+    .profileInfoInput-screen {
         width: 60%;
         height: 80%;
-
         flex-direction: row;
         align-items: center;
         overflow: hidden;
