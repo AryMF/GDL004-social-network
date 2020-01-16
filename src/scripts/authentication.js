@@ -1,5 +1,6 @@
 //Variables globales
 let idLoggedUser;
+let profilePicGlobal = null; //TODO: Quick fix, not finale
 let isNewUser = false;
 
 //Session listener
@@ -16,19 +17,15 @@ firebase.auth().onAuthStateChanged(function(user) {
             idLoggedUser = profile.email;
         });
 
-        if (isNewUser == true) {
+        if(isNewUser == true){
             profileInfoUpdate();
-        } else {
+        }else {
             showProfile();
         }
     } else {
         // No user is signed in.
-        /* TODO: Borrar esto
-        welcomeScreen.setAttribute("style", "display: block;");
-        loader.setAttribute("style", "display: none;"); //Flex
-        profileScreen.setAttribute("style", "display:none;");*/
         screenSelector(false, true, false, false);
-
+        
     }
 });
 
@@ -42,10 +39,6 @@ var providerTwitter = new firebase.auth.TwitterAuthProvider();
 var providerGoogle = new firebase.auth.GoogleAuthProvider();
 
 const loginWithProvider = (provider) => {
-    /* TODO: Borrar esto
-    welcomeScreen.setAttribute("style", "display: none;");
-    loader.setAttribute("style", "display: Flex;"); //Flex*/
-
     screenSelector(true, false, false, false);
     switch (provider) {
         case 1:
@@ -65,15 +58,12 @@ firebase.auth().getRedirectResult()
         if (result.user != null) {
             //Verifica si es un nuevo usuario
             isNewUser = result.additionalUserInfo.isNewUser;
+            profilePicGlobal = result.user.photoURL;
             console.log("isNewUser: ", isNewUser);
-
+            
             // profileCreation(result.user.displayName, result.user.email, result.user.photoURL); TODO: borrar linea una vez que todo funcione
         }
     }).catch(function(error) {
-        /* TODO: Borrar esto
-        welcomeScreen.setAttribute("style", "display: block;");
-        loader.setAttribute("style", "display: none;"); //Flex
-        profileScreen.setAttribute("style", "display:none;");*/
         screenSelector(false, true, false, false);
         // Handle Errors here.
         var errorCode = error.code;
@@ -94,16 +84,9 @@ const emailRegistration = (userEmail, userPassword, userName) => {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
         .then(function() {
             isNewUser = true;
-            showProfileInfoInput();
-            // let user = firebase.auth().currentUser;
-            // profileCreation(userName, user.email, null); TODO: borrar linea una vez que todo funcione
-
+            profileInfoUpdate();
         }).catch(function(error) {
             // Handle Errors here.
-            /* TODO: Borrar esto
-            welcomeScreen.setAttribute("style", "display: block;");
-            loader.setAttribute("style", "display: none;"); //Flex
-            profileScreen.setAttribute("style", "display:none;");*/
             screenSelector(false, true, false, false);
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -129,11 +112,6 @@ const loginWithEmail = (loginFormUserEmail, loginFormUserPassword) => {
         .then(() => {
             isNewUser = false;
         }).catch(function(error) {
-            /*TODO: Borrar esto
-            welcomeScreen.setAttribute("style", "display: block;");
-            loader.setAttribute("style", "display: none;"); //Flex
-            profileScreen.setAttribute("style", "display:none;");
-            profileInfoInputContainer.setAttribute("style", "display:none;");*/
             screenSelector(false, true, false, false);
             // Handle Errors here.
             var errorCode = error.code;
