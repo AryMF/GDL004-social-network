@@ -38,6 +38,9 @@ let userBirthdayInput = document.querySelector("#userBirthday");
 let userPicture = document.querySelector("userPicture");
 let changePictureButton = document.querySelector(".fa-camera");
 let profileInfoInputContinue = document.querySelector("#profileInfoInputContinue");
+//Profile Info Input Topics
+let profileInfoInputTopics = document.querySelector(".profileInfoInputTopics");
+let profileInfoInputScreen2 = document.querySelector(".profileInfoInput-screen2");
 /*******************************************************/
 
 /*******************Functions***************************/
@@ -110,25 +113,12 @@ const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInp
         profileInfoInputContainer.setAttribute("style", "display: none;");
 }
 
-//Funcion para cargar datos adicionales
-const profileInfoUpdate = () => {
-    screenSelector(false, false, false, true);
-    profileInfoWarning.setAttribute("style", "display: none;");
-    if (userNameInput.value != "") {
-        let profileInfo = {
-            email: idLoggedUser,
-            displayName: userNameInput.value,
-            userAbout: userAboutInput.value,
-            userCountry: userCountryInput.value,
-            userBirthday: userBirthdayInput.value,
-            profilePicture: profilePicGlobal
-        }
-        profileCreation(profileInfo);
-        showProfile();
-    } else {
-        profileInfoWarning.setAttribute("style", "display: block;");
-    }
+const topicSelection = () => {
+    profileInfoInputContainer.setAttribute("style", "display:none;");
+    loader.setAttribute("style", "display: none;"); //Flex
+    profileInfoInputScreen2.setAttribute("style", "display: block;");
 }
+
 
 //Funcion para cargar datos adicionales
 const profileInfoUpdate = () => {
@@ -207,6 +197,7 @@ document.querySelector("#signOutButton").addEventListener("click", () => { signO
 //profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 
 //Profile info update button // temporal funcion de solo mostrar, falta añadir funcionalidad de Guardar datos perfil (profileInfoUpdate)
-profileInfoInputContinue.addEventListener("click", () => { showInputTopics(); });
-
+profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 /***************************************************************************************/
+
+profileInfoTopicsFinish.addEventListener("click", () => { showProfile(); });
