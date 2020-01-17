@@ -91,26 +91,38 @@
     </div>
     <div class="profileInfoInputTopics">
         <div class="profileInfoInput-screen2">
-            <form>
-                <input type="checkbox" class="topics" id="circuitsTopic">Circuits
-                <input type="checkbox" class="topics" id="workshopTopic">Workshop
-                <input type="checkbox" class="topics" id="CraftTopic">Crafting
-                <input type="checkbox" class="topics" id="cookingTopic">Cooking
-                <input type="checkbox" class="topics" id="livingTopic">Living
-                <input type="checkbox" class="topics" id="outsideTopic">Outside
-            </form>
-            <button id="profileInfoTopicsFinish">Finish</button>
-
+            <p id="titleTopics">Please select your interests:</p>
+            <form id="topicsCheckboxes">
+                <ul>
+                    <li><input type="checkbox" class="cb" id="cb1" name="circuits" />
+                        <label for="cb1"><img src="src\assets\imgs\circuits.jpg" /><br><p class="cbText">Circuits</p></label>
+                    </li>
+                    <li><input type="checkbox" class="cb" id="cb2" name="workshop" />
+                        <label for="cb2"><img src="src\assets\imgs\workshop.png" /><br><p class="cbText">Workshop</p></label>
+                    </li>
+                    <li><input type="checkbox" class="cb" id="cb3" name="crafting" />
+                        <label for="cb3"><img src="src\assets\imgs\craft.jpg" /><br><p class="cbText">Crafting</p></label>
+                    </li>
+                    <li><input type="checkbox" class="cb" id="cb4" name="cooking" />
+                        <label for="cb4"><img src="src\assets\imgs\cooking.jpg" /><br><p class="cbText">Cooking</p></label>
+                    </li>
+                    <li><input type="checkbox" class="cb" id="cb5" name="living" />
+                        <label for="cb5"><img src="src\assets\imgs\living.jpg" /><br><p class="cbText">Living</p></label>
+                    </li>
+                    <li><input type="checkbox" class="cb" id="cb6" name="outside" />
+                        <label for="cb6"><img src="src\assets\imgs\outside.jpg" /><br><p class="cbText">Outside</p></label>
+                    </li>
+                </ul>
+                <p id="errorTopic"></p>
+            </form><br>
+            <p id="errorTopic"></p>
+            <button id="profileInfoTopicsFinish" class="flamingo normalTextBold">Finish</button>
         </div>
-
-
-
-
     </div>
 
     <div id="profileScreen" style="visibility: hidden;">
         <div id="userProfile">
-            <div class="userProfileTop"> 
+            <div class="userProfileTop">
                 <img class="cover" src="src\assets\imgs\coverBackground.jpg" alt="Default avatar">
                 <div class="userPictureContainer">
                     <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png" alt="Default avatar">
@@ -121,10 +133,10 @@
                 <p id="userProfileAbout" class="normalText"></p>
                 <p id="userProfileEmail" class="normalText"></p>
                 <p id="userProfileCountry" class="normalText"></p>
-            </div>      
+            </div>
             <button id="signOutButton" class="bayOfMany normalTextBold" style="transition: none;"> Sign out </button>
         </div>
-    </div>>
+    </div>
     </div>
 
     <div class="loader">

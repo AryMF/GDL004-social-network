@@ -41,6 +41,8 @@ let profileInfoInputContinue = document.querySelector("#profileInfoInputContinue
 //Profile Info Input Topics
 let profileInfoInputTopics = document.querySelector(".profileInfoInputTopics");
 let profileInfoInputScreen2 = document.querySelector(".profileInfoInput-screen2");
+let errormsg = document.querySelector("#errorTopic");
+let checkboxesTopic = document.querySelector(".cb");
 /*******************************************************/
 
 /*******************Functions***************************/
@@ -81,8 +83,26 @@ const submitLoginForm = () => {
     }
 }
 
+//CHECKBOXES CHECKED FUNCTION
+function valthis() {
+    var checkBoxes = document.getElementsByClassName("cb");
+    var isChecked = false;
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].checked) {
+            isChecked = true;
+        };
+    };
+    if (isChecked) {
+        showProfile();
+    } else {
+        errormsg.setAttribute("style", "display:inline-block;");
+        errormsg.innerHTML = "Please, choose at least one topic!";
+    }
+
+}
 const showProfile = () => {
     screenSelector(false, false, true, false);
+    profileInfoInputTopics.setAttribute("style", "display: none;")
     fetchData("user", idLoggedUser).then(function(profileData) {
         if (profileData.exists) {
             const { displayName, email, profilePicture, userAbout, userCountry } = profileData.data();
@@ -102,7 +122,7 @@ const showProfile = () => {
 }
 
 //TODO: Funcion temporal para cambio de pantalla
-const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInputContainer) => {
+const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInputContainer, _profileInfoInputTopics) => {
     _loader === true ? loader.setAttribute("style", "display: Flex;") :
         loader.setAttribute("style", "display: none;"); //Flex
     _welcomeScreen === true ? welcomeScreen.setAttribute("style", "display: block;") :
@@ -111,12 +131,15 @@ const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInp
         profileScreen.setAttribute("style", "display: none;");
     _profileInfoInputContainer === true ? profileInfoInputContainer.setAttribute("style", "display: block;") :
         profileInfoInputContainer.setAttribute("style", "display: none;");
+    _profileInfoInputTopics === true ? profileInfoInputTopics.setAttribute("style", "display: block;") :
+        profileInfoInputTopics.setAttribute("style", "display:none;");
 }
 
 const topicSelection = () => {
     profileInfoInputContainer.setAttribute("style", "display:none;");
     loader.setAttribute("style", "display: none;"); //Flex
-    profileInfoInputScreen2.setAttribute("style", "display: block;");
+    profileInfoInputTopics.setAttribute("style", "display: block;")
+    showProfile();
 }
 
 
@@ -134,7 +157,8 @@ const profileInfoUpdate = () => {
             profilePicture: profilePicGlobal
         }
         profileCreation(profileInfo);
-        showProfile();
+        profileInfoInputContainer.setAttribute("style", "display:none;");
+        profileInfoInputTopics.setAttribute("style", "display: block;")
     } else {
         profileInfoWarning.setAttribute("style", "display: block;");
     }
@@ -194,10 +218,6 @@ document.querySelector("#loginButton").addEventListener("click", () => { submitL
 document.querySelector("#signOutButton").addEventListener("click", () => { signOut(); });
 
 //Profile info update button
-//profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
-
-//Profile info update button // temporal funcion de solo mostrar, falta añadir funcionalidad de Guardar datos perfil (profileInfoUpdate)
 profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
+profileInfoTopicsFinish.addEventListener("click", () => { valthis(); });
 /***************************************************************************************/
-
-profileInfoTopicsFinish.addEventListener("click", () => { showProfile(); });

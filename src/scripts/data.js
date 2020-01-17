@@ -14,5 +14,5 @@ const profileCreation = (_profileInfo) => {
 const fetchData = (collection, document) => {
     var docRef = dataSource.collection(collection).doc(document);
     return docRef.get();
-    
+
 }
