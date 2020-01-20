@@ -17,15 +17,15 @@ firebase.auth().onAuthStateChanged(function(user) {
             idLoggedUser = profile.email;
         });
 
-        if(isNewUser == true){
-            profileInfoUpdate();
-        }else {
+        if (isNewUser == true) {
+            profileInfoNext();
+        } else {
             showProfile();
         }
     } else {
         // No user is signed in.
         screenSelector(false, true, false, false);
-        
+
     }
 });
 
@@ -60,7 +60,7 @@ firebase.auth().getRedirectResult()
             isNewUser = result.additionalUserInfo.isNewUser;
             profilePicGlobal = result.user.photoURL;
             console.log("isNewUser: ", isNewUser);
-            
+
             // profileCreation(result.user.displayName, result.user.email, result.user.photoURL); TODO: borrar linea una vez que todo funcione
         }
     }).catch(function(error) {
@@ -84,7 +84,7 @@ const emailRegistration = (userEmail, userPassword, userName) => {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
         .then(function() {
             isNewUser = true;
-            profileInfoUpdate();
+            profileInfoNext();
         }).catch(function(error) {
             // Handle Errors here.
             screenSelector(false, true, false, false);

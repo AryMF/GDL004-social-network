@@ -83,26 +83,7 @@ const submitLoginForm = () => {
     }
 }
 
-//CHECKBOXES CHECKED FUNCTION
-function valthis() {
-    var checkBoxes = document.getElementsByClassName("cb");
-    var isChecked = false;
-    for (var i = 0; i < checkBoxes.length; i++) {
-        if (checkBoxes[i].checked) {
-            isChecked = true;
-        };
-    };
-    if (isChecked) {
-        //it should store the id of the checked box
-        showProfile();
-        // storeTopics();
-        //or use the function to store it?
-    } else {
-        errormsg.setAttribute("style", "display:inline-block;");
-        errormsg.innerHTML = "Please, choose at least one topic!";
-    }
 
-}
 const showProfile = () => {
     screenSelector(false, false, true, false);
     profileInfoInputTopics.setAttribute("style", "display: none;")
@@ -138,28 +119,12 @@ const screenSelector = (_loader, _welcomeScreen, _profileScreen, _profileInfoInp
         profileInfoInputTopics.setAttribute("style", "display:none;");
 }
 
-const topicSelection = () => {
-    profileInfoInputContainer.setAttribute("style", "display:none;");
-    loader.setAttribute("style", "display: none;"); //Flex
-    profileInfoInputTopics.setAttribute("style", "display: block;")
-    showProfile();
-}
-
 
 //Funcion para cargar datos adicionales
-const profileInfoUpdate = () => {
+const profileInfoNext = () => {
     screenSelector(false, false, false, true);
     profileInfoWarning.setAttribute("style", "display: none;");
     if (userNameInput.value != "") {
-        let profileInfo = {
-            email: idLoggedUser,
-            displayName: userNameInput.value,
-            userAbout: userAboutInput.value,
-            userCountry: userCountryInput.value,
-            userBirthday: userBirthdayInput.value,
-            profilePicture: profilePicGlobal
-        }
-        profileCreation(profileInfo);
         profileInfoInputContainer.setAttribute("style", "display:none;");
         profileInfoInputTopics.setAttribute("style", "display: block;")
     } else {
@@ -167,25 +132,6 @@ const profileInfoUpdate = () => {
     }
 }
 
-//Funcion para cargar datos adicionales
-// const profileInfoUpdate = (_email) => {
-//     screenSelector(false, false, false, true);
-//     profileInfoWarning.setAttribute("style", "display: none;");
-//     if(userNameInput.value != "") {
-//         let profileInfo = {
-//             email: _email,
-//             displayName: userNameInput.value,
-//             userAbout: userAboutInput.value,
-//             userCountry: userCountryInput.value,
-//             userBirthday: userBirthdayInput.value,
-//             profilePicture: null
-//         }
-//         console.log(profileInfo);
-//         showProfile();
-//     } else {
-//         profileInfoWarning.setAttribute("style", "display: block;");
-//     }
-// }
 
 /*************Buttons event listener**********************/
 //Event listener google button
@@ -221,24 +167,38 @@ document.querySelector("#loginButton").addEventListener("click", () => { submitL
 document.querySelector("#signOutButton").addEventListener("click", () => { signOut(); });
 
 //Profile info update button
-profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
-profileInfoTopicsFinish.addEventListener("click", () => { valthis(); });
+profileInfoInputContinue.addEventListener("click", () => { profileInfoNext(); });
+profileInfoTopicsFinish.addEventListener("click", () => { finishAndCollectInputInfo(); });
 /***************************************************************************************/
 
 
 
 
+//CHECKBOXES CHECKED FUNCTION
+function finishAndCollectInputInfo() {
+    var checkBoxes = document.querySelectorAll(".cb");
+    console.log(checkBoxes); //this is a nodelist, so it has to be converted to an array
 
-// const storeTopics = () => {
-// //     let cbCooking = document.querySelector("#cooking");
-// //     let cbWorkshop = document.querySelector("#workshop");
-// //     cbCooking = false;
-// //     cbWorkshop = false;
-// //     cbCooking.checked = true;
-// //     cbWorkshop.checked = true;
-// //     if (cbCooking) {
-// //         console.log("The user likes the topic COOKING")
-// //     } else if (cbWorkshop) {
-// //         console.log("The user likes the topic Workshop")
-// //     }
-// // };
+    const elementsChecked = Array.from(checkBoxes).filter((item) => {
+        return item.checked == true;
+    })
+    if (elementsChecked.length !== 0) {
+        const elementsName = elementsChecked.map((item) => {
+            return item.name
+        })
+        let profileInfo = {
+            email: idLoggedUser,
+            displayName: userNameInput.value,
+            userAbout: userAboutInput.value,
+            userCountry: userCountryInput.value,
+            userBirthday: userBirthdayInput.value,
+            profilePicture: profilePicGlobal,
+            topics: elementsName
+        }
+        profileCreation(profileInfo);
+        showProfile();
+    } else {
+        errormsg.setAttribute("style", "display:inline-block;");
+        errormsg.innerHTML = "Please, choose at least one topic!";
+    }
+};
