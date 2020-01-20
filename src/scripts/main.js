@@ -42,7 +42,7 @@ let profileInfoInputContinue = document.querySelector("#profileInfoInputContinue
 let profileInfoInputTopics = document.querySelector(".profileInfoInputTopics");
 let profileInfoInputScreen2 = document.querySelector(".profileInfoInput-screen2");
 let errormsg = document.querySelector("#errorTopic");
-let checkboxesTopic = document.querySelector(".cb");
+let checkboxesTopic = document.querySelectorAll(".cb");
 /*******************************************************/
 
 /*******************Functions***************************/
@@ -93,7 +93,10 @@ function valthis() {
         };
     };
     if (isChecked) {
+        //it should store the id of the checked box
         showProfile();
+        // storeTopics();
+        //or use the function to store it?
     } else {
         errormsg.setAttribute("style", "display:inline-block;");
         errormsg.innerHTML = "Please, choose at least one topic!";
@@ -221,3 +224,21 @@ document.querySelector("#signOutButton").addEventListener("click", () => { signO
 profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 profileInfoTopicsFinish.addEventListener("click", () => { valthis(); });
 /***************************************************************************************/
+
+
+
+
+
+// const storeTopics = () => {
+// //     let cbCooking = document.querySelector("#cooking");
+// //     let cbWorkshop = document.querySelector("#workshop");
+// //     cbCooking = false;
+// //     cbWorkshop = false;
+// //     cbCooking.checked = true;
+// //     cbWorkshop.checked = true;
+// //     if (cbCooking) {
+// //         console.log("The user likes the topic COOKING")
+// //     } else if (cbWorkshop) {
+// //         console.log("The user likes the topic Workshop")
+// //     }
+// // };
