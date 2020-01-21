@@ -83,6 +83,7 @@ const showProfile = () => {
     fetchData("user", idLoggedUser).then(function(profileData) {
         if (profileData.exists) {
             const { displayName, email, profilePicture, userAbout, userCountry} = profileData.data();
+            console.log(profileData.data());
             profilePicture != null ? userProfilePicture.setAttribute("src", profilePicture) : userProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
             userProfilePicture.setAttribute("alt", "Avatar");
             userProfileName.innerHTML = displayName;
@@ -130,26 +131,6 @@ const profileInfoUpdate = () => {
     }
 }
 
-//Funcion para cargar datos adicionales
-// const profileInfoUpdate = (_email) => {
-//     screenSelector(false, false, false, true);
-//     profileInfoWarning.setAttribute("style", "display: none;");
-//     if(userNameInput.value != "") {
-//         let profileInfo = {
-//             email: _email,
-//             displayName: userNameInput.value,
-//             userAbout: userAboutInput.value,
-//             userCountry: userCountryInput.value,
-//             userBirthday: userBirthdayInput.value,
-//             profilePicture: null
-//         }
-//         console.log(profileInfo);
-//         showProfile();
-//     } else {
-//         profileInfoWarning.setAttribute("style", "display: block;");
-//     }
-// }
-
 /*************Buttons event listener**********************/
 //Event listener google button
 document.querySelectorAll(".fa-google").forEach((element) => {
@@ -187,6 +168,6 @@ document.querySelector("#signOutButton").addEventListener("click", () => { signO
 //profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 
 //Profile info update button // temporal funcion de solo mostrar, falta añadir funcionalidad de Guardar datos perfil (profileInfoUpdate)
-profileInfoInputContinue.addEventListener("click", () => { showInputTopics(); });
-
+// profileInfoInputContinue.addEventListener("click", () => { showInputTopics(); });
+profileInfoInputContinue.addEventListener("click", () => { profileInfoUpdate(); });
 /***************************************************************************************/
