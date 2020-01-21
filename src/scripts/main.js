@@ -133,6 +133,35 @@ const profileInfoNext = () => {
 }
 
 
+function finishAndCollectInputInfo() {
+    var checkBoxes = document.querySelectorAll(".cb");
+    console.log(checkBoxes); //this is a nodelist, so it has to be converted to an array
+
+    const elementsChecked = Array.from(checkBoxes).filter((item) => {
+        return item.checked == true;
+    })
+    if (elementsChecked.length !== 0) {
+        const elementsName = elementsChecked.map((item) => {
+            return item.name
+        })
+        let profileInfo = {
+            email: idLoggedUser,
+            displayName: userNameInput.value,
+            userAbout: userAboutInput.value,
+            userCountry: userCountryInput.value,
+            userBirthday: userBirthdayInput.value,
+            profilePicture: profilePicGlobal,
+            topics: elementsName
+        }
+        profileCreation(profileInfo);
+        showProfile();
+    } else {
+        errormsg.setAttribute("style", "display:inline-block;");
+        errormsg.innerHTML = "Please, choose at least one topic!";
+    }
+};
+
+
 /*************Buttons event listener**********************/
 //Event listener google button
 document.querySelectorAll(".fa-google").forEach((element) => {
@@ -170,35 +199,3 @@ document.querySelector("#signOutButton").addEventListener("click", () => { signO
 profileInfoInputContinue.addEventListener("click", () => { profileInfoNext(); });
 profileInfoTopicsFinish.addEventListener("click", () => { finishAndCollectInputInfo(); });
 /***************************************************************************************/
-
-
-
-
-//CHECKBOXES CHECKED FUNCTION
-function finishAndCollectInputInfo() {
-    var checkBoxes = document.querySelectorAll(".cb");
-    console.log(checkBoxes); //this is a nodelist, so it has to be converted to an array
-
-    const elementsChecked = Array.from(checkBoxes).filter((item) => {
-        return item.checked == true;
-    })
-    if (elementsChecked.length !== 0) {
-        const elementsName = elementsChecked.map((item) => {
-            return item.name
-        })
-        let profileInfo = {
-            email: idLoggedUser,
-            displayName: userNameInput.value,
-            userAbout: userAboutInput.value,
-            userCountry: userCountryInput.value,
-            userBirthday: userBirthdayInput.value,
-            profilePicture: profilePicGlobal,
-            topics: elementsName
-        }
-        profileCreation(profileInfo);
-        showProfile();
-    } else {
-        errormsg.setAttribute("style", "display:inline-block;");
-        errormsg.innerHTML = "Please, choose at least one topic!";
-    }
-};
