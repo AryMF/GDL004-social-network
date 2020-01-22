@@ -30,6 +30,10 @@
     "indent": 0,
     "camelcase": "error",
     "no-redeclare": "error",
-    "quotes": "off"
+    "quotes": "off",
+    "no-empty-function": "error",
+    "no-self-assign": "error",
+    "no-unused-labels": "error",
+    "no-mixed-spaces-and-tabs": "warn"
   }
 }

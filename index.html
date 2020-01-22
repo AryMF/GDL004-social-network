@@ -13,117 +13,15 @@
 </head>
 
 <body>
-    <div id="welcomeScreen">
-        <div class="signInsignUpWindow">
+    <nav class="navigationBar">
+        <button id="homeButton" class="flamingo normalTextBold" data-nav="/home"> Home </button>
+        <button id="profileButton" class="flamingo normalTextBold" data-nav="/profileInfo"> Profile </button>
+        <button id="postButton" class="flamingo normalTextBold" data-nav="/feed"> Post </button>
+        <button id="logoutButton" class="flamingo normalTextBold" data-nav="logout"> Logout </button>
+    </nav>
 
-            <div id="loginForm">
-                <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
-                <h3 style="color: var(--elephant);"> Sign in with </h3>
-                <div class="socialNetworkButtons">
-                    <i class="fa fa-google" tabindex="0"></i>
-                    <i class="fa fa-twitter" tabindex="0"></i>
-                    <i class="fa fa-github-alt" tabindex="0"></i>
-                </div>
-                <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
-                <p class="loginFormErrorMsj smallText"> Mensaje de error </p>
-                <input id="loginFormUserEmail" class="normalText" type="email" placeholder="Email">
-                <input id="loginFormUserPassword" class="normalText" type="password" placeholder="Password">
-                <button id="loginButton" class="flamingo normalTextBold"> Login </button>
-            </div>
+    <div id="viewContainer"></div>
 
-            <div id="registrationForm">
-                <img src="src\assets\imgs\logo.png" alt="Logo DIYers">
-                <h3 style="color: var(--elephant);"> Account creation </h3>
-                <div class="socialNetworkButtons">
-                    <i class="fa fa-google" tabindex="0"></i>
-                    <i class="fa fa-twitter" tabindex="0"></i>
-                    <i class="fa fa-github-alt" tabindex="0"></i>
-                </div>
-                <p class="normalText" style="color: var(--elephant);"> Or use your email account</p>
-                <p class="formErrorMsj smallText"> Mensaje de error </p>
-                <!-- <input id="userName" class="normalText" type="text" placeholder="User name"> -->
-                <input id="userEmail" class="normalText" type="email" placeholder="Email">
-                <input id="userPassword" class="normalText" type="password" placeholder="Password">
-                <input id="userPasswordConfirmation" class="normalText" type="password" placeholder="Confirm password">
-                <button id="submitForm" class="flamingo normalTextBold"> Sign up </button>
-            </div>
-
-            <div class="slideSecction">
-                <div class="slideSecctionMidLayer">
-
-                    <div class="slideSecctionPanel slideSecctionRight">
-                        <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Hey you! </p>
-                        <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get on board and join our<br>amazing community </p>
-                        <button id="slideSecctionSignIn" class="ghost smallButton">Get started</button>
-                    </div>
-                    <div class="slideSecctionPanel slideSecctionLeft">
-                        <p class="slideSecctionHeader" style="color: var(--bayOfMany);"> Welcome back! </p>
-                        <p id="slideSecctionText" class="sliderText" style="color: var(--lightText);"> Get connected to keep on<br>making great things</p>
-                        <button id="slideSecctionSignUp" class="ghost smallButton">Sign In</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="profileInfoInput-container">
-        <div class="profileInfoInput-screen">
-            <form>
-                <h3> Tell us more about you! </h3>
-                <p id="profileInfoWarning" class="smallTextBold" style="color: var(--bayOfMany);"> *User name field required</p>
-                <input id="userName" class="largeText" style="color: var(--flamingo);" type="text" placeholder="User name" required>
-                <textarea id="userAbout" class="normalText" rows="5" cols="50" maxlength="100" placeholder="Time to be creative! Describe yourself in 100 character or less "></textarea>
-                <input id="userCountry" class="normalText" type="text" placeholder="Country">
-                <p class="smallText"> We want to know your birthday, so we can celebrate with you!:</p>
-                <input id="userBirthday" class="normalText" type="date">
-            </form>
-            <div class="profileInfoInputSecondColumn">
-                <p class="smallText"> Profile picture</p>
-                <div class="userPictureContainer">
-                    <img id="userPicture" src="src\assets\imgs\avatar128.png" alt="Default avatar">
-                </div>
-                <br>
-                <i class="fa fa-camera normalText" style="color: var(--bayOfMany);"></i>
-                <button id="profileInfoInputContinue" class="flamingo normalTextBold" type="submit"> Continue </button>
-            </div>
-        </div>
-
-    </div>
-    <div class="profileInfoInputTopics">
-        <div class="profileInfoInput-screen2">
-            <form>
-                <input type="checkbox" name="circuits" id="circuitsTopic">
-                <input type="checkbox" name="Workshop" id="workshopTopic">
-                <input type="checkbox" name="Crafting" id="CraftTopic">
-                <input type="checkbox" name="Cooking" id="cookingTopic">
-                <input type="checkbox" name="Living" id="livingTopic">
-                <input type="checkbox" name="Outside" id="outsideTopic">
-            </form>
-        </div>
-    </div>
-
-    <div id="profileScreen" style="visibility: hidden;">
-        <div id="userProfile">
-            <div class="userProfileTop"> 
-                <img class="cover" src="src\assets\imgs\coverBackground.jpg" alt="Default avatar">
-                <div class="userPictureContainer">
-                    <img id="userProfilePicture" class="avatar128px" src="src\assets\imgs\avatar128.png" alt="Default avatar">
-                </div>
-            </div>
-            <div class="userProfileBottom">
-                <h3 id="userProfileName" style="color: var(--bayOfMany);"></h3>
-                <p id="userProfileAbout" class="normalText"></p>
-                <p id="userProfileEmail" class="normalText"></p>
-                <p id="userProfileCountry" class="normalText"></p>
-            </div>      
-            <button id="signOutButton" class="bayOfMany normalTextBold" style="transition: none;"> Sign out </button>
-        </div>
-    </div>>
-    </div>
-
-    <div class="loader">
-        <img class="loaderIMG" src="src\assets\imgs\loader.gif" alt="Loading">
-    </div>
 
     <!-- Firebase configuration -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -151,9 +49,7 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 
-    <script src="src\scripts\main.js" async defer></script>
-    <script src="src\scripts\authentication.js" async defer></script>
-    <script src="src\scripts\data.js" async defer></script>
+    <script type="module" src="src\scripts\controller.js" async defer></script>
 </body>
 
 </html>

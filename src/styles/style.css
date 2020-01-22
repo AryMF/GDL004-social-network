@@ -2,6 +2,7 @@
 @import "welcomeScreen.css";
 @import "profileScreen.css";
 @import "profileInfo.css";
+@import "feed.css";
 
 :root {
     /*Background colors*/
@@ -21,6 +22,38 @@
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--darkText);
+}
+
+.navigationBar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    width: 100vw;
+    height: 60px;
+    background-color: mintcream;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    display: none;
+}
+
+.navigationBar.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+#viewContainer.login {
+    top: 60px;
+    left: 0px;
+    height: calc(100vh - 60px);
 }
 
 .loader {
@@ -169,10 +202,10 @@ button.ghost:active {
         font-size: 34px;
     }
     h4 {
-        font-size: 28px;
+        font-size: 24px;
     }
     .largeText {
-        font-size: 28px;
+        font-size: 24px;
     }
     .normalText {
         font-size: 22px;

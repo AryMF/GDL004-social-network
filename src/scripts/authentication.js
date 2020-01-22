@@ -1,45 +1,36 @@
 //Variables globales
-let idLoggedUser;
-let profilePicGlobal = null; //TODO: Quick fix, not finale
-let isNewUser = false;
+const triggeredWhenRedirected = new Event("redirected");
+localStorage.setItem("isNewUser", false);
 
-//Session listener
+//Session Listener
 firebase.auth().onAuthStateChanged(function(user) {
-    console.log("Revision de sesion, isNewUser", isNewUser);
+    // console.log("Revision de sesion, isNewUser", localStorage.getItem("isNewUser"));
     if (user) {
         // User is signed in. 
-        user.providerData.forEach(function(profile) {
-            console.log("Sign-in provider: " + profile.providerId);
-            console.log("  Provider-specific UID: " + profile.uid);
-            console.log("  Name: " + profile.displayName);
-            console.log("  Email: " + profile.email);
-            console.log("  Photo URL: " + profile.photoURL);
-            idLoggedUser = profile.email;
-        });
-
-        if(isNewUser == true){
-            profileInfoUpdate();
-        }else {
-            showProfile();
-        }
+        localStorage.setItem("photoURL",user.photoURL);
+        localStorage.setItem("displayName",user.displayName);
+        localStorage.setItem("email",user.email);
+        localStorage.setItem("uid",user.uid);
+        console.log("AuthStateChange: ", user);
+        window.dispatchEvent(triggeredWhenRedirected);
     } else {
         // No user is signed in.
-        screenSelector(false, true, false, false);
-        
+        localStorage.removeItem("photoURL");
+        localStorage.removeItem("displayName");
+        localStorage.removeItem("email");
+        localStorage.removeItem("uid");
+        window.dispatchEvent(triggeredWhenRedirected);
     }
 });
 
+//Google authentication
+var providerGoogle = new firebase.auth.GoogleAuthProvider();
 //Github authentication
 var providerGit = new firebase.auth.GithubAuthProvider();
-
 //Twitter authentication
 var providerTwitter = new firebase.auth.TwitterAuthProvider();
 
-//Google authentication
-var providerGoogle = new firebase.auth.GoogleAuthProvider();
-
 const loginWithProvider = (provider) => {
-    screenSelector(true, false, false, false);
     switch (provider) {
         case 1:
             firebase.auth().signInWithRedirect(providerGoogle);
@@ -54,98 +45,42 @@ const loginWithProvider = (provider) => {
 }
 
 firebase.auth().getRedirectResult()
-    .then(function(result) {
+    .then((result) =>{
         if (result.user != null) {
             //Verifica si es un nuevo usuario
-            isNewUser = result.additionalUserInfo.isNewUser;
-            profilePicGlobal = result.user.photoURL;
-            console.log("isNewUser: ", isNewUser);
-            
-            // profileCreation(result.user.displayName, result.user.email, result.user.photoURL); TODO: borrar linea una vez que todo funcione
+            localStorage.setItem("isNewUser", result.additionalUserInfo.isNewUser);
         }
     }).catch(function(error) {
-        screenSelector(false, true, false, false);
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         console.error("Error " + errorCode + ": " + errorMessage);
+        /* TODO: manejo de error
         if (errorCode == "auth/account-exists-with-different-credential") {
             formErrorMsj.setAttribute("style", "visibility: visible;");
             loginFormErrorMsj.setAttribute("style", "visibility: visible;");
             formErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
             loginFormErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
-        } else {
-            alert("Ocurrio un error en la autenticación [Login with social network].");
-        }
+        } else {*/
+            // alert("Ocurrio un error en la autenticación [Login with social network].");
+        // }
     });
 
+
 //Registration with email
-const emailRegistration = (userEmail, userPassword, userName) => {
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
-        .then(function() {
-            isNewUser = true;
-            profileInfoUpdate();
-        }).catch(function(error) {
-            // Handle Errors here.
-            screenSelector(false, true, false, false);
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Error " + errorCode + ": " + errorMessage);
-            if (errorCode == "auth/email-already-in-use") {
-                formErrorMsj.setAttribute("style", "visibility: visible;");
-                formErrorMsj.innerHTML = "The email address is already in use by another account.";
-            } else if (errorCode == "auth/invalid-email") {
-                formErrorMsj.setAttribute("style", "visibility: visible;");
-                formErrorMsj.innerHTML = "Invalid Email Address."
-            } else if (errorCode == "auth/weak-password") {
-                formErrorMsj.setAttribute("style", "visibility:visible;");
-                formErrorMsj.innerHTML = "Password should be at least 6 characters."
-            } else {
-                alert("Ocurrio un error en la autenticación [Email account creation].");
-            }
-        });
+const emailRegistration = (userEmail, userPassword) => {
+    console.log(userEmail, userPassword);
+    return firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword);
 }
 
 //Login  with email/password
 const loginWithEmail = (loginFormUserEmail, loginFormUserPassword) => {
-    firebase.auth().signInWithEmailAndPassword(loginFormUserEmail, loginFormUserPassword)
-        .then(() => {
-            isNewUser = false;
-        }).catch(function(error) {
-            screenSelector(false, true, false, false);
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Error " + errorCode + ": " + errorMessage);
-            if (errorCode == "auth/user-not-found") {
-                loginFormErrorMsj.setAttribute("style", "visibility: visible;");
-                loginFormErrorMsj.innerHTML = "There is no user record corresponding to this identifier.";
-            } else if (errorCode == "auth/invalid-email") {
-                loginFormErrorMsj.setAttribute("style", "visibility: visible;");
-                loginFormErrorMsj.innerHTML = "Invalid Email Address."
-            } else if (errorCode == "auth/wrong-password") {
-                loginFormErrorMsj.setAttribute("style", "visibility:visible;");
-                loginFormErrorMsj.innerHTML = "The password is invalid."
-            } else {
-                alert("Ocurrio un error en la autenticación [Email account login].");
-            }
-        });
+    return firebase.auth().signInWithEmailAndPassword(loginFormUserEmail, loginFormUserPassword);
 }
 
 //Signout
 const signOut = () => {
-    //TODO: fallo boton rezagado, mostrar loader.
-    profileScreen.setAttribute("style", "visibility: hidden;");
-    loader.setAttribute("style", "visibility: visible;");
-    firebase.auth().signOut().then(function() {
-        // Sign-out successful.
-        userProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
-
-        userProfileName.innerHTML = "";
-        userProfileEmail.innerHTML = "";
-    }).catch(function(error) {
-        // An error happened.
-    });
+    return firebase.auth().signOut();
 }
 
-//TODO: export * as auth from "";
+export { loginWithProvider, emailRegistration, loginWithEmail, signOut }

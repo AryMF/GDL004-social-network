@@ -1,0 +1,79 @@
+.feedContainer {
+    background-color: darksalmon;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    /* height: calc(100vw - 59px); */
+    height:auto;
+    padding: 20px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.postContainer{
+    display: grid;
+    grid-template-columns: 10px repeat(6, 1fr) 10px;
+    grid-template-rows: 10px auto 10px repeat(5, auto) 30px repeat(2, auto) 10px;
+    grid-template-areas:    ". . . . . . . ."
+                            ". . . . . . topButton ."
+                            ". . . . . . . ."
+                            ". img img img img img img ."
+                            ". img img img img img img ."
+                            ". img img img img img img ."
+                            ". img img img img img img ."
+                            ". img img img img img img ."
+                            ". title title title title title title ."
+                            ". info info info info info info ."
+                            ". info info info info info info ."
+                            ". . . . . . . .";
+    border-radius: 10px;
+    -webkit-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.3);
+    background-color: var(--backgroundWhite);
+    /* width: 350px;
+    margin: 0 0 20px; */
+    margin: 0 0 20px 20px;
+    /* width: 350px; */
+    flex: 1;
+    justify-self: center;
+    align-self: end;
+}
+
+.postTopButton {
+    grid-area: topButton;
+    justify-self: end;
+    font-size: 24px;
+    text-align: center;
+    width: 24px;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.postTopButton:hover {
+    background-color: lightcoral;
+}
+
+.postImage {
+    grid-area: img;
+    width: 100%;
+    background-color: lightseagreen; /*para pruebas, borrar despues*/
+}
+
+.postTitle {
+    grid-area: title;
+    justify-self: center;
+    align-self: end;
+    margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.postDescription {
+    grid-area: info;
+    justify-self: center;
+    text-align: center;
+    font-size: 16px;
+}
