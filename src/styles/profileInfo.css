@@ -75,6 +75,14 @@
     align-items: center;
 }
 
+label img {
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
 .userPictureContainer img {
     transform: rotate(-90deg);
     width: 90%;
@@ -114,6 +122,14 @@
 
 .profileInfoInputTopics {
     display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    border: 0px 0px;
+    background-color: var(--goldenGrass);
+    overflow: hidden;
 }
 
 ul {
@@ -161,14 +177,6 @@ label::before {
     font-size: 1.5em;
 }
 
-label img {
-    height: 10em;
-    width: 10em;
-    object-fit: cover;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
-}
-
 label img:hover {
     opacity: 0.8;
 }
@@ -209,17 +217,6 @@ label img:hover {
 
 
 /*SCREEN STYLE*/
-
-.profileInfoInputTopics {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    border: 0px 0px;
-    background-color: var(--goldenGrass);
-    display: none;
-}
 
 .profileInfoInput-screen2 {
     position: relative;
@@ -266,13 +263,10 @@ label img:hover {
         border: 0px 0px;
     }
     .profileInfoInput-screen2 {
-        display: grid;
-        grid-gap: 0.1em;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
+        display: flex;
         justify-items: center;
         align-items: center;
-        overflow: scroll;
+        overflow: auto;
     }
     label img {
         height: 18vh;

@@ -1,6 +1,6 @@
 //Cloud Firestore
 const dataSource = firebase.firestore();
-//dataSource.settings ({ timestampsInSnapshots }); //TODO: research this
+//dataSource.settings({ timestampsInSnapshots }); //TODO: research this
 
 const profileCreation = (_profileInfo) => {
     console.log("profileCreation");
@@ -14,5 +14,13 @@ const profileCreation = (_profileInfo) => {
 const fetchData = (collection, document) => {
     var docRef = dataSource.collection(collection).doc(document);
     return docRef.get();
+};
 
-}
+
+//async, it might not return in time to create var
+
+// dataSource.collection("user").get().then((item) => {
+//     item.docs.forEach(doc => {
+
+//     })
+// })

@@ -7,3 +7,4 @@ package-lock.json
 firebase.json
 .firebase
 public/
+settings.json

@@ -1,10 +1,8 @@
-import * as emailRegistration from '../authentication.js';
+const { emailReg } = require("./authentication.js")
 jest.mock('./authentication.js');
 
 
-
 test('should store email, user name and password', () => {
-    emailRegistration().then(userName => {
-        expect(userName).toBe('Mark');
-    });
+    const userName = "Mark"
+    expect(userName).toBe('Mark');
 });
