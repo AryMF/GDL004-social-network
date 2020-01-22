@@ -1,3 +1,5 @@
+import { mockPosts } from "../data/dataMockPost.js"
+
 //Cloud Firestore
 const dataSource = firebase.firestore();
 //dataSource.settings({ timestampsInSnapshots }); //TODO: research this
@@ -5,9 +7,7 @@ const dataSource = firebase.firestore();
 const profileCreation = (_profileInfo) => {
     console.log("profileCreation");
     console.log("_profileInfo");
-    dataSource.collection("user").doc(_profileInfo.email).set(_profileInfo).then(function() {
-        console.log("Document successfully written!");
-    });
+    return dataSource.collection("user").doc(_profileInfo.email).set(_profileInfo);
 }
 
 //Recuperar info de cloud firestore
@@ -16,11 +16,10 @@ const fetchData = (collection, document) => {
     return docRef.get();
 };
 
+}
 
-//async, it might not return in time to create var
+const fetchMockData = () => {
+    return mockPosts;
+}
 
-// dataSource.collection("user").get().then((item) => {
-//     item.docs.forEach(doc => {
-
-//     })
-// })
+export { profileCreation, fetchData, fetchMockData }
