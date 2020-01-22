@@ -74,14 +74,6 @@
     align-items: center;
 }
 
-label img {
-    height: 10em;
-    width: 10em;
-    object-fit: cover;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
-}
-
 .userPictureContainer img {
     transform: rotate(-90deg);
     width: 90%;
@@ -119,21 +111,10 @@ label img {
 
 /**********************************TOPICS SELECTION***************************/
 
+
 /* .profileInfoInputTopics {
     display: none;
-<<<<<<< HEAD
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    border: 0px 0px;
-    background-color: var(--goldenGrass);
-    overflow: hidden;
-}
-=======
 } */
->>>>>>> 82e65ad2191a7fddb8fbe51aabb0721aae6c427a
 
 ul {
     list-style-type: none;
@@ -180,6 +161,14 @@ label::before {
     font-size: 1.5em;
 }
 
+label img {
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
 label img:hover {
     opacity: 0.8;
 }
@@ -221,8 +210,7 @@ label img:hover {
 
 /*SCREEN STYLE*/
 
-<<<<<<< HEAD
-=======
+
 /*.profileInfoInputTopics {
     position: absolute;
     top: 0px;
@@ -235,7 +223,6 @@ label img:hover {
     overflow: auto;
 }*/
 
->>>>>>> 82e65ad2191a7fddb8fbe51aabb0721aae6c427a
 .profileInfoInput-screen2 {
     position: relative;
     left: 50%;
@@ -282,17 +269,13 @@ label img:hover {
         border: 0px 0px;
     } */
     .profileInfoInput-screen2 {
-<<<<<<< HEAD
-        display: flex;
-=======
         /* display: grid; */
         grid-gap: 0.1em;
         grid-template-columns: auto;
         grid-template-rows: auto;
->>>>>>> 82e65ad2191a7fddb8fbe51aabb0721aae6c427a
         justify-items: center;
         align-items: center;
-        overflow: auto;
+        overflow: scroll;
     }
     label img {
         height: 18vh;

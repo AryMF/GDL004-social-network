@@ -1,5 +1,17 @@
-import { initConfiguration, afterLogout, setViewSelectors, sliderSecctionAction, printErrorMsj, clearInputField, 
-    getInputValue, setDataInProfileDataScreen, profileInfoNext, finishAndCollectInputInfo, afterLoginConfigurations, printPreviewPost } from "./viewer.js";
+import {
+    initConfiguration,
+    afterLogout,
+    setViewSelectors,
+    sliderSecctionAction,
+    printErrorMsj,
+    clearInputField,
+    getInputValue,
+    setDataInProfileDataScreen,
+    profileInfoNext,
+    finishAndCollectInputInfo,
+    afterLoginConfigurations,
+    printPreviewPost
+} from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
 import { profileCreation, fetchData, fetchMockData } from "./data.js";
@@ -8,12 +20,12 @@ import { profileCreation, fetchData, fetchMockData } from "./data.js";
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 
-const main = () => { 
+const main = () => {
     let topScreenNavBar = initConfiguration();
-    
+
     /***********Quick fix para pruebas***************/
     //TODO: arreglar antes de deploy
-    for(let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
         topScreenNavBar[i].addEventListener("click", () => {
             location.hash = topScreenNavBar[i].getAttribute("data-nav");
         });
@@ -47,12 +59,12 @@ window.addEventListener("hashchange", () => {
 /***************************************************/
 const handleSessionStatus = () => {
     //Verificar si existe sesion
-    if(localStorage.getItem("email")){
+    if (localStorage.getItem("email")) {
         if (localStorage.getItem("isNewUser") == "true") {
             //Abrir view de profileInfo
             console.log("Es nuevo usuario, abrir profile info");
             location.hash = "/profileInfo";
-                
+
         } else {
             // Abrir view feed
             console.log("No es nuevo usuario, abrir feed");
@@ -72,18 +84,19 @@ const handleHashChange = (_route) => {
     viewContainer.innerHTML = "";
     viewContainer.appendChild(router(_route));
     setViewSelectors(_route);
-    
+
+
     /***Contenido dinamico******/
-    switch(_route){
+    switch (_route) {
         case "profileInfo":
             loadProfileInfoData();
-        break;
+            break;
         case "post":
             printPreviewPost();
-        break;
+            break;
         case "feed":
             loadFeed();
-        break;
+            break;
     }
 };
 /***************************************/
@@ -100,42 +113,42 @@ const eventListenerHandler = (e) => {
 viewContainer.addEventListener("click", eventListenerHandler);
 
 const actionsHandler = (_clickedItem, _action) => {
-    switch(_action){
+    switch (_action) {
         //signIn Screen
         case "slideSecctionSignUp":
         case "slideSecctionSignIn":
             sliderSecctionAction();
-        break;
+            break;
         case "socialNetworkButton":
             socialNetworkButton(_clickedItem);
-        break;
+            break;
         case "submitForm":
             submitRegistrationForm();
-        break;
+            break;
         case "loginButton":
             submitLoginForm();
-        break;
-        //Profile info
+            break;
+            //Profile info
         case "profileInfoNext":
             profileInfoNext();
-        break;
+            break;
         case "profileInfoSubmit":
             profileInfoSubmit();
-        break;
-        //Feed screen
+            break;
+            //Feed screen
         case "favPost":
             _clickedItem.classList.remove("fa-bookmark-o");
             _clickedItem.classList.add("fa-check");
             _clickedItem.setAttribute("data-action", "unFavPost");
-        break;
+            break;
         case "unFavPost":
             _clickedItem.classList.remove("fa-check");
             _clickedItem.classList.add("fa-bookmark-o");
             _clickedItem.setAttribute("data-action", "favPost");
-        break;
+            break;
         case "openPost":
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
-        break;
+            break;
         default:
     }
 };
@@ -144,11 +157,11 @@ const actionsHandler = (_clickedItem, _action) => {
 
 /*********Loging con redes sociales***********/
 const socialNetworkButton = (element) => {
-    if(element.classList.contains("fa-google")){
+    if (element.classList.contains("fa-google")) {
         loginWithProvider(1);
-    } else if(element.classList.contains("fa-github-alt")){
+    } else if (element.classList.contains("fa-github-alt")) {
         loginWithProvider(2);
-    } else{ 
+    } else {
         loginWithProvider(3);
     }
 };
@@ -199,7 +212,7 @@ const submitRegistrationForm = () => {
 /*** Account additional info ***/
 const loadProfileInfoData = () => {
     let profileInfo = {}
-    if(localStorage.getItem("isNewUser") == "true"){
+    if (localStorage.getItem("isNewUser") == "true") {
         profileInfo = {
             email: localStorage.getItem("email"),
             displayName: localStorage.getItem("displayName"),
@@ -209,7 +222,7 @@ const loadProfileInfoData = () => {
             profilePicture: localStorage.getItem("photoURL"),
             topics: "null"
         }
-    } else { 
+    } else {
         //Llama a la base de datos
         profileInfo = {
             email: localStorage.getItem("email"),
@@ -228,9 +241,9 @@ const profileInfoSubmit = () => {
     let profileInfo = finishAndCollectInputInfo();
     console.log(profileInfo);
     profileCreation(profileInfo).then(function() {
-            console.log("Document successfully written!");
-            location.hash = "/feed";
-        });
+        console.log("Document successfully written!");
+        location.hash = "/feed";
+    });
     // showProfile();
 }
 
@@ -242,24 +255,24 @@ const submitLoginForm = () => {
         let inputArrayValue = getInputValue(["loginFormUserEmail", "loginFormUserPassword"]);
 
         loginWithEmail(inputArrayValue.loginFormUserEmail, inputArrayValue.loginFormUserPassword)
-        .then(() => {
-            localStorage.setItem("isNewUser", false);
-            // handleSessionStatus(); TODO: delete.
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Error " + errorCode + ": " + errorMessage);
-            if (errorCode == "auth/user-not-found") {
-                printErrorMsj("loginFormErrorMsj", "There is no user record corresponding to this identifier.", false);
-            } else if (errorCode == "auth/invalid-email") {
-                printErrorMsj("loginFormErrorMsj", "Invalid Email Address.", false);
-            } else if (errorCode == "auth/wrong-password") {
-                printErrorMsj("loginFormErrorMsj", "The password is invalid.", false);
-            } else {
-                alert("Ocurrio un error en la autenticación [Email account login].");
-            }
-        });
+            .then(() => {
+                localStorage.setItem("isNewUser", false);
+                // handleSessionStatus(); TODO: delete.
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error("Error " + errorCode + ": " + errorMessage);
+                if (errorCode == "auth/user-not-found") {
+                    printErrorMsj("loginFormErrorMsj", "There is no user record corresponding to this identifier.", false);
+                } else if (errorCode == "auth/invalid-email") {
+                    printErrorMsj("loginFormErrorMsj", "Invalid Email Address.", false);
+                } else if (errorCode == "auth/wrong-password") {
+                    printErrorMsj("loginFormErrorMsj", "The password is invalid.", false);
+                } else {
+                    alert("Ocurrio un error en la autenticación [Email account login].");
+                }
+            });
 
         // clearInputField(["loginFormUserEmail", "loginFormUserPassword"]);
     } else {
@@ -269,7 +282,7 @@ const submitLoginForm = () => {
 
 
 /************* Feed **************/
-const loadFeed = () =>{
+const loadFeed = () => {
     let collection = fetchMockData();
     printPreviewPost(collection);
 };

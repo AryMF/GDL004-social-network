@@ -2,7 +2,7 @@ import { signInSelectors } from "../views/signIn.js"
 import { profileInfoSelectors } from "../views/profileInfo.js";
 import { feedSelectors } from "../views/feed.js";
 
-let viewSelectors  = {};
+let viewSelectors = {};
 
 
 const initConfiguration = () => {
@@ -11,20 +11,20 @@ const initConfiguration = () => {
 }
 
 const setViewSelectors = (_route) => {
-    viewSelectors  = {};
-    switch(_route){
+    viewSelectors = {};
+    switch (_route) {
         case "":
-            viewSelectors  = {};
-        break;
+            viewSelectors = {};
+            break;
         case "signIn":
             viewSelectors = signInSelectors();
-        break;
+            break;
         case "profileInfo":
             viewSelectors = profileInfoSelectors();
-        break;
+            break;
         case "feed":
             viewSelectors = feedSelectors();
-        break;
+            break;
     }
     // console.log(viewSelectors);
 }
@@ -37,7 +37,7 @@ const sliderSecctionAction = () => {
 }
 
 const printErrorMsj = (element, menssage, action) => {
-    if(action) {
+    if (action) {
         //Esconder mensaje de error
         viewSelectors[element].setAttribute("style", "visibility: hidden;");
     } else {
@@ -64,11 +64,11 @@ const getInputValue = (arrayElements) => {
 
 const setDataInProfileDataScreen = (arrayValues) => {
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
-    arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout: "";
-    arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry: "";
-    arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday: "";
-    arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture) 
-        : viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
+    arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
+    arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
+    arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday : "";
+    arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture) :
+        viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
 }
 
 const profileInfoNext = () => {
@@ -152,5 +152,17 @@ const previewPostTemplate = (_element) => {
 
     return divElement;
 };
-export { initConfiguration, afterLogout, setViewSelectors, sliderSecctionAction, printErrorMsj, clearInputField, 
-    getInputValue, setDataInProfileDataScreen, profileInfoNext, finishAndCollectInputInfo, afterLoginConfigurations, printPreviewPost }
+export {
+    initConfiguration,
+    afterLogout,
+    setViewSelectors,
+    sliderSecctionAction,
+    printErrorMsj,
+    clearInputField,
+    getInputValue,
+    setDataInProfileDataScreen,
+    profileInfoNext,
+    finishAndCollectInputInfo,
+    afterLoginConfigurations,
+    printPreviewPost
+}

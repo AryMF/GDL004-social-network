@@ -1,6 +1,5 @@
-const mockPosts = [
-    {
-        "0001" : {
+const mockPosts = [{
+        "0001": {
             "imgCover": "src/assets/imgs/mockPost.jpg",
             "title": "Mock post 001",
             "description": "Vestibulum in ex et odio condimentum aliquam.",
@@ -8,7 +7,7 @@ const mockPosts = [
         }
     },
     {
-        "0002" : {
+        "0002": {
             "imgCover": "src/assets/imgs/mockPost2.jpg",
             "title": "Mock post 002",
             "description": "Aenean dapibus nisl a arcu suscipit commodo.",
@@ -16,7 +15,7 @@ const mockPosts = [
         }
     },
     {
-        "0003" : {
+        "0003": {
             "imgCover": "src/assets/imgs/mockPost3.jpg",
             "title": "Mock post 003",
             "description": "Cras egestas erat eu enim faucibus laoreet.",
@@ -24,7 +23,7 @@ const mockPosts = [
         }
     },
     {
-        "0004" : {
+        "0004": {
             "imgCover": "src/assets/imgs/mockPost4.jpg",
             "title": "Mock post 004",
             "description": "Nunc ut elit eget ipsum pulvinar convallis.",
@@ -32,7 +31,7 @@ const mockPosts = [
         }
     },
     {
-        "0005" : {
+        "0005": {
             "imgCover": "src/assets/imgs/mockPost5.jpg",
             "title": "Mock post 005",
             "description": "Phasellus efficitur turpis quis est tempor, quis faucibus nibh sodales.",
@@ -40,7 +39,7 @@ const mockPosts = [
         }
     },
     {
-        "0006" : {
+        "0006": {
             "imgCover": "src/assets/imgs/mockPost6.jpg",
             "title": "Mock post 006",
             "description": "Sed sit amet magna pharetra, scelerisque augue eu, pellentesque velit.",
@@ -48,7 +47,7 @@ const mockPosts = [
         }
     },
     {
-        "0007" : {
+        "0007": {
             "imgCover": "src/assets/imgs/mockPost7.jpg",
             "title": "Mock post 007",
             "description": "Vivamus a sapien malesuada, euismod dolor ut, faucibus nulla.",
@@ -56,7 +55,7 @@ const mockPosts = [
         }
     },
     {
-        "0008" : {
+        "0008": {
             "imgCover": "src/assets/imgs/mockPost8.jpg",
             "title": "Mock post 008",
             "description": "Ut porta dui quis rhoncus mollis",
@@ -64,7 +63,7 @@ const mockPosts = [
         }
     },
     {
-        "0009" : {
+        "0009": {
             "imgCover": "src/assets/imgs/mockPost9.jpg",
             "title": "Mock post 009",
             "description": "Pellentesque cursus neque sed arcu auctor accumsan.",
@@ -72,7 +71,7 @@ const mockPosts = [
         }
     },
     {
-        "0010" : {
+        "0010": {
             "imgCover": "src/assets/imgs/mockPost10.jpg",
             "title": "Mock post 010",
             "description": "Quisque ac dui ut purus luctus accumsan.",
@@ -80,7 +79,7 @@ const mockPosts = [
         }
     },
     {
-        "0011" : {
+        "0011": {
             "imgCover": "src/assets/imgs/mockPost11.jpg",
             "title": "Mock post 011",
             "description": "Pellentesque cursus neque sed arcu auctor accumsan.",
