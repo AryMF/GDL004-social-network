@@ -166,7 +166,7 @@ const submitRegistrationForm = () => {
             emailRegistration(inputArrayValue.userEmail, inputArrayValue.userPassword)
                 .then(function() {
                     localStorage.setItem("isNewUser", true);
-                    // handleSessionStatus(); TODO:
+                    handleSessionStatus();
                 }).catch(function(error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -230,6 +230,7 @@ const profileInfoSubmit = () => {
     profileCreation(profileInfo).then(function() {
             console.log("Document successfully written!");
             location.hash = "/feed";
+            afterLoginConfigurations();
         });
     // showProfile();
 }
@@ -244,7 +245,7 @@ const submitLoginForm = () => {
         loginWithEmail(inputArrayValue.loginFormUserEmail, inputArrayValue.loginFormUserPassword)
         .then(() => {
             localStorage.setItem("isNewUser", false);
-            // handleSessionStatus(); TODO: delete.
+            handleSessionStatus();
         }).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
