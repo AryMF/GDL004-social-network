@@ -10,11 +10,13 @@ import {
     profileInfoNext,
     finishAndCollectInputInfo,
     afterLoginConfigurations,
-    printPreviewPost
+    printPreviewPost,
+    newPostView
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
 import { profileCreation, fetchData, fetchMockData } from "./data.js";
+import { newPostView as newPostV } from "../views/newPostView.js";
 
 
 const viewContainer = document.querySelector("#viewContainer");
@@ -95,6 +97,9 @@ const handleHashChange = (_route) => {
             break;
         case "feed":
             loadFeed();
+            break;
+        case "newPost":
+            newPost();
             break;
     }
 };

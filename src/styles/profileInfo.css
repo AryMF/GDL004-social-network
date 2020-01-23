@@ -61,6 +61,14 @@
     align-items: center;
 }
 
+label img {
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
 .userPictureContainer {
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
     transform: rotate(90deg);
@@ -159,14 +167,6 @@ label::before {
     text-align: center;
     color: var(--bayOfMany);
     font-size: 1.5em;
-}
-
-label img {
-    height: 10em;
-    width: 10em;
-    object-fit: cover;
-    transition-duration: 0.2s;
-    transform-origin: 50% 50%;
 }
 
 label img:hover {

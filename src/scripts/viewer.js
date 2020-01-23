@@ -1,6 +1,7 @@
 import { signInSelectors } from "../views/signIn.js"
 import { profileInfoSelectors } from "../views/profileInfo.js";
 import { feedSelectors } from "../views/feed.js";
+import { newPostSelectors } from "../views/newPostView.js"
 
 let viewSelectors = {};
 
@@ -24,6 +25,9 @@ const setViewSelectors = (_route) => {
             break;
         case "feed":
             viewSelectors = feedSelectors();
+            break;
+        case "newPost":
+            viewSelectors = newPostSelectors();
             break;
     }
     // console.log(viewSelectors);
@@ -139,6 +143,10 @@ const printPreviewPost = (_collection) => {
     });
 };
 
+const newPostView = ""
+    //aqui debe ir el appendchild del post
+
+
 const previewPostTemplate = (_element) => {
     let postID = Object.keys(_element)[0];
     let previewPost = `
@@ -166,5 +174,6 @@ export {
     profileInfoNext,
     finishAndCollectInputInfo,
     afterLoginConfigurations,
-    printPreviewPost
+    printPreviewPost,
+    newPostView
 }
