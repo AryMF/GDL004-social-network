@@ -3,7 +3,7 @@ const newPostView = () => {
     const newPostTemplate = `
 <div class="404">
 <br>
-        <p id="404" class="largeText" style="color: var(--flamingo);"> NEW POST PAGE</p>     
+        <p id="newPost" class="largeText" style="color: var(--flamingo);"> NEW POST PAGE</p>     
     </div>`;
 
     let newPostDiv = document.createElement("div");

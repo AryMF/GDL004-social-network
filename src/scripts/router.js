@@ -19,8 +19,8 @@ const router = (route) => {
         case "profile":
             return routes.profile();
             break;
-        case "newPost":
-            return routes.newPost();
+        case "newPostView":
+            return routes.newPostView();
             break;
         default:
             return routes.notFound();
