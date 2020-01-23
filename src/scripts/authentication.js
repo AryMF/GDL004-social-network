@@ -57,9 +57,9 @@ firebase.auth().getRedirectResult()
         console.error("Error " + errorCode + ": " + errorMessage);
         /* TODO: manejo de error
         if (errorCode == "auth/account-exists-with-different-credential") {
-            formErrorMsj.setAttribute("style", "visibility: visible;");
             loginFormErrorMsj.setAttribute("style", "visibility: visible;");
-            formErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
+            loginFormErrorMsj.setAttribute("style", "visibility: visible;");
+            loginFormErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
             loginFormErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
         } else {*/
         // alert("Ocurrio un error en la autenticación [Login with social network].");

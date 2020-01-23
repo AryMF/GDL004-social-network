@@ -83,9 +83,7 @@ const handleSessionStatus = () => {
 const handleHashChange = (_route) => {
     viewContainer.innerHTML = "";
     viewContainer.appendChild(router(_route));
-    ñ
     setViewSelectors(_route);
-
 
     /***Contenido dinamico******/
     switch (_route) {
