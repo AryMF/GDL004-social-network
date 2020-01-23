@@ -83,6 +83,7 @@ const handleSessionStatus = () => {
 const handleHashChange = (_route) => {
     viewContainer.innerHTML = "";
     viewContainer.appendChild(router(_route));
+    ñ
     setViewSelectors(_route);
 
 
@@ -241,16 +242,10 @@ const profileInfoSubmit = () => {
     let profileInfo = finishAndCollectInputInfo();
     console.log(profileInfo);
     profileCreation(profileInfo).then(function() {
-<<<<<<< HEAD
         console.log("Document successfully written!");
         location.hash = "/feed";
+        afterLoginConfigurations();
     });
-=======
-            console.log("Document successfully written!");
-            location.hash = "/feed";
-            afterLoginConfigurations();
-        });
->>>>>>> f7ac64f44e3a236f736b85a3c1a2dbb626b1362b
     // showProfile();
 }
 
@@ -262,10 +257,9 @@ const submitLoginForm = () => {
         let inputArrayValue = getInputValue(["loginFormUserEmail", "loginFormUserPassword"]);
 
         loginWithEmail(inputArrayValue.loginFormUserEmail, inputArrayValue.loginFormUserPassword)
-<<<<<<< HEAD
             .then(() => {
                 localStorage.setItem("isNewUser", false);
-                // handleSessionStatus(); TODO: delete.
+                handleSessionStatus();
             }).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -281,26 +275,6 @@ const submitLoginForm = () => {
                     alert("Ocurrio un error en la autenticación [Email account login].");
                 }
             });
-=======
-        .then(() => {
-            localStorage.setItem("isNewUser", false);
-            handleSessionStatus();
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Error " + errorCode + ": " + errorMessage);
-            if (errorCode == "auth/user-not-found") {
-                printErrorMsj("loginFormErrorMsj", "There is no user record corresponding to this identifier.", false);
-            } else if (errorCode == "auth/invalid-email") {
-                printErrorMsj("loginFormErrorMsj", "Invalid Email Address.", false);
-            } else if (errorCode == "auth/wrong-password") {
-                printErrorMsj("loginFormErrorMsj", "The password is invalid.", false);
-            } else {
-                alert("Ocurrio un error en la autenticación [Email account login].");
-            }
-        });
->>>>>>> f7ac64f44e3a236f736b85a3c1a2dbb626b1362b
 
         // clearInputField(["loginFormUserEmail", "loginFormUserPassword"]);
     } else {
