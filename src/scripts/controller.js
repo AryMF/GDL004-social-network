@@ -146,6 +146,7 @@ const actionsHandler = (_clickedItem, _action) => {
             _clickedItem.setAttribute("data-action", "favPost");
             break;
         case "openPost":
+            //aqui debe ir el modal
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
             break;
         default:
@@ -184,6 +185,7 @@ const submitRegistrationForm = () => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.error("Error " + errorCode + ": " + errorMessage);
+                    //handling errors has to be done like this
                     if (errorCode == "auth/email-already-in-use") {
                         printErrorMsj("formErrorMsj", "The email address is already in use by another account.", false);
                     } else if (errorCode == "auth/invalid-email") {
@@ -222,7 +224,7 @@ const loadProfileInfoData = () => {
             topics: "null"
         }
     } else {
-        //Llama a la base de datos
+        //Llama a la base de datos /local(?)
         profileInfo = {
             email: localStorage.getItem("email"),
             displayName: localStorage.getItem("displayName"),
@@ -244,8 +246,7 @@ const profileInfoSubmit = () => {
         location.hash = "/feed";
         afterLoginConfigurations();
     });
-    // showProfile();
-}
+};
 
 /********Login con email ****************/
 const submitLoginForm = () => {

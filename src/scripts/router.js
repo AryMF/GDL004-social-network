@@ -20,6 +20,7 @@ const router = (route) => {
             return routes.profile();
             break;
         default:
+            return routes.notFound();
             console.log("404");
             break;
     }

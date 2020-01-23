@@ -63,6 +63,8 @@ const getInputValue = (arrayElements) => {
 }
 
 const setDataInProfileDataScreen = (arrayValues) => {
+    console.log("updating data in profile");
+
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
     arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
     arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
