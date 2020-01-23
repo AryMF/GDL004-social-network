@@ -21,7 +21,6 @@ const router = (route) => {
             break;
         default:
             return routes.notFound();
-            console.log("404");
             break;
     }
 }
