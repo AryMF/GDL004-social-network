@@ -1,0 +1,50 @@
+@import "style.css";
+.newPost {
+    text-align: center;
+}
+
+#newPost {
+    padding-top: 2em;
+    text-align: center;
+}
+
+#postTitle {
+    margin-top: 1em;
+    width: 38%;
+    height: auto;
+    font-size: 2em;
+    text-align: center;
+}
+
+#postDescription {
+    width: 40%;
+    height: 5em;
+    font-size: 1em;
+    padding: 15px 22px;
+    box-sizing: border-box;
+    resize: none;
+    text-align: center;
+}
+
+.imagenTopic {
+    margin-top: .5em;
+    height: 5em;
+    width: 5em;
+    object-fit: cover;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+
+#selectTopics {
+    font-size: 1em;
+    margin-top: .5em;
+}
+
+#postPicture {
+    height: 4em;
+    width: 4em;
+}
+
+.postPictureContainer {
+    background-color: inherit;
+}

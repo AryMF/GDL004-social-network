@@ -1,10 +1,42 @@
 const newPost = () => {
     //aqui va el template html
     const newPostTemplate = `
-<div class="404">
-<br>
-        <p id="newPost" class="largeText" style="color: var(--flamingo);"> NEW POST PAGE</p>     
-    </div>`;
+    <div class="newPost">
+
+    <p id="newPost" class="largeText" style="color: var(--flamingo);"> NEW POST!</p>
+    <form id="newPostForm">
+        <input type="text" name="postTitle" id="postTitle" placeholder="Title"><br>
+        <textarea name="postDescription" id="postDescription" placeholder="Description" maxlength=200></textarea>
+        <div class="postPictureContainer">
+        <img id="postPicture" src="src/assets/imgs/upload.png" alt="add images">
+    </div><br>
+        <p id="selectTopics" class="smallText" style="color: var(--bayOfMany);">Please select the topics of your post (at least one is required)</p>
+        <ul>
+            <li><input type="checkbox" class="cb" id="cb1" name="circuits" />
+                <label for="cb1"><img src="src/assets/imgs/circuits.jpg" class="imagenTopic"/><br><p class="cbText">Circuits</p></label>
+            </li>
+            <li><input type="checkbox" class="cb" id="cb2" name="workshop" />
+                <label for="cb2"><img src="src/assets/imgs/workshop.png"  class="imagenTopic"/><br><p class="cbText">Workshop</p></label>
+            </li>
+            <li><input type="checkbox" class="cb" id="cb3" name="crafting" />
+                <label for="cb3"><img src="src/assets/imgs/craft.jpg"  class="imagenTopic"/><br><p class="cbText">Crafting</p></label>
+            </li>
+            <li><input type="checkbox" class="cb" id="cb4" name="cooking" />
+                <label for="cb4"><img src="src/assets/imgs/cooking.jpg"  class="imagenTopic"/><br><p class="cbText">Cooking</p></label>
+            </li>
+            <li><input type="checkbox" class="cb" id="cb5" name="living" />
+                <label for="cb5"><img src="src/assets/imgs/living.jpg"  class="imagenTopic"/><br><p class="cbText">Living</p></label>
+            </li>
+            <li><input type="checkbox" class="cb" id="cb6" name="outside" />
+                <label for="cb6"><img src="src/assets/imgs/outside.jpg"  class="imagenTopic"/><br><p class="cbText">Outside</p></label>
+            </li>
+        </ul>
+        <br>
+    </form>
+
+    <button id="newPostNext" class="flamingo normalTextBold">Continue</button>
+
+</div>`;
 
     let newPostDiv = document.createElement("div");
     newPostDiv.classList.add("notFound-container");
