@@ -1,4 +1,4 @@
-const newPostView = () => {
+const newPost = () => {
     //aqui va el template html
     const newPostTemplate = `
 <div class="404">
@@ -22,4 +22,4 @@ const newPostSelectors = () => {
 }
 
 
-export { newPostView, newPostSelectors }
+export { newPost, newPostSelectors }

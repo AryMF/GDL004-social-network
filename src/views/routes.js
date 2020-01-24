@@ -3,7 +3,7 @@
  import { profileInfo } from "./profileInfo.js";
  import { feed } from "./feed.js";
  import { notFound } from "./notFound.js";
- import { newPostView } from "./newPostView.js";
+ import { newPost } from "./newPost.js";
  /*import home from "./home.js";
  import post from "./post.js";
  import profile from "./profile.js";*/
@@ -15,7 +15,7 @@
      profileInfo,
      feed,
      notFound,
-     newPostView
+     newPost
  };
 
  export { routes }

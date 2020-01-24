@@ -11,12 +11,12 @@ import {
     finishAndCollectInputInfo,
     afterLoginConfigurations,
     printPreviewPost,
-    newPostView
+    loadNewPost
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
 import { profileCreation, fetchData, fetchMockData } from "./data.js";
-import { newPostView as newPostV } from "../views/newPostView.js";
+import { newPost as newPostV } from "../views/newPost.js";
 
 
 const viewContainer = document.querySelector("#viewContainer");
@@ -66,8 +66,7 @@ const handleSessionStatus = () => {
             //Abrir view de profileInfo
             console.log("Es nuevo usuario, abrir profile info");
             location.hash = "/profileInfo";
-
-        } else {
+        } else if (localStorage.getItem("isNewUser") == "false") {
             // Abrir view feed
             console.log("No es nuevo usuario, abrir feed");
             //Hacer visible la barra de menu y adaptar tamanio de viewContainer
@@ -99,7 +98,7 @@ const handleHashChange = (_route) => {
             loadFeed();
             break;
         case "newPost":
-            newPost();
+            loadNewPost();
             break;
     }
 };
@@ -153,6 +152,9 @@ const actionsHandler = (_clickedItem, _action) => {
         case "openPost":
             //aqui debe ir el modal
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
+            break;
+        case "newPost":
+            alert("quieres crear un nuevo post?")
             break;
         default:
     }

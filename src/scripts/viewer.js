@@ -1,7 +1,7 @@
 import { signInSelectors } from "../views/signIn.js"
 import { profileInfoSelectors } from "../views/profileInfo.js";
 import { feedSelectors } from "../views/feed.js";
-import { newPostSelectors } from "../views/newPostView.js"
+import { newPostSelectors, newPost } from "../views/newPost.js"
 
 let viewSelectors = {};
 
@@ -126,7 +126,15 @@ const afterLoginConfigurations = () => {
 
     navigationBar.classList.add("login");
     viewContainer.classList.add("login");
-}
+};
+
+const newPostConfigurations = () => {
+    let navigationBar = document.querySelector(".navigationBar");
+    let viewContainer = document.querySelector("#viewContainer");
+
+    // navigationBar.classList.add("login");
+    // viewContainer.classList.add("login");
+};
 
 const afterLogout = () => {
     let navigationBar = document.querySelector(".navigationBar");
@@ -143,8 +151,10 @@ const printPreviewPost = (_collection) => {
     });
 };
 
-const newPostView = ""
-    //aqui debe ir el appendchild del post
+const loadNewPost = () => {
+        let one = 2;
+    }
+    //aqui debe ir la funcion que mostrará el post, puse una función simple para que funcionara.
 
 
 const previewPostTemplate = (_element) => {
@@ -175,5 +185,5 @@ export {
     finishAndCollectInputInfo,
     afterLoginConfigurations,
     printPreviewPost,
-    newPostView
+    loadNewPost
 }
