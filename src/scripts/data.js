@@ -21,4 +21,7 @@ const fetchMockData = () => {
     return mockPosts;
 }
 
+
+
+
 export { profileCreation, fetchData, fetchMockData }

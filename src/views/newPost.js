@@ -6,7 +6,7 @@ const newPost = () => {
     <p id="newPost" class="largeText" style="color: var(--flamingo);"> NEW POST!</p>
     <form id="newPostForm">
         <input type="text" name="postTitle" id="postTitle" placeholder="Title"><br>
-        <textarea name="postDescription" id="postDescription" placeholder="Description" maxlength=200></textarea>
+        <textarea name="postDescription" id="postDescription" placeholder="Description" maxlength=200></textarea><br>
         <div class="postPictureContainer">
         <img id="postPicture" src="src/assets/imgs/upload.png" alt="add images">
     </div><br>
@@ -34,7 +34,7 @@ const newPost = () => {
         <br>
     </form>
 
-    <button id="newPostNext" class="flamingo normalTextBold">Continue</button>
+    <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button>
 
 </div>`;
 
