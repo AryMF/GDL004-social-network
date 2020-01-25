@@ -15,10 +15,10 @@ import {
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { profileCreation, fetchData, fetchMockData } from "./data.js";
+import { profileCreation, fetchData, fetchMockData, newPostCreation } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
-
+let form = document.getElementById("newPostForm");
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 
@@ -155,6 +155,7 @@ const actionsHandler = (_clickedItem, _action) => {
             break;
         case "newPost":
             alert("quieres crear un nuevo post?")
+            newPostCreation();
             break;
         default:
     }
@@ -255,6 +256,7 @@ const profileInfoSubmit = () => {
     });
 };
 
+
 /********Login con email ****************/
 const submitLoginForm = () => {
     printErrorMsj("loginFormErrorMsj", "", true);
@@ -294,3 +296,5 @@ const loadFeed = () => {
     let collection = fetchMockData();
     printPreviewPost(collection);
 };
+
+export { form }

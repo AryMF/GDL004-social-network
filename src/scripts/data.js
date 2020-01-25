@@ -1,4 +1,5 @@
 import { mockPosts } from "../data/dataMockPost.js"
+import { form } from "./controller.js"
 
 //Cloud Firestore
 const dataSource = firebase.firestore();
@@ -23,5 +24,14 @@ const fetchMockData = () => {
 
 
 
+const newPostCreation = (title, about) => {
+    console.log("New Post Creation")
+        // dataSource.collection("post").add({
+        //     title: form.title.value,
+        //     about: form.title.value
+        // })
+};
 
-export { profileCreation, fetchData, fetchMockData }
+
+
+export { profileCreation, fetchData, fetchMockData, newPostCreation }
