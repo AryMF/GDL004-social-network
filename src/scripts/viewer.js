@@ -5,7 +5,7 @@ import { newPostSelectors, newPost } from "../views/newPost.js"
 
 let viewSelectors = {};
 
-let form = document.getElementById("newPostForm");
+
 const initConfiguration = () => {
     let logoutButton = document.querySelectorAll("[data-nav]");
     return logoutButton;
@@ -185,6 +185,5 @@ export {
     finishAndCollectInputInfo,
     afterLoginConfigurations,
     printPreviewPost,
-    loadNewPost,
-    form
+    loadNewPost
 }
