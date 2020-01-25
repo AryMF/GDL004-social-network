@@ -3,12 +3,11 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100vw;
-    /* height: calc(100vw - 59px); */
+    width: calc(100% - 30px);
     height:auto;
-    padding: 20px;
+    padding: 30px 15px 20px 15px;
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
@@ -35,11 +34,11 @@
     background-color: var(--backgroundWhite);
     /* width: 350px;
     margin: 0 0 20px; */
-    margin: 0 0 20px 20px;
+    /* margin: 0 0 20px 20px; */
     /* width: 350px; */
     flex: 1;
     justify-self: center;
-    align-self: end;
+    align-self: start;
 }
 
 .postTopButton {

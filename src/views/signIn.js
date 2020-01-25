@@ -78,16 +78,3 @@ const signInSelectors = () => {
 };
 
 export { signIn, signInSelectors }
-
-/*
-//ProfileScreen
-"welcomeScreen" : document.querySelector("#welcomeScreen"),
-"signInsignUpWindow" : document.querySelector(".signInsignUpWindow"),
-"profileScreen" : document.querySelector("#profileScreen"),
-"loader" : document.querySelector(".loader"),
-"userProfilePicture" : document.querySelector("#userProfilePicture"),
-"userProfileName" : document.querySelector("#userProfileName"),
-"userProfileEmail" : document.querySelector("#userProfileEmail"),
-"userProfileAbout" : document.querySelector("#userProfileAbout"),
-"userProfileCountry" : document.querySelector("#userProfileCountry")
-*/

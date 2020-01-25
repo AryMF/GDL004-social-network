@@ -1,0 +1,48 @@
+.navigationBar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    width: 100vw;
+    height: 60px;
+    background-color: mintcream;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    display: none;
+}
+
+.navigationBar.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigationBar.sendToBottom {
+    top: calc(100% - 60px);
+}
+
+.navigationBar span {
+    display: none;
+}
+
+.navigationBar i {
+
+}
+.navigationBar img {
+    width: 40px;
+}
+
+.showInDesktop {
+    display: none;
+}
+
+@media only screen and (min-width: 769px) {
+    .navigationBar i {
+        display: none;
+    }
+    .navigationBar span {
+        display: block;
+    }
+    .showInDesktop {
+        display: block;
+    }
+}

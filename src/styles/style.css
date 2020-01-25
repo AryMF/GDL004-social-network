@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "topMenuBar.css";
 @import "welcomeScreen.css";
 @import "profileScreen.css";
 @import "profileInfo.css";
@@ -10,6 +11,7 @@
     --roseBud: #f7aaad;
     --goldenGrass: #dcaf25;
     --backgroundWhite: #ffffff;
+    --lightgray: lightgray;
     /* Text colors */
     --darkText: #000000;
     --lightText: #ffffff;
@@ -24,29 +26,11 @@ body {
     color: var(--darkText);
 }
 
-.navigationBar {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 5;
-    width: 100vw;
-    height: 60px;
-    background-color: mintcream;
-    border-bottom: 1px solid rgba(0,0,0,0.3);
-    display: none;
-}
-
-.navigationBar.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #viewContainer {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 }
 
@@ -136,8 +120,8 @@ h4 {
 /*Assets*/
 
 button {
-    margin: 8px; /*cambio para mobile*/
-    padding: 5px 35px; /* Cambio de padding en mobile*/
+    margin: 5px; /*cambio para mobile*/
+    padding: 5px 10px; /* Cambio de padding en mobile*/
     border-radius: 20px; /*DRY*/
     border: 2.5px solid;
     letter-spacing: 1.5px;
@@ -150,6 +134,10 @@ button.flamingo {
     background: linear-gradient(to right, transparent 50%, var(--flamingo) 50%);
     background-size: 201% 100%;
     background-position: left bottom;
+}
+
+button.flamingo.active {
+    background: var(--flamingo);
 }
 
 button.bayOfMany {
@@ -221,5 +209,15 @@ button.ghost:active {
 
     .loaderIMG {
         width: 15%;
+    }
+
+    button {
+        margin: 8px; /*cambio para mobile*/
+        padding: 5px 35px; /* Cambio de padding en mobile*/
+        border-radius: 20px; /*DRY*/
+        border: 2.5px solid;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all .6s ease;
     }
 }

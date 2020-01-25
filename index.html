@@ -14,10 +14,13 @@
 
 <body>
     <nav class="navigationBar">
-        <button id="homeButton" class="flamingo normalTextBold" data-nav="/home"> Home </button>
-        <button id="profileButton" class="flamingo normalTextBold" data-nav="/profileInfo"> Profile </button>
-        <button id="postButton" class="flamingo normalTextBold" data-nav="/feed"> Post </button>
-        <button id="logoutButton" class="flamingo normalTextBold" data-nav="logout"> Logout </button>
+        <img src="src\assets\imgs\avatar128.png" data-nav="/profile">
+        <button id="profileButton" class="flamingo normalTextBold showInDesktop" data-nav="/profile"> <span> Profile  </span> </button>
+        <button id="homeButton" class="flamingo normalTextBold active" data-nav="/feed"> <span> Home </span> <i class="fa fa-paint-brush"></i></button>
+        <button id="followingButton" class="flamingo normalTextBold" data-nav="/feed"> <span> Following </span> <i class="fa fa-users"></i></button>
+        <button id="exploreButton" class="flamingo normalTextBold" data-nav="/feed"> <span> Explore </span> <i class="	fa fa-search"></i></button>
+        <button id="createPost" class="flamingo normalTextBold" data-nav="/feed"> <span> Create Post </span> <i class="fa fa-plus"></i></button>
+        <!--TODO: Borrar antes de deploy <button id="logoutButton" class="flamingo normalTextBold" data-nav="logout"> Logout </button> -->
     </nav>
 
     <div id="viewContainer"></div>
@@ -30,8 +33,8 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
     <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script> TODO: Borrar por que ya no se usa-->
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
 
 
     <script>
