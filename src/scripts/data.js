@@ -1,5 +1,5 @@
 import { mockPosts } from "../data/dataMockPost.js"
-import { form } from "./controller.js"
+import { form } from "./viewer.js"
 
 //Cloud Firestore
 const dataSource = firebase.firestore();
@@ -23,12 +23,13 @@ const fetchMockData = () => {
 }
 
 
-
 const newPostCreation = (title, about) => {
     console.log("New Post Creation")
+        //it should be able to add the data to the firestore
+        // let formNew = form;
         // dataSource.collection("post").add({
-        //     title: form.title.value,
-        //     about: form.title.value
+        //     title: formNew.title.value,
+        //     about: formNew.about.value
         // })
 };
 

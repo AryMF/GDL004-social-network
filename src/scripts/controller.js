@@ -18,7 +18,7 @@ import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from ".
 import { profileCreation, fetchData, fetchMockData, newPostCreation } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
-let form = document.getElementById("newPostForm");
+
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 
@@ -296,5 +296,3 @@ const loadFeed = () => {
     let collection = fetchMockData();
     printPreviewPost(collection);
 };
-
-export { form }
