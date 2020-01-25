@@ -5,7 +5,7 @@ const profileInfo = () => {
             <h3> Tell us more about you! </h3>
             <p id="profileInfoWarning" class="smallTextBold" style="color: var(--bayOfMany);"> *User name field required</p>
             <input id="userName" class="largeText" style="color: var(--flamingo);" type="text" placeholder="User name" required>
-            <textarea id="userAbout" class="normalText" rows="5" cols="50" maxlength="100" placeholder="Time to be creative! Describe yourself in 100 character or less "></textarea>
+            <textarea id="userAbout" class="normalText" rows="5" cols="50" maxlength="100" placeholder="Time to be creative! Describe yourself in 100 characters or less "></textarea>
             <input id="userCountry" class="normalText" type="text" placeholder="Country">
             <p class="smallText"> We want to know your birthday, so we can celebrate with you!:</p>
             <input id="userBirthday" class="normalText" type="date">
@@ -58,7 +58,7 @@ const profileInfo = () => {
 
 const profileInfoSelectors = () => {
     const profileInfoSelectorsJSON = {
-    //Profile Info Input
+        //Profile Info Input
         "profileInfoInputContainer": document.querySelector(".profileInfoInput-container"),
         "profileInfoInputScreen": document.querySelector(".profileInfoInput-screen"),
         "profileInfoWarning": document.querySelector("#profileInfoWarning"),

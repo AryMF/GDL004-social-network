@@ -49,7 +49,7 @@ const newPost = () => {
 const newPostSelectors = () => {
     const newPostSelectorsJSON = {
         "form": document.getElementById("newPostForm")
-            //aqui deben ir los query selectors de la parte de new post
+            //aqui deben ir los selectors de la parte de new post
     }
     return newPostSelectorsJSON;
 }
