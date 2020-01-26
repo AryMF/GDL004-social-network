@@ -70,8 +70,8 @@ label img {
 }
 
 .userPictureContainer {
-    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-    transform: rotate(90deg);
+    -webkit-clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     overflow: hidden;
     width: 138px;
     height: 128px;
@@ -83,7 +83,6 @@ label img {
 }
 
 .userPictureContainer img {
-    transform: rotate(-90deg);
     width: 90%;
 }
 

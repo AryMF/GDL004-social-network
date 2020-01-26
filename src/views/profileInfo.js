@@ -17,6 +17,7 @@ const profileInfo = () => {
             </div>
             <br>
             <i class="fa fa-camera normalText" style="color: var(--bayOfMany);"></i>
+            <input id="pictureFile" type="file" name="pic" accept="image/*">
             <button id="profileInfoInputContinue" class="flamingo normalTextBold" type="submit" data-action="profileInfoNext"> Continue </button>
         </div>
     </div>
@@ -54,6 +55,7 @@ const profileInfo = () => {
     profileInfoDiv.innerHTML = profileInfoTemplate;
 
     return profileInfoDiv;
+     
 };
 
 const profileInfoSelectors = () => {
@@ -67,7 +69,7 @@ const profileInfoSelectors = () => {
         "userCountryInput": document.querySelector("#userCountry"),
         "userBirthdayInput": document.querySelector("#userBirthday"),
         "userPicture": document.querySelector("#userPicture"),
-        "changePictureButton": document.querySelector(".fa-camera"),
+        "pictureFile": document.querySelector("#pictureFile"),
         "profileInfoInputContinue": document.querySelector("#profileInfoInputContinue"),
         //Profile Info Input Topics
         // "profileInfoInputTopics": document.querySelector(".profileInfoInputTopics"),

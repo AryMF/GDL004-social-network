@@ -11,37 +11,40 @@ import {
     finishAndCollectInputInfo,
     afterLoginConfigurations,
     printPreviewPost,
+    profileDataMainSection,
+    printUserDataProfile,
+    profileFileListener,
+    setPictureSRC,
     loadNewPost
 } from "./viewer.js";
 import { router } from "./router.js";
-import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { profileCreation, fetchData, fetchMockData, newPostCreation } from "./data.js";
+import { loginWithProvider, emailRegistration, loginWithEmail, signOut, newPostCreation } from "./authentication.js";
+import { profileCreation, fetchData, fetchMockData, fileUpload } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
 
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
+let topScreenNavBar;
 
 const main = () => {
-    let topScreenNavBar = initConfiguration();
+    topScreenNavBar = initConfiguration();
 
     /***********Quick fix para pruebas***************/
     //TODO: arreglar antes de deploy
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
         topScreenNavBar[i].addEventListener("click", () => {
+            topScreenNavBar.forEach(element => {
+                element.classList.remove("active");
+            });
+            topScreenNavBar[i].classList.add("active");
             location.hash = topScreenNavBar[i].getAttribute("data-nav");
         });
     }
 
-    topScreenNavBar[3].addEventListener("click", () => {
-        signOut()
-            .then(function() {
-                // Sign-out successful.
-                afterLogout();
-            }).catch(function(error) {
-                // An error happened.
-            });
-    });
+    // topScreenNavBar[5].addEventListener("click", () => {
+    //     closeSession();
+    // });
     /*************************************************/
 
 };
@@ -66,7 +69,9 @@ const handleSessionStatus = () => {
             //Abrir view de profileInfo
             console.log("Es nuevo usuario, abrir profile info");
             location.hash = "/profileInfo";
-        } else if (localStorage.getItem("isNewUser") == "false") {
+            topScreenNavBar[2].classList.remove("active");
+
+        } else {
             // Abrir view feed
             console.log("No es nuevo usuario, abrir feed");
             //Hacer visible la barra de menu y adaptar tamanio de viewContainer
@@ -99,6 +104,12 @@ const handleHashChange = (_route) => {
             break;
         case "newPost":
             loadNewPost();
+            break;
+        case "profile":
+            topScreenNavBar[1].classList.add("active");
+            loadProfileUserData();
+            loadProfilePost("post");
+            // loadProfilePost("post");
             break;
     }
 };
@@ -157,6 +168,20 @@ const actionsHandler = (_clickedItem, _action) => {
             alert("quieres crear un nuevo post?")
             newPostCreation();
             break;
+            //Profile
+        case "showUserPost":
+            loadProfilePost("post");
+            break;
+        case "showUserFav":
+            loadProfilePost("fav");
+            break;
+        case "editProfile":
+            topScreenNavBar[1].classList.remove("active");
+            location.hash = "/profileInfo";
+            break;
+        case "logoutOption":
+            closeSession();
+            break;
         default:
     }
 };
@@ -181,7 +206,7 @@ const submitRegistrationForm = () => {
     printErrorMsj("formErrorMsj", "", true);
     if (userEmail.value != "" && userPassword.value != "" && userPasswordConfirmation.value != "") {
         if (userPassword.value === userPasswordConfirmation.value) {
-            //Si paso todas las validaciones 
+            //Si paso todas las validaciones
             // emailRegistration(userEmail.value, userPassword.value, userName.value);
             let inputArrayValue = getInputValue(["userEmail", "userPassword"]);
             emailRegistration(inputArrayValue.userEmail, inputArrayValue.userPassword)
@@ -231,19 +256,36 @@ const loadProfileInfoData = () => {
             profilePicture: localStorage.getItem("photoURL"),
             topics: "null"
         }
+        setDataInProfileDataScreen(profileInfo);
     } else {
-        //Llama a la base de datos /local(?)
-        profileInfo = {
-            email: localStorage.getItem("email"),
-            displayName: localStorage.getItem("displayName"),
-            userAbout: "null",
-            userCountry: "null",
-            userBirthday: "null",
-            profilePicture: localStorage.getItem("photoURL"),
-            topics: "null"
-        }
+        //Llama a la base de datos
+        let loggedUser = localStorage.getItem("email");
+        fetchData("user", loggedUser).then(function(profileData) {
+            if (profileData.exists) {
+                console.log("profileData", profileData.data());
+                setDataInProfileDataScreen(profileData.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
     }
-    setDataInProfileDataScreen(profileInfo);
+
+    let fileListener = profileFileListener();
+    fileListener.addEventListener("change", element => {
+        let file = element.target.files[0];
+        setProfilePicture(file);
+    });
+}
+
+const setProfilePicture = (_file) => {
+    fileUpload(_file).then(downloadURL => {
+        console.log('File available at', downloadURL);
+        // localStorage.setItem("photoURL", downloadURL);
+        setPictureSRC(downloadURL);
+    });
 }
 
 const profileInfoSubmit = () => {
@@ -251,17 +293,17 @@ const profileInfoSubmit = () => {
     console.log(profileInfo);
     profileCreation(profileInfo).then(function() {
         console.log("Document successfully written!");
-        location.hash = "/feed";
+        location.hash = "/profile";
         afterLoginConfigurations();
     });
-};
-
+    // showProfile();
+}
 
 /********Login con email ****************/
 const submitLoginForm = () => {
     printErrorMsj("loginFormErrorMsj", "", true);
     if (loginFormUserEmail.value != "" && loginFormUserPassword.value != "") {
-        //Si paso todas las validaciones 
+        //Si paso todas las validaciones
         let inputArrayValue = getInputValue(["loginFormUserEmail", "loginFormUserPassword"]);
 
         loginWithEmail(inputArrayValue.loginFormUserEmail, inputArrayValue.loginFormUserPassword)
@@ -290,9 +332,44 @@ const submitLoginForm = () => {
     }
 }
 
-
 /************* Feed **************/
 const loadFeed = () => {
     let collection = fetchMockData();
     printPreviewPost(collection);
 };
+
+/************* Profile **************/
+const loadProfileUserData = () => {
+    //Cargar data de usuario
+    let loggedUser = localStorage.getItem("email");
+
+    fetchData("user", loggedUser).then(function(profileData) {
+        if (profileData.exists) {
+            printUserDataProfile(profileData);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
+
+const loadProfilePost = (option) => {
+    //Cargar data de seccion main
+    //Evaluar opcion para definir si se necesita post o favs
+    let collection = fetchMockData(); //Indicar coleccion Post, con uid
+    // collection = {}; //Prueba para coleccion vacia
+    profileDataMainSection(collection, option);
+};
+
+//Logout
+const closeSession = () => {
+    signOut()
+        .then(function() {
+            // Sign-out successful.
+            afterLogout();
+        }).catch(function(error) {
+            // An error happened.
+        });
+}
