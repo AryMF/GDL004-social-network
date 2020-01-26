@@ -18,8 +18,8 @@ import {
     loadNewPost
 } from "./viewer.js";
 import { router } from "./router.js";
-import { loginWithProvider, emailRegistration, loginWithEmail, signOut, newPostCreation } from "./authentication.js";
-import { profileCreation, fetchData, fetchMockData, fileUpload } from "./data.js";
+import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
+import { profileCreation, fetchData, fetchMockData, fileUpload, newPostCreation } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
 

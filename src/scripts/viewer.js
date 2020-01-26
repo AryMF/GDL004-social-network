@@ -1,11 +1,8 @@
 import { signInSelectors } from "../views/signIn.js"
 import { profileInfoSelectors } from "../views/profileInfo.js";
 import { feedSelectors } from "../views/feed.js";
-<<<<<<< HEAD
 import { newPostSelectors, newPost } from "../views/newPost.js"
-=======
 import { profileSelectors } from "../views/profile.js";
->>>>>>> 86dfc8a3ef61741f498cd6558b564a5213f988bc
 
 let viewSelectors = {};
 
@@ -29,17 +26,13 @@ const setViewSelectors = (_route) => {
             break;
         case "feed":
             viewSelectors = feedSelectors();
-<<<<<<< HEAD
             break;
         case "newPost":
             viewSelectors = newPostSelectors();
             break;
-=======
-        break;
         case "profile":
             viewSelectors = profileSelectors();
-        break;
->>>>>>> 86dfc8a3ef61741f498cd6558b564a5213f988bc
+            break;
     }
     // console.log(viewSelectors);
 }
@@ -81,19 +74,11 @@ const setDataInProfileDataScreen = (arrayValues) => {
     console.log("updating data in profile");
 
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
-<<<<<<< HEAD
     arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
     arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
     arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday : "";
     arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture) :
         viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
-=======
-    arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout: "";
-    arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry: "";
-    arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday: "";
-    arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture)
-        : viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
->>>>>>> 86dfc8a3ef61741f498cd6558b564a5213f988bc
 }
 
 const profileFileListener = () => {
@@ -200,23 +185,6 @@ const previewPostTemplate = (_element) => {
 
     return divElement;
 };
-<<<<<<< HEAD
-export {
-    initConfiguration,
-    afterLogout,
-    setViewSelectors,
-    sliderSecctionAction,
-    printErrorMsj,
-    clearInputField,
-    getInputValue,
-    setDataInProfileDataScreen,
-    profileInfoNext,
-    finishAndCollectInputInfo,
-    afterLoginConfigurations,
-    printPreviewPost,
-    loadNewPost
-}
-=======
 
 /*********** Profile *********************************/
 // navigationBar.classList.add("sendToBottom");
@@ -233,7 +201,7 @@ const printUserDataProfile = (_profileData) => {
 }
 
 const profileDataMainSection = (_collection, _option) => {
-    if(_option == "post"){
+    if (_option == "post") {
         viewSelectors.postSection.classList.add("active");
         viewSelectors.favSection.classList.remove("active");
     } else {
@@ -241,7 +209,7 @@ const profileDataMainSection = (_collection, _option) => {
         viewSelectors.postSection.classList.remove("active");
     }
 
-    if(Object.keys(_collection).length > 0) { //Verificar que no sea una coleccion vacia
+    if (Object.keys(_collection).length > 0) { //Verificar que no sea una coleccion vacia
         viewSelectors.profileMain.innerHTML = "";
         _collection.forEach(element => {
             viewSelectors.profileMain.appendChild(previewPostTemplate(element));
@@ -256,7 +224,7 @@ const stickyMenu = () => {
     let profileMenu = document.querySelectorAll(".stickyMenu");
     let offsetTop = 300;
 
-    if(viewSelectors.profileScreen.scrollTop > offsetTop){
+    if (viewSelectors.profileScreen.scrollTop > offsetTop) {
         profileMenu.forEach(element => {
             element.classList.add("stayOnTop");
         })
@@ -271,7 +239,22 @@ const stickyMenu = () => {
 
 
 
-export { initConfiguration, afterLogout, setViewSelectors, sliderSecctionAction, printErrorMsj, clearInputField,
-    getInputValue, setDataInProfileDataScreen, profileInfoNext, finishAndCollectInputInfo, afterLoginConfigurations, printPreviewPost,
-    profileDataMainSection, printUserDataProfile, profileFileListener, setPictureSRC }
->>>>>>> 86dfc8a3ef61741f498cd6558b564a5213f988bc
+export {
+    initConfiguration,
+    afterLogout,
+    setViewSelectors,
+    sliderSecctionAction,
+    printErrorMsj,
+    clearInputField,
+    getInputValue,
+    setDataInProfileDataScreen,
+    profileInfoNext,
+    finishAndCollectInputInfo,
+    afterLoginConfigurations,
+    printPreviewPost,
+    profileDataMainSection,
+    printUserDataProfile,
+    profileFileListener,
+    setPictureSRC,
+    loadNewPost
+}
