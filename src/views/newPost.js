@@ -3,13 +3,15 @@ const newPost = () => {
     const newPostTemplate = `
     <div class="newPost">
 
-    <p id="newPost" class="largeText" style="color: var(--flamingo);"> NEW POST!</p>
+    <p id="newPost" class="largeText" style="color: var(--flamingo);"> Unleash your creativity! :)</p>
+    <p id="errorMainPost"></p>
     <form id="newPostForm">
         <input type="text" name="postTitle" id="postTitle" placeholder="Title"><br>
-        <textarea name="postDescription" id="postDescription" placeholder="Description" maxlength=200></textarea><br>
+        <textarea name="postDescription" id="postDescription" placeholder="Describe your post (max 300 characters)" maxlength=300></textarea><br>
         <div class="postPictureContainer">
-        <img id="postPicture" src="src/assets/imgs/upload.png" alt="add images">
-    </div><br>
+        <img id="imagePost" src="src/assets/imgs/imagePlaceholder.png" alt="add images">
+        
+    </div><br><input id="postPicture" type="file" accept="image/*">
         <p id="selectTopics" class="smallText" style="color: var(--bayOfMany);">Please select the topics of your post (at least one is required)</p>
         <ul>
             <li><input type="checkbox" class="cb" id="cb1" name="circuits" />
@@ -32,6 +34,14 @@ const newPost = () => {
             </li>
         </ul>
         <br>
+        <label class="container">Public
+        <input type="radio" id="publicPost" name="privacy" value= "public" class="privacySelection" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Private
+        <input type="radio" id="privatePost" name="privacy" value= "private" class="privacySelection">
+        <span class="checkmark"></span>
+      </label>
     </form>
 
     <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button>
@@ -48,7 +58,14 @@ const newPost = () => {
 
 const newPostSelectors = () => {
     const newPostSelectorsJSON = {
-        "form": document.getElementById("newPostForm")
+        "form": document.querySelector("#newPostForm"),
+        "postPicture": document.querySelector("#postPicture"),
+        "imagePost": document.querySelector("#imagePost"),
+        "postTitle": document.querySelector("#postTitle"),
+        "postDescription": document.querySelector("#postDescription"),
+        "privacySelection": document.querySelectorAll("[name='privacy']"),
+        "errorMainPost": document.querySelector("#errorMainPost"),
+        "checkboxesTopic": document.querySelectorAll(".cb")
             //aqui deben ir los selectors de la parte de new post
     }
     return newPostSelectorsJSON;

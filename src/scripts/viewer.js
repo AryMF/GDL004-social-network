@@ -81,13 +81,17 @@ const setDataInProfileDataScreen = (arrayValues) => {
         viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
 }
 
-const profileFileListener = () => {
-    return viewSelectors.pictureFile;
+const fileListenerElement = (opcion) => {
+    let element;
+    opcion == "profile" ? element = viewSelectors.pictureFile : element = viewSelectors.postPicture;
+    return element;
 }
 
-const setPictureSRC = (_downloadURL) => {
-    viewSelectors.userPicture.setAttribute("src", _downloadURL);
-}
+const setPictureSRC = (opcion, _downloadURL) => {
+    opcion == "profile" ? viewSelectors.userPicture.setAttribute("src", _downloadURL) :
+        viewSelectors.imagePost.setAttribute("src", _downloadURL);
+    console.log('termino')
+};
 
 const profileInfoNext = () => {
     viewSelectors.profileInfoWarning.setAttribute("style", "display: none;");
@@ -100,7 +104,6 @@ const profileInfoNext = () => {
 }
 
 const finishAndCollectInputInfo = () => {
-    console.log(viewSelectors.checkboxesTopic); //this is a nodelist, so it has to be converted to an array
     let profileInfo = {};
     const elementsChecked = Array.from(viewSelectors.checkboxesTopic).filter((item) => {
         return item.checked == true;
@@ -163,10 +166,6 @@ const printPreviewPost = (_collection) => {
     });
 };
 
-const loadNewPost = () => {
-        let one = 2;
-    }
-    //aqui debe ir la funcion que mostrará el post, puse una función simple para que funcionara.
 
 
 const previewPostTemplate = (_element) => {
@@ -236,6 +235,43 @@ const stickyMenu = () => {
 }
 
 
+const collectMainDataPost = () => {
+    let postMainInfo = {};
+    const elementsChecked = Array.from(viewSelectors.checkboxesTopic).filter((item) => {
+        return item.checked == true;
+    });
+    if (elementsChecked.length !== 0) {
+        const elementsName = elementsChecked.map((item) => {
+            return item.name
+        });
+        const privacySelected = Array.from(viewSelectors.privacySelection).filter((item) => {
+            return item.checked == true;
+        });
+        const elementsPrivacy = privacySelected.map((item) => {
+            return item.value
+        });
+        let profilePictureSrc = viewSelectors.imagePost.getAttribute("src");
+        console.log(typeof profilePictureSrc);
+        let _postPicture;
+        profilePictureSrc == "src/assets/imgs/imagePlaceholder.png" ? _postPicture = "null" : _postPicture = profilePictureSrc;
+        console.log(typeof _postPicture);
+        postMainInfo = {
+            email: localStorage.getItem("email"),
+            title: viewSelectors.postTitle.value,
+            description: viewSelectors.postDescription.value,
+            imgCover: _postPicture,
+            topics: elementsName,
+            privacy: elementsPrivacy
+        };
+    } else {
+        viewSelectors.errorMainPost.setAttribute("style", "display:inline-block;");
+        viewSelectors.errorMainPost.innerHTML = "All the fields are required";
+    }
+
+    return postMainInfo;
+}
+
+
 
 
 
@@ -254,7 +290,7 @@ export {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
-    profileFileListener,
+    fileListenerElement,
     setPictureSRC,
-    loadNewPost
+    collectMainDataPost
 }

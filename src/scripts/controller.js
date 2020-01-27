@@ -13,13 +13,13 @@ import {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
-    profileFileListener,
+    fileListenerElement,
     setPictureSRC,
-    loadNewPost
+    collectMainDataPost
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { profileCreation, fetchData, fetchMockData, fileUpload, newPostCreation } from "./data.js";
+import { setDataInDB, fetchData, fetchMockData, fileUpload } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
 
@@ -76,7 +76,7 @@ const handleSessionStatus = () => {
             console.log("No es nuevo usuario, abrir feed");
             //Hacer visible la barra de menu y adaptar tamanio de viewContainer
             afterLoginConfigurations();
-            location.hash = "/feed";
+            location.hash = "/newPost";
         }
     } else {
         //Abrir view signIn
@@ -103,7 +103,7 @@ const handleHashChange = (_route) => {
             loadFeed();
             break;
         case "newPost":
-            loadNewPost();
+            pictureNewPost();
             break;
         case "profile":
             topScreenNavBar[1].classList.add("active");
@@ -165,7 +165,6 @@ const actionsHandler = (_clickedItem, _action) => {
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
             break;
         case "newPost":
-            alert("quieres crear un nuevo post?")
             newPostCreation();
             break;
             //Profile
@@ -273,25 +272,28 @@ const loadProfileInfoData = () => {
         });
     }
 
-    let fileListener = profileFileListener();
+
+    let fileListener = fileListenerElement("profile");
     fileListener.addEventListener("change", element => {
         let file = element.target.files[0];
-        setProfilePicture(file);
+        console.log(element);
+        setProfilePicture("profile", file);
     });
 }
 
-const setProfilePicture = (_file) => {
-    fileUpload(_file).then(downloadURL => {
+const setProfilePicture = (opcion, _file) => {
+    console.log("entré a set profile");
+    fileUpload(opcion, _file).then(downloadURL => {
         console.log('File available at', downloadURL);
         // localStorage.setItem("photoURL", downloadURL);
-        setPictureSRC(downloadURL);
+        setPictureSRC(opcion, downloadURL);
     });
 }
 
 const profileInfoSubmit = () => {
     let profileInfo = finishAndCollectInputInfo();
     console.log(profileInfo);
-    profileCreation(profileInfo).then(function() {
+    setDataInDB("user", profileInfo.email, profileInfo).then(function() {
         console.log("Document successfully written!");
         location.hash = "/profile";
         afterLoginConfigurations();
@@ -373,3 +375,34 @@ const closeSession = () => {
             // An error happened.
         });
 }
+
+/****************************************NEW POST****************************************** */
+
+const pictureNewPost = () => {
+    let fileListener = fileListenerElement("post");
+    fileListener.addEventListener("change", element => {
+        let file = element.target.files[0];
+        setProfilePicture("post", file);
+    });
+}
+
+const newPostCreation = (title, about) => {
+    console.log("New Post")
+        //it should validate inputs
+    if (postTitle.value != "" && postDescription.value != "") {
+        let inputArrayValue = getInputValue(["postTitle", "postDescription"]);
+        //it should be able to add the data to the firestore
+        let postMainData = collectMainDataPost();
+        setDataInDB("post", "generarID", postMainData).then(function() {
+            console.log("elemento guardado")
+        });
+    } else {
+        printErrorMsj("errorMainPost", "Error", false);
+    }
+
+    // let formNew = newPostSelectors.form;
+    // dataSource.collection("post").add({
+    //     title: formNew.title.value,
+    //     about: formNew.about.value
+    // })
+};

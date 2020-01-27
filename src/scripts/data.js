@@ -20,28 +20,16 @@ const fetchMockData = () => {
 }
 
 
-const newPostCreation = (title, about) => {
-    console.log("New Post Creation")
-        //it should be able to add the data to the firestore
-        // let formNew = newPostSelectors.form;
-        // dataSource.collection("post").add({
-        //     title: formNew.title.value,
-        //     about: formNew.about.value
-        // })
-};
-
-
-
 // Crear entrada
-const profileCreation = (_profileInfo) => {
-    console.log("profileCreation");
-    console.log("_profileInfo");
-    return dataSource.collection("user").doc(_profileInfo.email).set(_profileInfo);
+const setDataInDB = (_collection, document, _profileInfo) => {
+    return dataSource.collection(_collection).doc(document).set(_profileInfo);
 }
 
 //Alamcenar archivo en storage
-const fileUpload = (file) => {
-    let storageRef = storage.ref('avatar/' + localStorage.getItem("email") + "_" + file.name);
+const fileUpload = (opcion, file) => {
+    let collection;
+    opcion === "profile" ? collection = "avatar/" : collection = "post/";
+    let storageRef = storage.ref(collection + localStorage.getItem("email") + "_" + file.name);
     let uploadTask = storageRef.put(file);
 
     // Listen for state changes, errors, and completion of the upload.
@@ -88,4 +76,4 @@ const fileUpload = (file) => {
     });
 }
 
-export { profileCreation, fetchData, fetchMockData, fileUpload, newPostCreation }
+export { setDataInDB, fetchData, fetchMockData, fileUpload }
