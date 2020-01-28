@@ -6,22 +6,25 @@ const router = (route) => {
     switch (route) {
         case "":
             return routes.loader();
-        break;
+            break;
         case "signIn":
             return routes.signIn();
-        break;
+            break;
         case "profileInfo":
             return routes.profileInfo();
-        break;
+            break;
         case "feed":
             return routes.feed();
-        break;
+            break;
         case "profile":
             return routes.profile();
-        break;
+            break;
+        case "newPost":
+            return routes.newPost();
+            break;
         default:
-            console.log("404");
-        break;
+            return routes.notFound();
+            break;
     }
 }
 

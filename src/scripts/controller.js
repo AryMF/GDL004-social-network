@@ -1,9 +1,26 @@
-import { initConfiguration, afterLogout, setViewSelectors, sliderSecctionAction, printErrorMsj, clearInputField,
-    getInputValue, setDataInProfileDataScreen, profileInfoNext, finishAndCollectInputInfo, afterLoginConfigurations, printPreviewPost,
-    profileDataMainSection, printUserDataProfile, profileFileListener, setPictureSRC } from "./viewer.js";
+import {
+    initConfiguration,
+    afterLogout,
+    setViewSelectors,
+    sliderSecctionAction,
+    printErrorMsj,
+    clearInputField,
+    getInputValue,
+    setDataInProfileDataScreen,
+    profileInfoNext,
+    finishAndCollectInputInfo,
+    afterLoginConfigurations,
+    printPreviewPost,
+    profileDataMainSection,
+    printUserDataProfile,
+    fileListenerElement,
+    setPictureSRC,
+    collectMainDataPost
+} from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { profileCreation, fetchData, fetchMockData, fileUpload } from "./data.js";
+import { setDataInDB, fetchData, fetchMockData, fileUpload } from "./data.js";
+import { newPost as newPostV } from "../views/newPost.js";
 
 
 const viewContainer = document.querySelector("#viewContainer");
@@ -15,7 +32,7 @@ const main = () => {
 
     /***********Quick fix para pruebas***************/
     //TODO: arreglar antes de deploy
-    for(let i = 0; i < 6; i++){
+    for (let i = 0; i < 6; i++) {
         topScreenNavBar[i].addEventListener("click", () => {
             topScreenNavBar.forEach(element => {
                 element.classList.remove("active");
@@ -47,7 +64,7 @@ window.addEventListener("hashchange", () => {
 /***************************************************/
 const handleSessionStatus = () => {
     //Verificar si existe sesion
-    if(localStorage.getItem("email")){
+    if (localStorage.getItem("email")) {
         if (localStorage.getItem("isNewUser") == "true") {
             //Abrir view de profileInfo
             console.log("Es nuevo usuario, abrir profile info");
@@ -59,7 +76,7 @@ const handleSessionStatus = () => {
             console.log("No es nuevo usuario, abrir feed");
             //Hacer visible la barra de menu y adaptar tamanio de viewContainer
             afterLoginConfigurations();
-            location.hash = "/feed";
+            location.hash = "/newPost";
         }
     } else {
         //Abrir view signIn
@@ -75,22 +92,25 @@ const handleHashChange = (_route) => {
     setViewSelectors(_route);
 
     /***Contenido dinamico******/
-    switch(_route){
+    switch (_route) {
         case "profileInfo":
             loadProfileInfoData();
-        break;
+            break;
         case "post":
             printPreviewPost();
-        break;
+            break;
         case "feed":
             loadFeed();
-        break;
+            break;
+        case "newPost":
+            pictureNewPost();
+            break;
         case "profile":
             topScreenNavBar[1].classList.add("active");
             loadProfileUserData();
             loadProfilePost("post");
             // loadProfilePost("post");
-        break;
+            break;
     }
 };
 /***************************************/
@@ -107,56 +127,60 @@ const eventListenerHandler = (e) => {
 viewContainer.addEventListener("click", eventListenerHandler);
 
 const actionsHandler = (_clickedItem, _action) => {
-    switch(_action){
+    switch (_action) {
         //signIn Screen
         case "slideSecctionSignUp":
         case "slideSecctionSignIn":
             sliderSecctionAction();
-        break;
+            break;
         case "socialNetworkButton":
             socialNetworkButton(_clickedItem);
-        break;
+            break;
         case "submitForm":
             submitRegistrationForm();
-        break;
+            break;
         case "loginButton":
             submitLoginForm();
-        break;
-        //Profile info
+            break;
+            //Profile info
         case "profileInfoNext":
             profileInfoNext();
-        break;
+            break;
         case "profileInfoSubmit":
             profileInfoSubmit();
-        break;
-        //Feed screen
+            break;
+            //Feed screen
         case "favPost":
             _clickedItem.classList.remove("fa-bookmark-o");
             _clickedItem.classList.add("fa-check");
             _clickedItem.setAttribute("data-action", "unFavPost");
-        break;
+            break;
         case "unFavPost":
             _clickedItem.classList.remove("fa-check");
             _clickedItem.classList.add("fa-bookmark-o");
             _clickedItem.setAttribute("data-action", "favPost");
-        break;
+            break;
         case "openPost":
+            //aqui debe ir el modal
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
-        break;
-        //Profile
+            break;
+        case "newPost":
+            newPostCreation();
+            break;
+            //Profile
         case "showUserPost":
             loadProfilePost("post");
-        break;
+            break;
         case "showUserFav":
             loadProfilePost("fav");
-        break;
+            break;
         case "editProfile":
             topScreenNavBar[1].classList.remove("active");
             location.hash = "/profileInfo";
-        break;
+            break;
         case "logoutOption":
             closeSession();
-        break;
+            break;
         default:
     }
 };
@@ -165,11 +189,11 @@ const actionsHandler = (_clickedItem, _action) => {
 
 /*********Loging con redes sociales***********/
 const socialNetworkButton = (element) => {
-    if(element.classList.contains("fa-google")){
+    if (element.classList.contains("fa-google")) {
         loginWithProvider(1);
-    } else if(element.classList.contains("fa-github-alt")){
+    } else if (element.classList.contains("fa-github-alt")) {
         loginWithProvider(2);
-    } else{
+    } else {
         loginWithProvider(3);
     }
 };
@@ -193,6 +217,7 @@ const submitRegistrationForm = () => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.error("Error " + errorCode + ": " + errorMessage);
+                    //handling errors has to be done like this
                     if (errorCode == "auth/email-already-in-use") {
                         printErrorMsj("formErrorMsj", "The email address is already in use by another account.", false);
                     } else if (errorCode == "auth/invalid-email") {
@@ -220,7 +245,7 @@ const submitRegistrationForm = () => {
 /*** Account additional info ***/
 const loadProfileInfoData = () => {
     let profileInfo = {}
-    if(localStorage.getItem("isNewUser") == "true"){
+    if (localStorage.getItem("isNewUser") == "true") {
         profileInfo = {
             email: localStorage.getItem("email"),
             displayName: localStorage.getItem("displayName"),
@@ -247,29 +272,32 @@ const loadProfileInfoData = () => {
         });
     }
 
-    let fileListener = profileFileListener();
+
+    let fileListener = fileListenerElement("profile");
     fileListener.addEventListener("change", element => {
         let file = element.target.files[0];
-        setProfilePicture(file);
+        console.log(element);
+        setProfilePicture("profile", file);
     });
 }
 
-const setProfilePicture = (_file) => {
-    fileUpload(_file).then(downloadURL => {
+const setProfilePicture = (opcion, _file) => {
+    console.log("entré a set profile");
+    fileUpload(opcion, _file).then(downloadURL => {
         console.log('File available at', downloadURL);
         // localStorage.setItem("photoURL", downloadURL);
-        setPictureSRC(downloadURL);
+        setPictureSRC(opcion, downloadURL);
     });
 }
 
 const profileInfoSubmit = () => {
     let profileInfo = finishAndCollectInputInfo();
     console.log(profileInfo);
-    profileCreation(profileInfo).then(function() {
-            console.log("Document successfully written!");
-            location.hash = "/profile";
-            afterLoginConfigurations();
-        });
+    setDataInDB("user", profileInfo.email, profileInfo).then(function() {
+        console.log("Document successfully written!");
+        location.hash = "/profile";
+        afterLoginConfigurations();
+    });
     // showProfile();
 }
 
@@ -281,24 +309,24 @@ const submitLoginForm = () => {
         let inputArrayValue = getInputValue(["loginFormUserEmail", "loginFormUserPassword"]);
 
         loginWithEmail(inputArrayValue.loginFormUserEmail, inputArrayValue.loginFormUserPassword)
-        .then(() => {
-            localStorage.setItem("isNewUser", false);
-            handleSessionStatus();
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Error " + errorCode + ": " + errorMessage);
-            if (errorCode == "auth/user-not-found") {
-                printErrorMsj("loginFormErrorMsj", "There is no user record corresponding to this identifier.", false);
-            } else if (errorCode == "auth/invalid-email") {
-                printErrorMsj("loginFormErrorMsj", "Invalid Email Address.", false);
-            } else if (errorCode == "auth/wrong-password") {
-                printErrorMsj("loginFormErrorMsj", "The password is invalid.", false);
-            } else {
-                alert("Ocurrio un error en la autenticación [Email account login].");
-            }
-        });
+            .then(() => {
+                localStorage.setItem("isNewUser", false);
+                handleSessionStatus();
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error("Error " + errorCode + ": " + errorMessage);
+                if (errorCode == "auth/user-not-found") {
+                    printErrorMsj("loginFormErrorMsj", "There is no user record corresponding to this identifier.", false);
+                } else if (errorCode == "auth/invalid-email") {
+                    printErrorMsj("loginFormErrorMsj", "Invalid Email Address.", false);
+                } else if (errorCode == "auth/wrong-password") {
+                    printErrorMsj("loginFormErrorMsj", "The password is invalid.", false);
+                } else {
+                    alert("Ocurrio un error en la autenticación [Email account login].");
+                }
+            });
 
         // clearInputField(["loginFormUserEmail", "loginFormUserPassword"]);
     } else {
@@ -307,7 +335,7 @@ const submitLoginForm = () => {
 }
 
 /************* Feed **************/
-const loadFeed = () =>{
+const loadFeed = () => {
     let collection = fetchMockData();
     printPreviewPost(collection);
 };
@@ -329,7 +357,7 @@ const loadProfileUserData = () => {
     });
 }
 
-const loadProfilePost = (option) =>{
+const loadProfilePost = (option) => {
     //Cargar data de seccion main
     //Evaluar opcion para definir si se necesita post o favs
     let collection = fetchMockData(); //Indicar coleccion Post, con uid
@@ -340,10 +368,41 @@ const loadProfilePost = (option) =>{
 //Logout
 const closeSession = () => {
     signOut()
-            .then(function() {
-                // Sign-out successful.
-                afterLogout();
-            }).catch(function(error) {
-                // An error happened.
-            });
+        .then(function() {
+            // Sign-out successful.
+            afterLogout();
+        }).catch(function(error) {
+            // An error happened.
+        });
 }
+
+/****************************************NEW POST****************************************** */
+
+const pictureNewPost = () => {
+    let fileListener = fileListenerElement("post");
+    fileListener.addEventListener("change", element => {
+        let file = element.target.files[0];
+        setProfilePicture("post", file);
+    });
+}
+
+const newPostCreation = (title, about) => {
+    console.log("New Post")
+        //it should validate inputs
+    if (postTitle.value != "" && postDescription.value != "") {
+        let inputArrayValue = getInputValue(["postTitle", "postDescription"]);
+        //it should be able to add the data to the firestore
+        let postMainData = collectMainDataPost();
+        setDataInDB("post", "generarID", postMainData).then(function() {
+            console.log("elemento guardado")
+        });
+    } else {
+        printErrorMsj("errorMainPost", "Error", false);
+    }
+
+    // let formNew = newPostSelectors.form;
+    // dataSource.collection("post").add({
+    //     title: formNew.title.value,
+    //     about: formNew.about.value
+    // })
+};

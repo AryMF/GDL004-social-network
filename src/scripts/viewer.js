@@ -1,9 +1,10 @@
 import { signInSelectors } from "../views/signIn.js"
 import { profileInfoSelectors } from "../views/profileInfo.js";
 import { feedSelectors } from "../views/feed.js";
+import { newPostSelectors, newPost } from "../views/newPost.js"
 import { profileSelectors } from "../views/profile.js";
 
-let viewSelectors  = {};
+let viewSelectors = {};
 
 
 const initConfiguration = () => {
@@ -12,23 +13,26 @@ const initConfiguration = () => {
 }
 
 const setViewSelectors = (_route) => {
-    viewSelectors  = {};
-    switch(_route){
+    viewSelectors = {};
+    switch (_route) {
         case "":
-            viewSelectors  = {};
-        break;
+            viewSelectors = {};
+            break;
         case "signIn":
             viewSelectors = signInSelectors();
-        break;
+            break;
         case "profileInfo":
             viewSelectors = profileInfoSelectors();
-        break;
+            break;
         case "feed":
             viewSelectors = feedSelectors();
-        break;
+            break;
+        case "newPost":
+            viewSelectors = newPostSelectors();
+            break;
         case "profile":
             viewSelectors = profileSelectors();
-        break;
+            break;
     }
     // console.log(viewSelectors);
 }
@@ -41,7 +45,7 @@ const sliderSecctionAction = () => {
 }
 
 const printErrorMsj = (element, menssage, action) => {
-    if(action) {
+    if (action) {
         //Esconder mensaje de error
         viewSelectors[element].setAttribute("style", "visibility: hidden;");
     } else {
@@ -67,21 +71,27 @@ const getInputValue = (arrayElements) => {
 }
 
 const setDataInProfileDataScreen = (arrayValues) => {
+    console.log("updating data in profile");
+
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
-    arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout: "";
-    arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry: "";
-    arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday: "";
-    arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture)
-        : viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
+    arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
+    arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
+    arrayValues.userBirthday != "null" ? viewSelectors.userBirthdayInput.value = arrayValues.userBirthday : "";
+    arrayValues.profilePicture != "null" ? viewSelectors.userPicture.setAttribute("src", arrayValues.profilePicture) :
+        viewSelectors.userPicture.setAttribute("src", "src//assets//imgs//avatar128.png");
 }
 
-const profileFileListener = () => {
-    return viewSelectors.pictureFile;
+const fileListenerElement = (opcion) => {
+    let element;
+    opcion == "profile" ? element = viewSelectors.pictureFile : element = viewSelectors.postPicture;
+    return element;
 }
 
-const setPictureSRC = (_downloadURL) => {
-    viewSelectors.userPicture.setAttribute("src", _downloadURL);
-}
+const setPictureSRC = (opcion, _downloadURL) => {
+    opcion == "profile" ? viewSelectors.userPicture.setAttribute("src", _downloadURL) :
+        viewSelectors.imagePost.setAttribute("src", _downloadURL);
+    console.log('termino')
+};
 
 const profileInfoNext = () => {
     viewSelectors.profileInfoWarning.setAttribute("style", "display: none;");
@@ -94,7 +104,6 @@ const profileInfoNext = () => {
 }
 
 const finishAndCollectInputInfo = () => {
-    console.log(viewSelectors.checkboxesTopic); //this is a nodelist, so it has to be converted to an array
     let profileInfo = {};
     const elementsChecked = Array.from(viewSelectors.checkboxesTopic).filter((item) => {
         return item.checked == true;
@@ -132,7 +141,15 @@ const afterLoginConfigurations = () => {
 
     navigationBar.classList.add("login");
     viewContainer.classList.add("login");
-}
+};
+
+const newPostConfigurations = () => {
+    let navigationBar = document.querySelector(".navigationBar");
+    let viewContainer = document.querySelector("#viewContainer");
+
+    // navigationBar.classList.add("login");
+    // viewContainer.classList.add("login");
+};
 
 const afterLogout = () => {
     let navigationBar = document.querySelector(".navigationBar");
@@ -148,6 +165,8 @@ const printPreviewPost = (_collection) => {
         viewSelectors.feedContainer.appendChild(previewPostTemplate(element));
     });
 };
+
+
 
 const previewPostTemplate = (_element) => {
     let postID = Object.keys(_element)[0];
@@ -181,7 +200,7 @@ const printUserDataProfile = (_profileData) => {
 }
 
 const profileDataMainSection = (_collection, _option) => {
-    if(_option == "post"){
+    if (_option == "post") {
         viewSelectors.postSection.classList.add("active");
         viewSelectors.favSection.classList.remove("active");
     } else {
@@ -189,7 +208,7 @@ const profileDataMainSection = (_collection, _option) => {
         viewSelectors.postSection.classList.remove("active");
     }
 
-    if(Object.keys(_collection).length > 0) { //Verificar que no sea una coleccion vacia
+    if (Object.keys(_collection).length > 0) { //Verificar que no sea una coleccion vacia
         viewSelectors.profileMain.innerHTML = "";
         _collection.forEach(element => {
             viewSelectors.profileMain.appendChild(previewPostTemplate(element));
@@ -204,7 +223,7 @@ const stickyMenu = () => {
     let profileMenu = document.querySelectorAll(".stickyMenu");
     let offsetTop = 300;
 
-    if(viewSelectors.profileScreen.scrollTop > offsetTop){
+    if (viewSelectors.profileScreen.scrollTop > offsetTop) {
         profileMenu.forEach(element => {
             element.classList.add("stayOnTop");
         })
@@ -216,9 +235,62 @@ const stickyMenu = () => {
 }
 
 
+const collectMainDataPost = () => {
+    let postMainInfo = {};
+    const elementsChecked = Array.from(viewSelectors.checkboxesTopic).filter((item) => {
+        return item.checked == true;
+    });
+    if (elementsChecked.length !== 0) {
+        const elementsName = elementsChecked.map((item) => {
+            return item.name
+        });
+        const privacySelected = Array.from(viewSelectors.privacySelection).filter((item) => {
+            return item.checked == true;
+        });
+        const elementsPrivacy = privacySelected.map((item) => {
+            return item.value
+        });
+        let profilePictureSrc = viewSelectors.imagePost.getAttribute("src");
+        console.log(typeof profilePictureSrc);
+        let _postPicture;
+        profilePictureSrc == "src/assets/imgs/imagePlaceholder.png" ? _postPicture = "null" : _postPicture = profilePictureSrc;
+        console.log(typeof _postPicture);
+        postMainInfo = {
+            email: localStorage.getItem("email"),
+            title: viewSelectors.postTitle.value,
+            description: viewSelectors.postDescription.value,
+            imgCover: _postPicture,
+            topics: elementsName,
+            privacy: elementsPrivacy
+        };
+    } else {
+        viewSelectors.errorMainPost.setAttribute("style", "display:inline-block;");
+        viewSelectors.errorMainPost.innerHTML = "All the fields are required";
+    }
+
+    return postMainInfo;
+}
 
 
 
-export { initConfiguration, afterLogout, setViewSelectors, sliderSecctionAction, printErrorMsj, clearInputField,
-    getInputValue, setDataInProfileDataScreen, profileInfoNext, finishAndCollectInputInfo, afterLoginConfigurations, printPreviewPost,
-    profileDataMainSection, printUserDataProfile, profileFileListener, setPictureSRC }
+
+
+export {
+    initConfiguration,
+    afterLogout,
+    setViewSelectors,
+    sliderSecctionAction,
+    printErrorMsj,
+    clearInputField,
+    getInputValue,
+    setDataInProfileDataScreen,
+    profileInfoNext,
+    finishAndCollectInputInfo,
+    afterLoginConfigurations,
+    printPreviewPost,
+    profileDataMainSection,
+    printUserDataProfile,
+    fileListenerElement,
+    setPictureSRC,
+    collectMainDataPost
+}

@@ -4,7 +4,7 @@
 @import "profileScreen.css";
 @import "profileInfo.css";
 @import "feed.css";
-
+@import "newPost.css";
 :root {
     /*Background colors*/
     --gullGray: #93b0b6;
@@ -48,17 +48,20 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: #002F4D;
-        display: flex; 
+    display: flex;
     justify-content: center;
-    align-items: center;   
-    /*display: none; /*TODO: borrar*/ 
+    align-items: center;
+    /*display: none; /*TODO: borrar*/
 }
 
 .loaderIMG {
     width: 50%;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 15px 15px;
     font-weight: bold;
     text-align: center;
@@ -120,9 +123,12 @@ h4 {
 /*Assets*/
 
 button {
-    margin: 5px; /*cambio para mobile*/
-    padding: 5px 10px; /* Cambio de padding en mobile*/
-    border-radius: 20px; /*DRY*/
+    margin: 5px;
+    /*cambio para mobile*/
+    padding: 5px 10px;
+    /* Cambio de padding en mobile*/
+    border-radius: 20px;
+    /*DRY*/
     border: 2.5px solid;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -171,6 +177,7 @@ button.ghost:active {
     transform: scale(0.95);
 }
 
+
 /*Responsive*/
 
 @media only screen and (min-width: 600px) {
@@ -201,20 +208,20 @@ button.ghost:active {
     .smallText {
         font-size: 18px;
     }
-
     button {
         margin: 10px;
         padding: 10px 35px;
     }
-
     .loaderIMG {
         width: 15%;
     }
-
     button {
-        margin: 8px; /*cambio para mobile*/
-        padding: 5px 35px; /* Cambio de padding en mobile*/
-        border-radius: 20px; /*DRY*/
+        margin: 8px;
+        /*cambio para mobile*/
+        padding: 5px 35px;
+        /* Cambio de padding en mobile*/
+        border-radius: 20px;
+        /*DRY*/
         border: 2.5px solid;
         letter-spacing: 1.5px;
         text-transform: uppercase;

@@ -7,10 +7,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     // console.log("Revision de sesion, isNewUser", localStorage.getItem("isNewUser"));
     if (user) {
         // User is signed in. 
-        localStorage.setItem("photoURL",user.photoURL);
-        localStorage.setItem("displayName",user.displayName);
-        localStorage.setItem("email",user.email);
-        localStorage.setItem("uid",user.uid);
+        localStorage.setItem("photoURL", user.photoURL);
+        localStorage.setItem("displayName", user.displayName);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("uid", user.uid);
         console.log("AuthStateChange: ", user);
         window.dispatchEvent(triggeredWhenRedirected);
     } else {
@@ -45,7 +45,7 @@ const loginWithProvider = (provider) => {
 }
 
 firebase.auth().getRedirectResult()
-    .then((result) =>{
+    .then((result) => {
         if (result.user != null) {
             //Verifica si es un nuevo usuario
             localStorage.setItem("isNewUser", result.additionalUserInfo.isNewUser);
@@ -57,12 +57,12 @@ firebase.auth().getRedirectResult()
         console.error("Error " + errorCode + ": " + errorMessage);
         /* TODO: manejo de error
         if (errorCode == "auth/account-exists-with-different-credential") {
-            formErrorMsj.setAttribute("style", "visibility: visible;");
             loginFormErrorMsj.setAttribute("style", "visibility: visible;");
-            formErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
+            loginFormErrorMsj.setAttribute("style", "visibility: visible;");
+            loginFormErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
             loginFormErrorMsj.innerHTML = "An account already exists with the same email but different sign-in credentials.";
         } else {*/
-            // alert("Ocurrio un error en la autenticación [Login with social network].");
+        // alert("Ocurrio un error en la autenticación [Login with social network].");
         // }
     });
 
