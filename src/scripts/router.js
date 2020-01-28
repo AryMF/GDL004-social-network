@@ -1,28 +1,28 @@
-import { routes } from "../views/routes.js"
+import { views } from "../views/views.js"
 
 
 const router = (route) => {
     switch (route) {
         case "":
-            return routes.loader();
+            return views.loader();
             break;
         case "signIn":
-            return routes.signIn();
+            return views.signIn();
             break;
         case "profileInfo":
-            return routes.profileInfo();
+            return views.profileInfo();
             break;
         case "feed":
-            return routes.feed();
+            return views.feed();
             break;
         case "profile":
-            return routes.profile();
+            return views.profile();
             break;
         case "newPost":
-            return routes.newPost();
+            return views.newPost();
             break;
         default:
-            return routes.notFound();
+            return views.notFound();
             break;
     }
 }
