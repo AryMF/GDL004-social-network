@@ -25,6 +25,17 @@ const setDataInDB = (_collection, document, _profileInfo) => {
     return dataSource.collection(_collection).doc(document).set(_profileInfo);
 }
 
+const addDataInDB = (_collection,  _info) => {
+    // Add a new document with a generated id.
+    return dataSource.collection(_collection).add(_info);
+    /*.then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });*/
+}
+
 //Alamcenar archivo en storage
 const fileUpload = (opcion, file) => {
     let collection;
@@ -76,4 +87,4 @@ const fileUpload = (opcion, file) => {
     });
 }
 
-export { setDataInDB, fetchData, fetchMockData, fileUpload }
+export { setDataInDB, fetchData, fetchMockData, fileUpload, addDataInDB }

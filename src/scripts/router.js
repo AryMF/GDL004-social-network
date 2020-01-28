@@ -2,7 +2,6 @@ import { routes } from "../views/routes.js"
 
 
 const router = (route) => {
-    console.log("Entre a router con: ", route);
     switch (route) {
         case "":
             return routes.loader();

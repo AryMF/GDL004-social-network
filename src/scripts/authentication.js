@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         localStorage.setItem("displayName", user.displayName);
         localStorage.setItem("email", user.email);
         localStorage.setItem("uid", user.uid);
-        console.log("AuthStateChange: ", user);
+        // console.log("AuthStateChange: ", user);
         window.dispatchEvent(triggeredWhenRedirected);
     } else {
         // No user is signed in.
