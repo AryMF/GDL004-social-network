@@ -1,5 +1,4 @@
 const newPost = () => {
-    //aqui va el template html
     const newPostTemplate = `
     <h2 id="newPost" style="color: var(--bayOfMany);"> Unleash your creativity! :)</h2>
     <h4 id="errorMainPost"> Mensaje de error </h4>
@@ -9,7 +8,7 @@ const newPost = () => {
     <input id="postPicture" type="file" accept="image/*">
     <p id="selectTopics" class="smallText" style="color: var(--bayOfMany);">Please select the topics of your post (at least one is required)</p>
     <ul>
-        <li><input type="checkbox" class="cb" id="cb1" name="circuits" />
+        <li><input type="checkbox" class="cb" id="cb1" name="circuits" checked="checked" />
             <label for="cb1"><img src="src/assets/imgs/circuits.jpg" class="imagenTopic"/><br><p class="cbText">Circuits</p></label>
         </li>
         <li><input type="checkbox" class="cb" id="cb2" name="workshop" />
@@ -57,7 +56,6 @@ const newPostSelectors = () => {
         "privacySelection": document.querySelectorAll("[name='privacy']"),
         "errorMainPost": document.querySelector("#errorMainPost"),
         "checkboxesTopic": document.querySelectorAll(".cb")
-            //aqui deben ir los selectors de la parte de new post
     }
     return newPostSelectorsJSON;
 }

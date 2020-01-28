@@ -15,14 +15,12 @@ import {
     printUserDataProfile,
     fileListenerElement,
     setPictureSRC,
-    collectMainDataPost,
-    addStep
+    collectMainDataPost
+    //,addStep
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
 import { setDataInDB, fetchData, fetchMockData, fileUpload, addDataInDB } from "./data.js";
-import { newPost as newPostV } from "../views/newPost.js";
-
 
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
@@ -399,14 +397,12 @@ const newPostCreation = (title, about) => {
         addDataInDB("post", postMainData)
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
-                newPostMainScreen.setAttribute("style", "visibility:hidden;")
-                    // location.hash = "/feed";
+                //aqui debe ir la funcion de mostrar primer paso
+                // location.hash = "/feed";
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-
-        //function de mostrar primer paso
     } else {
         console.log("fields empty")
         printErrorMsj("errorMainPost", "All fields are required!", false);

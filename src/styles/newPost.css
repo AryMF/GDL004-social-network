@@ -1,5 +1,5 @@
-#newStepContainer {
-    display: none;
+#stepScreen {
+    visibility: hidden;
 }
 
 .newPostScreen {
