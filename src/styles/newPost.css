@@ -89,3 +89,7 @@
         width: 280px;
     }
 }
+
+#newStepContainer {
+    display: block;
+}

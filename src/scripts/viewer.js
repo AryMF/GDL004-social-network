@@ -273,6 +273,13 @@ const collectMainDataPost = () => {
 
 
 
+const addStep = () => {
+    console.log("addstepfunction");
+
+    newPostSelectorsJSON.newStepContainer.setAttribute("style", "display:inline-block;");
+};
+
+
 
 
 export {
