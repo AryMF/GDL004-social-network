@@ -15,7 +15,8 @@ import {
     printUserDataProfile,
     fileListenerElement,
     setPictureSRC,
-    collectMainDataPost
+    collectMainDataPost,
+    addStep
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
@@ -168,6 +169,9 @@ const actionsHandler = (_clickedItem, _action) => {
             newPostCreation();
             break;
             //Profile
+        case "newPostPage2":
+            addStep()
+            break;
         case "showUserPost":
             loadProfilePost("post");
             break;
@@ -386,26 +390,25 @@ const pictureNewPost = () => {
     });
 }
 
+
 const newPostCreation = (title, about) => {
-    console.log("New Post")
-        //it should validate inputs
+    //it should validate inputs
     if (postTitle.value != "" && postDescription.value != "") {
         //it should be able to add the data to the firestore
         let postMainData = collectMainDataPost();
         addDataInDB("post", postMainData)
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
+                newPostMainScreen.setAttribute("style", "visibility:hidden;")
+                    // location.hash = "/feed";
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-    } else {
-        printErrorMsj("errorMainPost", "Error", false);
-    }
 
-    // let formNew = newPostSelectors.form;
-    // dataSource.collection("post").add({
-    //     title: formNew.title.value,
-    //     about: formNew.about.value
-    // })
+        //function de mostrar primer paso
+    } else {
+        console.log("fields empty")
+        printErrorMsj("errorMainPost", "All fields are required!", false);
+    }
 };

@@ -2,8 +2,7 @@ const newPost = () => {
     //aqui va el template html
     const newPostTemplate = `
     <h2 id="newPost" style="color: var(--bayOfMany);"> Unleash your creativity! :)</h2>
-    <h4 id="errorMainPost" style="color: var(--elephant);"> Mensaje de error </h4>
-   <div id = "newPostScreenOne">
+    <h4 id="errorMainPost"> Mensaje de error </h4>
     <input id="postTitle" class="largeText" style="color: var(--flamingo);" type="text" placeholder="Title"><br>
     <textarea id="postDescription" class="normalText" rows="5" cols="50" maxlength="300" placeholder="Describe your post (max 300 characters)" maxlength=300></textarea>
     <img id="imagePost" src="src/assets/imgs/imagePlaceholder.png" alt="add images">
@@ -38,23 +37,7 @@ const newPost = () => {
         <input type="radio" id="privatePost" name="privacy" value= "private" class="privacySelection"> 
         <span class="checkmark"></span>
     </label>
-    <button id="newPostNext" class="flamingo normalTextBold" data-action="newPost">Continue</button>
-    </div>
-    <div id="newPostScreenTwo">
-    <h2>Step by Step</h2>
-    <h3>Step One</h3>
-    <textarea id="stepDescription" class="normalText" rows="5" cols="50" placeholder="Describe this step in your process"></textarea>
-    <img id="imageStep" src="src/assets/imgs/imagePlaceholder.png" alt="add images">
-    <input id="stepPicture" type="file" accept="image/*">
-    <div id="newStepContainer">
-        <h3>Step Two</h3>
-        <textarea id="stepDescription" class="normalText" rows="5" cols="50" placeholder="Describe this step in your process"></textarea>
-        <img id="imageStep" src="src/assets/imgs/imagePlaceholder.png" alt="add images">
-        <input id="stepPicture" type="file" accept="image/*">
-    </div>
-    <button id="addStep" class="flamingo normalTextBold" data-action="addStep">Add Step</button>
-</div>
-`;
+    <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button>`;
 
     let newPostDiv = document.createElement("div");
     newPostDiv.classList.add("newPostScreen");
@@ -73,9 +56,7 @@ const newPostSelectors = () => {
         "postDescription": document.querySelector("#postDescription"),
         "privacySelection": document.querySelectorAll("[name='privacy']"),
         "errorMainPost": document.querySelector("#errorMainPost"),
-        "checkboxesTopic": document.querySelectorAll(".cb"),
-        "addStepBtn": document.querySelector("#addStep"),
-        "newStepContainer": document.querySelector("#newStepContainer")
+        "checkboxesTopic": document.querySelectorAll(".cb")
             //aqui deben ir los selectors de la parte de new post
     }
     return newPostSelectorsJSON;

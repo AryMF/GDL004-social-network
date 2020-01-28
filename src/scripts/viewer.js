@@ -275,8 +275,7 @@ const collectMainDataPost = () => {
 
 const addStep = () => {
     console.log("addstepfunction");
-
-    newPostSelectorsJSON.newStepContainer.setAttribute("style", "display:inline-block;");
+    newStepContainer.setAttribute("style", "display:block;");
 };
 
 
@@ -299,5 +298,6 @@ export {
     printUserDataProfile,
     fileListenerElement,
     setPictureSRC,
-    collectMainDataPost
+    collectMainDataPost,
+    addStep
 }
