@@ -19,7 +19,7 @@ import {
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { setDataInDB, fetchData, fetchMockData, fileUpload } from "./data.js";
+import { setDataInDB, fetchData, fetchMockData, fileUpload, addDataInDB } from "./data.js";
 import { newPost as newPostV } from "../views/newPost.js";
 
 
@@ -390,12 +390,15 @@ const newPostCreation = (title, about) => {
     console.log("New Post")
         //it should validate inputs
     if (postTitle.value != "" && postDescription.value != "") {
-        let inputArrayValue = getInputValue(["postTitle", "postDescription"]);
         //it should be able to add the data to the firestore
         let postMainData = collectMainDataPost();
-        setDataInDB("post", "generarID", postMainData).then(function() {
-            console.log("elemento guardado")
-        });
+        addDataInDB("post", postMainData)
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
     } else {
         printErrorMsj("errorMainPost", "Error", false);
     }

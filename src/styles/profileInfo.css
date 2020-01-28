@@ -27,11 +27,11 @@
 
 .profileInfoInput-screen input,
 .profileInfoInput-screen textarea {
-    text-transform: initial;
     width: 80%;
     height: auto;
     margin: 15px;
     overflow: hidden;
+    resize: none;
     color: var(--bayOfMany);
 }
 
