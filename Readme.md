@@ -6,11 +6,11 @@
 ## Index
 
 * [1. Introduction](#1-introduction)
-* [2. Project Overview ](#2-project-overview)
-* [3. User Stories](#4-user-stories)
-* [4. Prototypes](#5-prototypes)
-* [5. Finished Product](#7-finished-product)
-* [6. Authors](#7-authors)
+* [2. Overview / Motivation ](#2-overview-/-motivation)
+* [3. User Stories](#3-user-stories)
+* [4. Prototypes](#4-prototypes)
+* [5. Finished Product](#5-finished-product)
+* [6. Authors](#6-authors)
 * [7. Acknowledgments](#7-acknowledgements)
 
 ***
