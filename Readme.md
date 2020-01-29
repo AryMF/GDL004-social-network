@@ -44,7 +44,7 @@ In this project, user stories were defined in the project requirements,
 1. As a new user, I should be able to create an account and login with a valid email and password.
     #### Acceptance Criteria
     > * It should be SPA and responsive.
-    > * Should allow to create and account with an invalid email.
+    > * Shouldn't allow to create and account with an invalid email.
     > * Error messages should be visible.
     > * Should send you to profile info edit section after creating an account.
     > * When logging in, it should send you to feed.
