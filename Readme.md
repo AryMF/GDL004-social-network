@@ -1,4 +1,4 @@
-![DIYers Logo](\src\assets\imgs\logo.PNG)
+![DIYers Logo](https://ibb.co/j6MpvgF)
 
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
