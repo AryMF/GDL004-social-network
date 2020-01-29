@@ -1,3 +1,5 @@
+![DIYers User Stories](src/assets/imgs/logo.png)
+
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
 
@@ -17,12 +19,12 @@
 DIYers(ˌdiːˌaɪˈwaɪɚz) is a visual social network, whose main purpose is to help users discover recipes, crafting inspiration, home hacks and more ideas to try.
 
 ## 2. Overview / Motivation
-# Who uses DIYers.
+### Who uses DIYers.
 
 DIYers is developed for crafters of all ages, people who enjoy making and sharing their own stuff and learning how to make new projects.
 It allows a step trough step follow trough, so you can make the project at your own pace.
 
-# Key Features.
+### Key Features.
 * Allows login or sign up with Google, Twitter or Github.
 * Allows login or sign up with email adress and password.
 * Lets you edit your profile data, such as screen name, about, country and profile picture.
@@ -32,6 +34,8 @@ It allows a step trough step follow trough, so you can make the project at your 
 * You can see, update and delete a post you've made.
 * You can change the privacy of a post you've made.
 
+### Motivation
+DIYers was developed as the 4th project of the Laboratoria Bootcamp in Guadalajara, Jalisco, México.
 
 ## 3. User Stories
 
@@ -70,4 +74,5 @@ Giov's email: giov.ponce@gmail.com
 
 ## 7. Acknowledgments
 
-To the Laboratoria team, specially coach Frank.
+* To the Laboratoria team, specially coach Frank.
+* To Pinterest, for the inspiration.
