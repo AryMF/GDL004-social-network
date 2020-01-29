@@ -124,7 +124,7 @@ Error Messages when logging in (examples of some):<br>
 Feed View when logging in:<br>
 <img src="src/assets/imgs/readme/feed.png" width="400"><img src="src/assets/imgs/readme/feed2.png" width="400"><br><br>
 Feed View on Web:<br>
-<img src="src/assets/imgs/readme/feedOnWeb.png" width="400"><br><br>
+<img src="src/assets/imgs/readme/feedOnWeb.png" width="900"><br><br>
 Create Post page:<br>
 <img src="src/assets/imgs/readme/createPost.png" width="400"><br><br>
 Profile view:<br>
