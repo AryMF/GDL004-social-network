@@ -1,4 +1,4 @@
-![DIYers Logo](src\assets\imgs\logo.PNG)
+![DIYers Logo](\src\assets\imgs\logo.PNG)
 
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
@@ -106,13 +106,13 @@ High fidelity Prototypes were made using Figma®.
 
 
 ## 5. Finished Product
-![Main](src\assets\imgs\readme\FirstScreen.png)
-![Sign Up](src\assets\imgs\readme\signUpScreen.png)
-![Error Message Example](src\assets\imgs\readme\errorMsg.png)
-![Feed](src\assets\imgs\readme\feed.png)
-![Create Post](src\assets\imgs\readme\createPost.png)
-![Profile](src\assets\imgs\readme\.png)
-![Edit Profile](src\assets\imgs\readme\.png)
+![Main](\src\assets\imgs\readme\FirstScreen.png)
+![Sign Up](\src\assets\imgs\readme\signUpScreen.png)
+![Error Message Example](\src\assets\imgs\readme\errorMsg.png)
+![Feed](\src\assets\imgs\readme\feed.png)
+![Create Post](\src\assets\imgs\readme\createPost.png)
+![Profile](\src\assets\imgs\readme\.png)
+![Edit Profile](\src\assets\imgs\readme\.png)
 
 ## 6. Authors
 
