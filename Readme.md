@@ -1,4 +1,4 @@
-![DIYers Logo](src/assets/imgs/logo.png)
+![DIYers Logo](C:\Users\giova\Documents\Laboratoria\GDL004-social-network\src\assets\imgs\logo.PNG)
 
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
