@@ -113,16 +113,12 @@ High fidelity Prototypes were made using Figma®.
 
 
 ## 5. Finished Product
-<img src="src/assets/imgs/readme/FirstScreen.png" width="400">
-<img src="src/assets/imgs/readme/signUpScreen.png" width="400">
-<img src="src/assets/imgs/readme/errorMsg.png" width="400">
-<img src="src/assets/imgs/readme/errorMsg2.png" width="400">
-<img src="src/assets/imgs/readme/feed.png" width="400">
-<img src="src/assets/imgs/readme/feed2.png" width="400">
+<img src="src/assets/imgs/readme/FirstScreen.png" width="400"><img src="src/assets/imgs/readme/signUpScreen.png" width="400"><br><br>
+<img src="src/assets/imgs/readme/errorMsg.png" width="400"><img src="src/assets/imgs/readme/errorMsg2.png" width="400"><br><br>
+<img src="src/assets/imgs/readme/feed.png" width="400"><img src="src/assets/imgs/readme/feed2.png" width="400"><br><br>
 <img src="src/assets/imgs/readme/createPost.png" width="400">
-<img src="src/assets/imgs/readme/profile.png" width="400">
-<img src="src/assets/imgs/readme/editProfile.png" width="400">
-<img src="src/assets/imgs/readme/editProfile2.png" width="400">
+<img src="src/assets/imgs/readme/profile.png" width="400"><br><br>
+<img src="src/assets/imgs/readme/editProfile.png" width="400"><img src="src/assets/imgs/readme/editProfile2.png" width="400"><br><br>
 
 
 ## 6. Authors
