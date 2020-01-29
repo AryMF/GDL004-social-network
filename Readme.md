@@ -6,7 +6,7 @@
 ## Index
 
 * [1. Introduction](#1-introduction)
-* [2. Overview / Motivation ](#2-overview-/-motivation)
+* [2. Overview / Motivation ](#2-overview-and-motivation)
 * [3. User Stories](#3-user-stories)
 * [4. Prototypes](#4-prototypes)
 * [5. Finished Product](#5-finished-product)
@@ -18,7 +18,7 @@
 ## 1. Introduction
 DIYers(ˌdiːˌaɪˈwaɪɚz) is a visual social network, whose main purpose is to help users discover recipes, crafting inspiration, home hacks and more ideas to try.
 
-## 2. Overview / Motivation
+## 2. Overview and Motivation
 ### Who uses DIYers.
 
 DIYers is developed for crafters of all ages, people who enjoy making and sharing their own stuff and learning how to make new projects.
