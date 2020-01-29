@@ -1,4 +1,5 @@
-![](https://ibb.co/j6MpvgF)
+![logo](src/assets/imgs/logo.PNG)
+
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
 
@@ -65,6 +66,12 @@ In this project, user stories were defined in the project requirements,
 3. As a logged user, I should be able to create, save, modify and delete a private or public post (which can be a phrase or an image) in the same page (in place).
     #### Acceptance Criteria
     > * It should be SPA and responsive.
+    > * Should allow to create a post with text and image.
+    > * Should allow to select the privacy of the post.
+    > * Post should require a title and description.
+    > * Should allow the user to modify a post he created.
+    > * Should allow the user to delete a post he created.
+    > * Functionality shouldn't reload the page (in place).
 
 4. As a logged user, I should be able to see all the private and public posts I have created so far, from the latest to the oldest, as well as having the option to change my posts privacy.
     #### Acceptance Criteria
@@ -105,13 +112,14 @@ High fidelity Prototypes were made using Figma®.
 
 
 ## 5. Finished Product
-![Main](\src\assets\imgs\readme\FirstScreen.png)
-![Sign Up](\src\assets\imgs\readme\signUpScreen.png)
-![Error Message Example](\src\assets\imgs\readme\errorMsg.png)
-![Feed](\src\assets\imgs\readme\feed.png)
-![Create Post](\src\assets\imgs\readme\createPost.png)
-![Profile](\src\assets\imgs\readme\.png)
-![Edit Profile](\src\assets\imgs\readme\.png)
+![Main](src/assets/imgs/readme/FirstScreen.png)
+![Sign Up](src/assets/imgs/readme/signUpScreen.png)
+![Error Message Example](src/assets/imgs/readme/errorMsg.png
+![Error Message Example2](src/assets/imgs/readme/errorMsg2.png)
+![Feed](src/assets/imgs/readme/feed.png)
+![Create Post](src/assets/imgs/readme/createPost.png)
+![Profile]()
+![Edit Profile]()
 
 ## 6. Authors
 
