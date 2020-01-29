@@ -114,8 +114,12 @@ High fidelity Prototypes were made using Figma®.
 ## 5. Finished Product
 ![Main](src/assets/imgs/readme/FirstScreen.png)
 ![Sign Up](src/assets/imgs/readme/signUpScreen.png)
+<<<<<<< HEAD
 ![Error Message Example](src/assets/imgs/readme/errorMsg.png
 ![Error Message Example2](src/assets/imgs/readme/errorMsg2.png)
+=======
+![Error Message Example](src/assets/imgs/readme/errorMsg.png)
+>>>>>>> 79ace314b696795a329ad19cb21dc4ed363d585a
 ![Feed](src/assets/imgs/readme/feed.png)
 ![Create Post](src/assets/imgs/readme/createPost.png)
 ![Profile]()
