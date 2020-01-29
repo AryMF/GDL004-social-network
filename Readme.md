@@ -120,6 +120,7 @@ High fidelity Prototypes were made using Figma®.
 ![Create Post](src/assets/imgs/readme/createPost.png)
 ![Profile]()
 ![Edit Profile](src/assets/imgs/readme/editProfile.png)
+![Edit Profile2](src/assets/imgs/readme/editProfile2.png)
 
 ## 6. Authors
 
