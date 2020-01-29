@@ -29,13 +29,14 @@ It allows a step trough step follow trough, so you can make the project at your 
 * Allows login or sign up with email adress and password.
 * Lets you edit your profile data, such as screen name, about, country and profile picture.
 * You can select the topics you're interested in.
-* You can share the instructions for making any of your projects with all the users, or you can decide to share a private post that only you'll be able to see.
+* You can share your creations of any of your projects with all the users, or you can decide to share a private post that only you'll be able to see.
 * It includes a 'feed', which shows you the posts of the topics you're interested in.
 * You can see, update and delete a post you've made.
 * You can change the privacy of a post you've made.
+* You can select your favorite posts, and they will be saved on a tab in your profile.
 
 ### Motivation
-DIYers was developed using MVC, SPA and Mobile Firts design as the 4th project of the Laboratoria Bootcamp in Guadalajara, Jalisco, México.
+DIYers was developed using MVC architecture, SPA and Mobile First design as the 3rd project of the Laboratoria Bootcamp in Guadalajara, Jalisco, México.
 Our main motivations lays on our passion for crafting, creating and learning how to make new projects (and our love for Pinterest®, of course).
 
 ## 3. User Stories
@@ -99,11 +100,19 @@ In this project, user stories were defined in the project requirements,
 ![DIYers Sketched Prototype Mobile](src/image/)
 
 ### High Fidelity Prototypes
+High fidelity Prototypes were made using Figma®.
+
 ![DIYers HF Prototype](src/image/)
 
 
 ## 5. Finished Product
-![Finished Product Main](src/image/)
+![Main](src\assets\imgs\readme\FirstScreen.png)
+![Sign Up](src\assets\imgs\readme\signUpScreen.png)
+![Error Message Example](src\assets\imgs\readme\errorMsg.png)
+![Feed](src\assets\imgs\readme\feed.png)
+![Create Post](src\assets\imgs\readme\createPost.png)
+![Profile](src\assets\imgs\readme\.png)
+![Edit Profile](src\assets\imgs\readme\.png)
 
 ## 6. Authors
 
