@@ -157,9 +157,9 @@ const afterLogout = () => {
 
 /************** Feed ****************************/
 const printPreviewPost = (_collection) => {
-    viewSelectors.feedContainer.innerHTML= "";
-    let collectionKeys = Object.keys(_collection);    
-    collectionKeys .forEach(element => {
+    viewSelectors.feedContainer.innerHTML = "";
+    let collectionKeys = Object.keys(_collection);
+    collectionKeys.forEach(element => {
         viewSelectors.feedContainer.appendChild(previewPostTemplate(element, _collection[element]));
     });
     /*_collection.forEach(element => {
@@ -170,7 +170,7 @@ const printPreviewPost = (_collection) => {
 
 
 const previewPostTemplate = (postID, _element) => {
-    _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
+    _element.imgCover === "null" ? _element.imgCover = "src/assets/imgs/avatar128.png" : _element.imgCover;
     let previewPost = `
     <i class="fa fa-bookmark-o postTopButton" data-action="favPost"></i>
     <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">

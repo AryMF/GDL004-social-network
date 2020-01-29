@@ -37,25 +37,18 @@ const newPost = () => {
         <span class="checkmark"></span>
     </label>
     <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button></div>
-    <div id="stepScreen" style="display: block;">
-    <h2 style="color: var(--bayOfMany);">Step by Step</h2>
-    <input type="text" id="stepTitle" class="normalText" rows="5" placeholder="Step title">
-    <textarea id="stepDescription" class="normalText" rows="20"  placeholder="Describe this step in your process"></textarea>
-    <img id="imageStep" src="src/assets/imgs/imagePlaceholder.png" alt="add images to step" style="display:flex;">
-    <input id="stepPicture" class="stepPicture" type="file" accept="image/*">
-    <button id="addStep" class="flamingo normalTextBold" data-action="addStep">Add Step</button>
-</div>`;
+    `;
 
     let newPostDiv = document.createElement("div");
     newPostDiv.innerHTML = newPostTemplate;
-    let button = newPostDiv.querySelector("#newPostNext");
-    button.addEventListener("click", () => {
-        let mainNewPost = newPostDiv.querySelector("#newPostScreen");
-        mainNewPost.setAttribute("style", "display:none;")
-        let stepNewPost = newPostDiv.querySelector("#stepScreen");
-        stepScreen.setAttribute("style", "display:block;")
-            //Besides hiding everything it should store data to be saved later, when the finish button is clicked
-    })
+    // let button = newPostDiv.querySelector("#newPostNext");
+    // button.addEventListener("click", () => {
+    //     let mainNewPost = newPostDiv.querySelector("#newPostScreen");
+    //     mainNewPost.setAttribute("style", "display:none;")
+    //     let stepNewPost = newPostDiv.querySelector("#stepScreen");
+    //     stepScreen.setAttribute("style", "display:block;")
+    //         //Besides hiding everything it should store data to be saved later, when the finish button is clicked
+    // })
 
 
     return newPostDiv;

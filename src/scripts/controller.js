@@ -452,7 +452,7 @@ const newPostCreation = (title, about) => {
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
                 //aqui debe ir la funcion de mostrar primer paso
-                // location.hash = "/feed";
+                location.hash = "/feed";
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
