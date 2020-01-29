@@ -1,5 +1,4 @@
-![](\src\assets\imgs\logo.PNG)
-
+![](src/assets/imgs/logo.png)
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
 
