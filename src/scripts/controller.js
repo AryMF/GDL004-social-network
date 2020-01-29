@@ -20,9 +20,15 @@ import {
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData } from "./data.js";
-import { newPost as newPostV } from "../views/newPost.js";
-import { profile } from "../views/profile.js";
+import {
+    setDataInDB,
+    getDocumentData,
+    fetchMockData,
+    fileUpload,
+    addDataInDB,
+    getCollectionData,
+    getCollectionDataWithCondition
+} from "./data.js";
 
 
 const viewContainer = document.querySelector("#viewContainer");
@@ -92,23 +98,19 @@ const handleHashChange = (_route) => {
 
     /***Contenido dinamico******/
     switch (_route) {
-        case "profileInfo":
-            loadProfileInfoData();
-            break;
-        case "post":
-            printPreviewPost();
-            break;
-        case "feed":
-            loadFeed();
-            break;
-        case "newPost":
-            pictureNewPost();
-            break;
         case "profile":
             topScreenNavBar[1].classList.add("active");
             loadProfileUserData();
             loadProfilePost("post");
-            // loadProfilePost("post");
+            break;
+        case "profileInfo":
+            loadProfileInfoData();
+            break;
+        case "feed": //1988
+            loadFeed();
+            break;
+        case "newPost":
+            pictureNewPost();
             break;
     }
 };
@@ -150,14 +152,10 @@ const actionsHandler = (_clickedItem, _action) => {
             break;
             //Feed screen
         case "favPost":
-            _clickedItem.classList.remove("fa-bookmark-o");
-            _clickedItem.classList.add("fa-check");
-            _clickedItem.setAttribute("data-action", "unFavPost");
+            favPost(_clickedItem);
             break;
         case "unFavPost":
-            _clickedItem.classList.remove("fa-check");
-            _clickedItem.classList.add("fa-bookmark-o");
-            _clickedItem.setAttribute("data-action", "favPost");
+            unFavPost(_clickedItem);
             break;
         case "openPost":
             //aqui debe ir el modal
@@ -337,58 +335,33 @@ const submitLoginForm = () => {
 }
 
 /************* Feed **************/
-const loadFeed = () => { //TODO: WTF? Por que funcionas?
+const loadFeed = () => {
     let collection = [];
     getDocumentData("user", localStorage.getItem("email"))
         .then(function(profileData) {
             if (profileData.exists) {
-                /*const { topics } = profileData.data();
-                topics.forEach(element => {
-                    getCollectionData("post", "topics", "array-contains", element).then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        const {description, email, imgCover, privacy, title } = doc.data();
-                        let aux = {
-                            postid: doc.id,
-                            description,
-
-                        }
-                        collection[doc.id] = doc.data();
-                        // collection.push(aux);
-                    });
-                });
-                });
-                console.log("collection ", collection);
-                printPreviewPost(collection);*/
-
                 getCollectionData("post").then(snapshot => {
                         snapshot.forEach(doc => {
-                            console.log(doc.id, '=>', doc.data());
                             collection[doc.id] = doc.data();
                         });
-                        printPreviewPost(collection); ///1988
+                        //TODO: Filtrar data por topics
+
+                        getDocumentData("fav", localStorage.getItem("email"))
+                            .then(function(profileData) {
+                                if (profileData.exists) {
+                                    let favPostArray = profileData.data().post;
+                                    printPreviewPost(collection, favPostArray, "feed");
+                                } else {
+                                    // Start document
+                                    //printPreviewPost(collection);
+                                }
+                            }).catch(function(error) {
+                                console.log("Erorr: ", error);
+                            });
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
-
-
-                /*.then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        const {description, email, imgCover, privacy, title } = doc.data();
-                        let aux = {
-                            postid: doc.id,
-                            description,
-
-                        }
-                        collection[doc.id] = doc.data();
-                        // collection.push(aux);
-                    });
-                    console.log(collection);
-                    printPreviewPost(collection);
-                });*/
-
-
-
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -416,9 +389,62 @@ const loadProfileUserData = () => {
 const loadProfilePost = (option) => {
     //Cargar data de seccion main
     //Evaluar opcion para definir si se necesita post o favs
-    let collection = fetchMockData(); //Indicar coleccion Post, con uid
-    // collection = {}; //Prueba para coleccion vacia
-    profileDataMainSection(collection, option);
+    let collection = {};
+    let favArray = [];
+    if (option === "post") {
+        getCollectionDataWithCondition("post", "email", localStorage.getItem("email"))
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    collection[doc.id] = doc.data();
+                });
+                getDocumentData("fav", localStorage.getItem("email"))
+                    .then(function(profileData) {
+                        if (profileData.exists) {
+                            let favPostArray = profileData.data().post;
+                            profileDataMainSection(collection, favPostArray, "post");
+                        }
+                    }).catch(function(error) {
+                        console.log("Erorr: ", error);
+                    });
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+    } else {
+        //Get fav collection and save it into array "favArray" Aqui
+        getDocumentData("fav", localStorage.getItem("email"))
+            .then(function(profileData) {
+                if (profileData.exists) {
+                    favArray = profileData.data().post;
+
+                    //Get post collection and save it into json "collection"
+                    getCollectionData("post").then(snapshot => {
+                        snapshot.forEach(doc => {
+                                collection[doc.id] = doc.data();
+                            })
+                            //Keys arra
+                        let collectionKeys = Object.keys(collection);
+                        //Map de collection keys for favArrays elemnts, save the matches in a new collection
+                        let favePost = {}
+                        collectionKeys.map(element => {
+                            if (favArray.includes(element)) {
+                                favePost[element] = collection[element];
+                            }
+                        });
+                        profileDataMainSection(favePost, favArray, "favs");
+                        //Print new collection
+                    }).catch(function(error) {
+                        console.error("Error fetching collection: ", error);
+                    });
+
+                } else {
+                    // No such document
+                    console.log("No such document!", error);
+                }
+            }).catch(function(error) {
+                console.log("Erorr: ", error);
+            });
+    }
 };
 
 //Logout
@@ -462,3 +488,53 @@ const newPostCreation = (title, about) => {
         printErrorMsj("errorMainPost", "All fields are required!", false);
     }
 };
+
+
+/************ Fav post *************/
+const favPost = (_clickedItem) => {
+    let postID = _clickedItem.getAttribute("data-postId");
+    _clickedItem.classList.remove("fa-bookmark-o");
+    _clickedItem.classList.add("fa-check");
+    _clickedItem.setAttribute("data-action", "unFavPost");
+    getDocumentData("fav", localStorage.getItem("email"))
+        .then(function(profileData) {
+            if (profileData.exists) {
+                let data = profileData.data().post;
+                console.log("data ", data);
+                if (!data.includes(postID)) {
+                    data.push(postID);
+                }
+                console.log("profileData: ", data);
+                setDataInDB("fav", localStorage.getItem("email"), { post: data });
+            } else {
+                // Start document
+                setDataInDB("fav", localStorage.getItem("email"), { post: [postID] });
+            }
+        }).catch(function(error) {
+            console.log("Erorr: ", error);
+        });
+};
+
+const unFavPost = (_clickedItem) => {
+    let postID = _clickedItem.getAttribute("data-postId");
+    _clickedItem.classList.remove("fa-check");
+    _clickedItem.classList.add("fa-bookmark-o");
+    _clickedItem.setAttribute("data-action", "favPost");
+    getDocumentData("fav", localStorage.getItem("email"))
+        .then(function(profileData) {
+            if (profileData.exists) {
+                let data = profileData.data().post;
+                console.log("data ", data);
+                if (data.includes(postID)) { //1988
+                    data.splice(data.indexOf(postID), 1);
+                }
+                console.log("profileData: ", data);
+                setDataInDB("fav", localStorage.getItem("email"), { post: data });
+            } else {
+                // No such document
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Erorr: ", error);
+        });
+}

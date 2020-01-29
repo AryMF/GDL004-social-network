@@ -19,6 +19,11 @@ const getCollectionData = (_collection) => {
     return collectionRef.get();
 }
 
+const getCollectionDataWithCondition = (_collection, field, value) => {
+    let collectionRef = dataSource.collection(_collection).where(field, '==', value);
+    return collectionRef.get();
+}
+
 const fetchMockData = () => {
     return mockPosts;
 }
@@ -32,12 +37,6 @@ const setDataInDB = (_collection, document, _profileInfo) => {
 const addDataInDB = (_collection, _info) => {
     // Add a new document with a generated id.
     return dataSource.collection(_collection).add(_info);
-    /*.then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });*/
 }
 
 //Alamacenar archivo en storage
@@ -91,4 +90,5 @@ const fileUpload = (opcion, file) => {
     });
 }
 
-export { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData }
+export { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData, 
+    getCollectionDataWithCondition }
