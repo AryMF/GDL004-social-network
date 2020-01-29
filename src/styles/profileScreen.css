@@ -103,8 +103,16 @@ aside.stayOnTop {
     height: auto;
     padding-top: 20px;
     margin-bottom: 10px;
-    background-color: var(--gullGray);
     display: block;
+}
+
+.profileScreen main .postContainer {
+    position: relative;
+    top: auto;
+    left: 50%;
+    transform: translate(-50%);
+    width: 90%;
+    margin-bottom: 20px;
 }
 
 .mockPost {
@@ -170,7 +178,7 @@ aside.stayOnTop {
 }
 
 /************** Desktop rules ******************/
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
     .profileScreen {
         width: 100vw;
         height: calc(100vh - 60px);

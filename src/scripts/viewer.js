@@ -160,23 +160,29 @@ const afterLogout = () => {
 }
 
 /************** Feed ****************************/
-const printPreviewPost = (_collection) => {
-    viewSelectors.feedContainer.innerHTML= "";
-    let collectionKeys = Object.keys(_collection);    
-    collectionKeys .forEach(element => {
-        viewSelectors.feedContainer.appendChild(previewPostTemplate(element, _collection[element]));
-    });
-    /*_collection.forEach(element => {
-        viewSelectors.feedContainer.appendChild(previewPostTemplate(element));
-    });*/
+const printPreviewPost = (_collection, _favArray, option) => {
+    let collectionKeys = Object.keys(_collection);  
+    let container;
+    option === "main" ? container = viewSelectors.profileMain : container = viewSelectors.feedContainer;
+    if (Object.keys(collectionKeys.length > 0)) { //Verificar que no sea una coleccion vacia
+        container.innerHTML= ""
+        collectionKeys .forEach(element => {
+            if(_favArray){
+                container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
+            } else {
+                container.appendChild(previewPostTemplate(element, _collection[element]));
+            }
+            
+        });
+    }     
 };
 
-
-
-const previewPostTemplate = (postID, _element) => {
+const previewPostTemplate = (postID, _element, _faved) => {
+    let classText = _faved === true ?  "fa fa-check postTopButton" : "fa fa-bookmark-o postTopButton";
+    let action = _faved === true ? "favPost" : "unFavPost";
     _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
-    <i class="fa fa-bookmark-o postTopButton" data-action="favPost"></i>
+    <i class="${classText}" data-action="${action}" data-postId="${postID}"></i>
     <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">
     <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element.title} </h4>
     <p class="postDescription" data-action="openPost" data-postId="${postID}"> ${ _element.description} </p>`;
@@ -186,7 +192,7 @@ const previewPostTemplate = (postID, _element) => {
     divElement.setAttribute("data-action", "openPost");
     divElement.setAttribute("data-postId", postID);
     divElement.innerHTML = previewPost;
-
+    
     return divElement;
 };
 
@@ -204,7 +210,7 @@ const printUserDataProfile = (_profileData) => {
     viewSelectors.profileScreen.addEventListener("scroll", stickyMenu);
 }
 
-const profileDataMainSection = (_collection, _option) => {
+const profileDataMainSection = (_collection, _favArray, _option) => {
     if (_option == "post") {
         viewSelectors.postSection.classList.add("active");
         viewSelectors.favSection.classList.remove("active");
@@ -212,13 +218,8 @@ const profileDataMainSection = (_collection, _option) => {
         viewSelectors.favSection.classList.add("active");
         viewSelectors.postSection.classList.remove("active");
     }
-
-    if (Object.keys(_collection).length > 0) { //Verificar que no sea una coleccion vacia
-        viewSelectors.profileMain.innerHTML = "";
-        _collection.forEach(element => {
-            viewSelectors.profileMain.appendChild(previewPostTemplate(element));
-        });
-    }
+    //aqui
+    printPreviewPost(_collection, _favArray, "main");
 };
 
 //Sticky menu top
