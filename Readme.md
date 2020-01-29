@@ -102,22 +102,32 @@ In this project, user stories were defined in the project requirements,
 
 ### Sketched Prototypes
 
-![DIYers Sketched Prototype Mobile](src/image/)
+![DIYers Sketched Prototype Mobile](src/image/)<br>
 
 ### High Fidelity Prototypes
-High fidelity Prototypes were made using Figma®.
+High fidelity Prototypes were made using Figma®. The color palette was created with Coolors.com<br>
 
-![DIYers HF Proto1](src/assets/imgs/readme/HDproto1.png)
-![DIYers HF Proto2](src/assets/imgs/readme/HDproto2.png)
-![DIYers HF Proto2](src/assets/imgs/readme/HDproto3.png)
+Color Palette.<br>
+<img src="src/assets/imgs/readme/colorPalette.png" width="900" height="300">
+
+Prototypes.<br>
+![DIYers HF Proto1](src/assets/imgs/readme/HDproto1.png)<br>
+![DIYers HF Proto2](src/assets/imgs/readme/HDproto2.png)<br>
+![DIYers HF Proto2](src/assets/imgs/readme/HDproto3.png)<br>
 
 
 ## 5. Finished Product
+Welcome Screen:<br>
 <img src="src/assets/imgs/readme/FirstScreen.png" width="400"><img src="src/assets/imgs/readme/signUpScreen.png" width="400"><br><br>
-<img src="src/assets/imgs/readme/errorMsg.png" width="400"><img src="src/assets/imgs/readme/errorMsg2.png" width="400"><br><br>
+Error Messages when logging in (examples of some):<br>
+<img src="src/assets/imgs/readme/errorMsg.png" width="400"><img src="src/assets/imgs/readme/errorMsg2.PNG" width="400"><br><br>
+Feed View when logging in:<br>
 <img src="src/assets/imgs/readme/feed.png" width="400"><img src="src/assets/imgs/readme/feed2.png" width="400"><br><br>
-<img src="src/assets/imgs/readme/createPost.png" width="400">
+Create Post page:<br>
+<img src="src/assets/imgs/readme/createPost.png" width="400"><br><br>
+Profile view:<br>
 <img src="src/assets/imgs/readme/profile.png" width="400"><br><br>
+Edit profile view:<br>
 <img src="src/assets/imgs/readme/editProfile.png" width="400"><img src="src/assets/imgs/readme/editProfile2.png" width="400"><br><br>
 
 
