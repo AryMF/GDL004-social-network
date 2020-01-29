@@ -1,5 +1,4 @@
 ![logo](src/assets/imgs/logo.PNG)
-
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
 
@@ -108,19 +107,23 @@ In this project, user stories were defined in the project requirements,
 ### High Fidelity Prototypes
 High fidelity Prototypes were made using Figma®.
 
-![DIYers HF Prototype](src/image/)
+![DIYers HF Proto1](src/assets/imgs/readme/HDproto1.png)
+![DIYers HF Proto2](src/assets/imgs/readme/HDproto2.png)
+![DIYers HF Proto2](src/assets/imgs/readme/HDproto3.png)
 
 
 ## 5. Finished Product
-![Main](src/assets/imgs/readme/FirstScreen.png)
-![Sign Up](src/assets/imgs/readme/signUpScreen.png)
-![Error Message Example](src/assets/imgs/readme/errorMsg.png)
-![Feed](src/assets/imgs/readme/feed.png)
-![Feed2](src/assets/imgs/readme/feed2.png)
-![Create Post](src/assets/imgs/readme/createPost.png)
-![Profile]()
-![Edit Profile](src/assets/imgs/readme/editProfile.png)
-![Edit Profile2](src/assets/imgs/readme/editProfile2.png)
+<img src="src/assets/imgs/readme/FirstScreen.png" width="400">
+<img src="src/assets/imgs/readme/signUpScreen.png" width="400">
+<img src="src/assets/imgs/readme/errorMsg.png" width="400">
+<img src="src/assets/imgs/readme/errorMsg2.png" width="400">
+<img src="src/assets/imgs/readme/feed.png" width="400">
+<img src="src/assets/imgs/readme/feed2.png" width="400">
+<img src="src/assets/imgs/readme/createPost.png" width="400">
+<img src="src/assets/imgs/readme/profile.png" width="400">
+<img src="src/assets/imgs/readme/editProfile.png" width="400">
+<img src="src/assets/imgs/readme/editProfile2.png" width="400">
+
 
 ## 6. Authors
 
