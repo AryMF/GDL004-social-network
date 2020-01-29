@@ -44,7 +44,7 @@ In this project, user stories were defined in the project requirements,
 1. As a new user, I should be able to create an account and login with a valid email and password.
     #### Acceptance Criteria
     > * It should be SPA and responsive.
-    > * Should allow to create and account with an invalid email.
+    > * Shouldn't allow to create and account with an invalid email.
     > * Error messages should be visible.
     > * Should send you to profile info edit section after creating an account.
     > * When logging in, it should send you to feed.
@@ -123,6 +123,8 @@ Error Messages when logging in (examples of some):<br>
 <img src="src/assets/imgs/readme/errorMsg.png" width="400"><img src="src/assets/imgs/readme/errorMsg2.PNG" width="400"><br><br>
 Feed View when logging in:<br>
 <img src="src/assets/imgs/readme/feed.png" width="400"><img src="src/assets/imgs/readme/feed2.png" width="400"><br><br>
+Feed View on Web:<br>
+<img src="src/assets/imgs/readme/feedOnWeb.png" width="400"><br><br>
 Create Post page:<br>
 <img src="src/assets/imgs/readme/createPost.png" width="400"><br><br>
 Profile view:<br>
