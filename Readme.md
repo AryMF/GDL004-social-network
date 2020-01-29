@@ -43,44 +43,44 @@ In this project, user stories were defined in the project requirements,
 
 1. As a new user, I should be able to create an account and login with a valid email and password.
     #### Acceptance Criteria
-    > It should be SPA and responsive.
-    > Should allow to create and account with an invalid email.
-    > Error messages should be visible.
-    > Should send you to profile info edit section after creating an account.
-    > When logging in, it should send you to feed.
-    > It should create a profile in the database with all the collected data.
+    > * It should be SPA and responsive.
+    > * Should allow to create and account with an invalid email.
+    > * Error messages should be visible.
+    > * Should send you to profile info edit section after creating an account.
+    > * When logging in, it should send you to feed.
+    > * It should create a profile in the database with all the collected data.
 
 2. As a new user, I should be able to login or create an account using Google, Twitter and Github without requiring a valid email.
     #### Acceptance Criteria
-    > It should be SPA and responsive.
-    > Should allow to create and account with a google acccount.
-    > Should allow to create and account with a twitter acccount.
-    > Should allow to create and account with a github acccount.
-    > Should allow to login with a google acccount.
-    > Should allow to login with a twitter acccount.
-    > Should allow to login with a github acccount.
-    > When logging in, it should send you to feed.
-    > Should send you to profile info edit section after creating an account.
+    > * It should be SPA and responsive.
+    > * Should allow to create and account with a google acccount.
+    > * Should allow to create and account with a twitter acccount.
+    > * Should allow to create and account with a github acccount.
+    > * Should allow to login with a google acccount.
+    > * Should allow to login with a twitter acccount.
+    > * Should allow to login with a github acccount.
+    > * When logging in, it should send you to feed.
+    > * Should send you to profile info edit section after creating an account.
 
 3. As a logged user, I should be able to create, save, modify and delete a private or public post (which can be a phrase or an image) in the same page (in place).
     #### Acceptance Criteria
-    > It should be SPA and responsive.
+    > * It should be SPA and responsive.
 
 4. As a logged user, I should be able to see all the private and public posts I have created so far, from the latest to the oldest, as well as having the option to change my posts privacy.
     #### Acceptance Criteria
-    > It should be SPA and responsive.
-    > It should allow to see all the user's posts.
-    > It should allow to see the user's favorite posts.
+    > * It should be SPA and responsive.
+    > * It should allow to see all the user's posts.
+    > * It should allow to see the user's favorite posts.
 
 5. As a logged user, I can like and keep a "like's count" in my posts, as well as write, save, edit or delete a comment on it.
     #### Acceptance Criteria
-    > It should be SPA and responsive.
+    > * It should be SPA and responsive.
 
 6. As a logged user, I should be able to access the social media, see my profile data and edit it.
     #### Acceptance Criteria
-    > It should be SPA and responsive.
-    > It should allow to see user profile data.
-    > It should allow to edit user profile data.
+    > * It should be SPA and responsive.
+    > * It should allow to see user profile data.
+    > * It should allow to edit user profile data.
     
 
 ### Done Criteria for all Stories
