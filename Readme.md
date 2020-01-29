@@ -115,7 +115,7 @@ High fidelity Prototypes were made using Figma®.
 ![Main](src/assets/imgs/readme/FirstScreen.png)
 ![Sign Up](src/assets/imgs/readme/signUpScreen.png)
 ![Error Message Example](src/assets/imgs/readme/errorMsg.png)
-![Feed](src/assets/imgs/readme/feed.png
+![Feed](src/assets/imgs/readme/feed.png)
 ![Feed2](src/assets/imgs/readme/feed2.png)
 ![Create Post](src/assets/imgs/readme/createPost.png)
 ![Profile]()
