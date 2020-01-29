@@ -1,5 +1,5 @@
 const newPost = () => {
-    const newPostTemplate = `
+    const newPostTemplate = `<div class = newPostScreen id= newPostScreen>
     <h2 id="newPost" style="color: var(--bayOfMany);"> Unleash your creativity! :)</h2>
     <h4 id="errorMainPost"> Mensaje de error </h4>
     <input id="postTitle" class="largeText" style="color: var(--flamingo);" type="text" placeholder="Title"><br>
@@ -36,11 +36,27 @@ const newPost = () => {
         <input type="radio" id="privatePost" name="privacy" value= "private" class="privacySelection"> 
         <span class="checkmark"></span>
     </label>
-    <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button>`;
+    <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button></div>
+    <div id="stepScreen" style="display: block;">
+    <h2 style="color: var(--bayOfMany);">Step by Step</h2>
+    <input type="text" id="stepTitle" class="normalText" rows="5" placeholder="Step title">
+    <textarea id="stepDescription" class="normalText" rows="20"  placeholder="Describe this step in your process"></textarea>
+    <img id="imageStep" src="src/assets/imgs/imagePlaceholder.png" alt="add images to step" style="display:flex;">
+    <input id="stepPicture" class="stepPicture" type="file" accept="image/*">
+    <button id="addStep" class="flamingo normalTextBold" data-action="addStep">Add Step</button>
+</div>`;
 
     let newPostDiv = document.createElement("div");
-    newPostDiv.classList.add("newPostScreen");
     newPostDiv.innerHTML = newPostTemplate;
+    let button = newPostDiv.querySelector("#newPostNext");
+    button.addEventListener("click", () => {
+        let mainNewPost = newPostDiv.querySelector("#newPostScreen");
+        mainNewPost.setAttribute("style", "display:none;")
+        let stepNewPost = newPostDiv.querySelector("#stepScreen");
+        stepScreen.setAttribute("style", "display:block;")
+            //Besides hiding everything it should store data to be saved later, when the finish button is clicked
+    })
+
 
     return newPostDiv;
 };
@@ -55,7 +71,7 @@ const newPostSelectors = () => {
         "postDescription": document.querySelector("#postDescription"),
         "privacySelection": document.querySelectorAll("[name='privacy']"),
         "errorMainPost": document.querySelector("#errorMainPost"),
-        "checkboxesTopic": document.querySelectorAll(".cb")
+        "checkboxesTopic": document.querySelectorAll(".cb"),
     }
     return newPostSelectorsJSON;
 }

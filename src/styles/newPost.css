@@ -1,5 +1,5 @@
 #stepScreen {
-    visibility: hidden;
+    display: none;
 }
 
 .newPostScreen {
@@ -84,6 +84,25 @@
 
 .radioButtonContainer input:checked~.checkmark {
     background-color: var(--bayOfMany);
+}
+
+
+/*Steps page*/
+
+#imageStep {
+    position: relative;
+}
+
+#stepDescription {
+    position: absolute;
+    width: 24em;
+    height: auto;
+}
+
+#stepTitle {
+    position: relative;
+    width: 24em;
+    height: auto;
 }
 
 @media only screen and (min-width: 769px) {
