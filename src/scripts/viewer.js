@@ -157,20 +157,25 @@ const afterLogout = () => {
 
 /************** Feed ****************************/
 const printPreviewPost = (_collection) => {
-    _collection.forEach(element => {
-        viewSelectors.feedContainer.appendChild(previewPostTemplate(element));
+    viewSelectors.feedContainer.innerHTML= "";
+    let collectionKeys = Object.keys(_collection);    
+    collectionKeys .forEach(element => {
+        viewSelectors.feedContainer.appendChild(previewPostTemplate(element, _collection[element]));
     });
+    /*_collection.forEach(element => {
+        viewSelectors.feedContainer.appendChild(previewPostTemplate(element));
+    });*/
 };
 
 
 
-const previewPostTemplate = (_element) => {
-    let postID = Object.keys(_element)[0];
+const previewPostTemplate = (postID, _element) => {
+    _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
     <i class="fa fa-bookmark-o postTopButton" data-action="favPost"></i>
-    <img class="postImage" src=${ _element[postID].imgCover}  data-action="openPost" data-postId="${postID}">
-    <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element[postID].title} </h4>
-    <p class="postDescription" data-action="openPost" data-postId="${postID}"> ${ _element[postID].description} </p>`;
+    <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">
+    <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element.title} </h4>
+    <p class="postDescription" data-action="openPost" data-postId="${postID}"> ${ _element.description} </p>`;
 
     const divElement = document.createElement("div");
     divElement.setAttribute("class", "postContainer");
@@ -255,7 +260,7 @@ const collectMainDataPost = () => {
             description: viewSelectors.postDescription.value,
             imgCover: _postPicture,
             topics: elementsName,
-            privacy: elementsPrivacy
+            privacy: elementsPrivacy[0]
         };
     } else {
         viewSelectors.errorMainPost.setAttribute("style", "display:inline-block;");

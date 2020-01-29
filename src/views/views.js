@@ -10,7 +10,7 @@
  import profile from "./profile.js";*/
 
 
- const routes = {
+ const views = {
      loader,
      signIn,
      profileInfo,
@@ -20,4 +20,4 @@
      notFound
  };
 
- export { routes }
+ export { views }

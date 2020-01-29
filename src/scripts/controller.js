@@ -20,7 +20,10 @@ import {
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
-import { setDataInDB, fetchData, fetchMockData, fileUpload, addDataInDB } from "./data.js";
+import { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData } from "./data.js";
+import { newPost as newPostV } from "../views/newPost.js";
+import { profile } from "../views/profile.js";
+
 
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
@@ -31,19 +34,16 @@ const main = () => {
 
     /***********Quick fix para pruebas***************/
     //TODO: arreglar antes de deploy
-    for (let i = 0; i < 6; i++) {
-        topScreenNavBar[i].addEventListener("click", () => {
+    topScreenNavBar.forEach(button => {
+        button.addEventListener("click", () => {
             topScreenNavBar.forEach(element => {
                 element.classList.remove("active");
             });
-            topScreenNavBar[i].classList.add("active");
-            location.hash = topScreenNavBar[i].getAttribute("data-nav");
+            button.classList.add("active");
+            location.hash = button.getAttribute("data-nav");
         });
-    }
+    });
 
-    // topScreenNavBar[5].addEventListener("click", () => {
-    //     closeSession();
-    // });
     /*************************************************/
 
 };
@@ -75,7 +75,7 @@ const handleSessionStatus = () => {
             console.log("No es nuevo usuario, abrir feed");
             //Hacer visible la barra de menu y adaptar tamanio de viewContainer
             afterLoginConfigurations();
-            location.hash = "/newPost";
+            location.hash = "/feed";
         }
     } else {
         //Abrir view signIn
@@ -261,7 +261,7 @@ const loadProfileInfoData = () => {
     } else {
         //Llama a la base de datos
         let loggedUser = localStorage.getItem("email");
-        fetchData("user", loggedUser).then(function(profileData) {
+        getDocumentData("user", loggedUser).then(function(profileData) {
             if (profileData.exists) {
                 console.log("profileData", profileData.data());
                 setDataInProfileDataScreen(profileData.data());
@@ -337,9 +337,63 @@ const submitLoginForm = () => {
 }
 
 /************* Feed **************/
-const loadFeed = () => {
-    let collection = fetchMockData();
-    printPreviewPost(collection);
+const loadFeed = () => { //TODO: WTF? Por que funcionas?
+    let collection = [];
+    getDocumentData("user", localStorage.getItem("email"))
+        .then(function(profileData) {
+            if (profileData.exists) {
+                /*const { topics } = profileData.data();
+                topics.forEach(element => {
+                    getCollectionData("post", "topics", "array-contains", element).then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        const {description, email, imgCover, privacy, title } = doc.data();
+                        let aux = {
+                            postid: doc.id,
+                            description,
+
+                        }
+                        collection[doc.id] = doc.data();
+                        // collection.push(aux);
+                    });
+                });
+                });
+                console.log("collection ", collection);
+                printPreviewPost(collection);*/
+
+                getCollectionData("post").then(snapshot => {
+                        snapshot.forEach(doc => {
+                            console.log(doc.id, '=>', doc.data());
+                            collection[doc.id] = doc.data();
+                        });
+                        printPreviewPost(collection); ///1988
+                    })
+                    .catch(err => {
+                        console.log('Error getting documents', err);
+                    });
+
+
+                /*.then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        const {description, email, imgCover, privacy, title } = doc.data();
+                        let aux = {
+                            postid: doc.id,
+                            description,
+
+                        }
+                        collection[doc.id] = doc.data();
+                        // collection.push(aux);
+                    });
+                    console.log(collection);
+                    printPreviewPost(collection);
+                });*/
+
+
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        });
 };
 
 /************* Profile **************/
@@ -347,7 +401,7 @@ const loadProfileUserData = () => {
     //Cargar data de usuario
     let loggedUser = localStorage.getItem("email");
 
-    fetchData("user", loggedUser).then(function(profileData) {
+    getDocumentData("user", loggedUser).then(function(profileData) {
         if (profileData.exists) {
             printUserDataProfile(profileData);
         } else {

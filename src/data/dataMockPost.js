@@ -3,7 +3,8 @@ const mockPosts = [{
             "imgCover": "src/assets/imgs/mockPost.jpg",
             "title": "Mock post 001",
             "description": "Vestibulum in ex et odio condimentum aliquam.",
-            "content": "Aenean feugiat sem eget semper porta. Aenean posuere feugiat sollicitudin. Etiam bibendum, erat ac imperdiet pretium, augue nisi sagittis justo, et interdum tellus neque ut ipsum. Aliquam ultricies ligula ut efficitur posuere. Duis egestas congue lorem a posuere. Nam sed viverra neque. Sed ultrices felis ac felis faucibus imperdiet. Etiam vulputate bibendum risus, sollicitudin vehicula sem porttitor quis."
+            "content": "Aenean feugiat sem eget semper porta. Aenean posuere feugiat sollicitudin. Etiam bibendum, erat ac imperdiet pretium, augue nisi sagittis justo, et interdum tellus neque ut ipsum. Aliquam ultricies ligula ut efficitur posuere. Duis egestas congue lorem a posuere. Nam sed viverra neque. Sed ultrices felis ac felis faucibus imperdiet. Etiam vulputate bibendum risus, sollicitudin vehicula sem porttitor quis.",
+            "public": true
         }
     },
     {

@@ -12,7 +12,7 @@ const profile = () => {
             <p class="profileMenuElement normalText" data-action="editProfile"> Edit profile</p>
             <p id="darkMode" class="profileMenuElement normalText"> Dark mode </p>
             <p  class="profileMenuElement normalText" data-action="logoutOption"> Logout</p>
-            <p id="deleteAccount" class="profileMenuElement normalText" style="margin-top: 10px;"> Delete account </p>
+            <!-- <p id="deleteAccount" class="profileMenuElement normalText" style="margin-top: 10px;"> Delete account </p> --!>
         </div>
         
     </aside>
@@ -37,8 +37,7 @@ const profile = () => {
     profileDiv.classList.add("profileScreen");
     profileDiv.innerHTML = profileTemplate;
 
-    return profileDiv;
-     
+    return profileDiv; 
 };
 
 const profileSelectors = () => {

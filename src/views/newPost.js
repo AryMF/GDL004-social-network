@@ -29,11 +29,11 @@ const newPost = () => {
     </ul>
     <br>
     <label class="radioButtonContainer largeText"> Public
-        <input type="radio" id="publicPost" name="privacy" value= "public" class="privacySelection" checked="checked">
+        <input type="radio" id="publicPost" name="privacy" value= "true" class="privacySelection" checked="checked">
         <span class="checkmark"></span>
     </label>
     <label class="radioButtonContainer largeText"> Private
-        <input type="radio" id="privatePost" name="privacy" value= "private" class="privacySelection"> 
+        <input type="radio" id="privatePost" name="privacy" value= "false" class="privacySelection"> 
         <span class="checkmark"></span>
     </label>
     <button id="newPostNext" class="flamingo normalTextBold"data-action="newPost">Continue</button></div>

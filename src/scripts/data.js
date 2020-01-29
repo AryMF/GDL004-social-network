@@ -9,10 +9,14 @@ const dataSource = firebase.firestore();
 const storage = firebase.storage();
 
 //Recuperar info de cloud firestore
-const fetchData = (collection, document) => {
-    var docRef = dataSource.collection(collection).doc(document);
+const getDocumentData = (_collection, _document) => {
+    let docRef = dataSource.collection(_collection).doc(_document);
     return docRef.get();
+}
 
+const getCollectionData = (_collection) => {
+    let collectionRef = dataSource.collection(_collection);
+    return collectionRef.get();
 }
 
 const fetchMockData = () => {
@@ -36,7 +40,7 @@ const addDataInDB = (_collection, _info) => {
     });*/
 }
 
-//Alamcenar archivo en storage
+//Alamacenar archivo en storage
 const fileUpload = (opcion, file) => {
     let collection;
     opcion === "profile" ? collection = "avatar/" : collection = "post/";
@@ -87,4 +91,4 @@ const fileUpload = (opcion, file) => {
     });
 }
 
-export { setDataInDB, fetchData, fetchMockData, fileUpload, addDataInDB }
+export { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData }
