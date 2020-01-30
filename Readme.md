@@ -100,8 +100,9 @@ Our main motivations lays on our passion for crafting, creating and learning how
 ## 4. Prototypes
 
 ### Sketched Prototypes
-
-![DIYers Sketched Prototype Mobile](src/image/)<br>
+<img src="src/assets/imgs/readme/proto1.jpg" width="700"><br>
+<img src="src/assets/imgs/readme/proto2.jpg" width="700"><br>
+<img src="src/assets/imgs/readme/proto3.jpg" width="700"><br>
 
 ### High Fidelity Prototypes
 High fidelity Prototypes were made using Figma®. The color palette was created with Coolors.com<br>
