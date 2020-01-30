@@ -29,7 +29,7 @@
     grid-template-columns: 10px repeat(6, 1fr) 10px;
     grid-template-rows: 10px auto 10px repeat(5, auto) 30px repeat(2, auto) 10px;
     grid-template-areas:    ". . . . . . . ." 
-                            ". . . . . . topButton ."
+                            ". deleteButton . . . . topButton ."
                             ". . . . . . . ."
                             ". img img img img img img ."
                             ". img img img img img img ."
@@ -55,7 +55,6 @@
 }
 
 .postTopButton {
-    grid-area: topButton;
     justify-self: end;
     font-size: 24px;
     text-align: center;
@@ -66,6 +65,14 @@
 
 .postTopButton:hover {
     background-color: lightcoral;
+}
+
+.fa-check, .fa-bookmark-o {
+    grid-area: topButton;
+}
+
+.fa-trash-o {
+    grid-area: deleteButton;
 }
 
 .postImage {

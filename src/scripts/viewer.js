@@ -181,6 +181,7 @@ const previewPostTemplate = (postID, _element, _faved) => {
     let action = _faved === true ? "unFavPost" : "favPost";
     _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
+    <i class="fa fa-trash-o postTopButton" data-action="deletePost" data-postId="${postID}"></i>
     <i class="${classText}" data-action="${action}" data-postId="${postID}"></i>
     <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">
     <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element.title} </h4>
