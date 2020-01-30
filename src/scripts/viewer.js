@@ -160,6 +160,7 @@ const afterLogout = () => {
 }
 
 /************** Feed ****************************/
+<<<<<<< HEAD
 const printPreviewPost = (_collection, _favArray, option) => {
     let collectionKeys = Object.keys(_collection);
     let container;
@@ -173,13 +174,32 @@ const printPreviewPost = (_collection, _favArray, option) => {
                 container.appendChild(previewPostTemplate(element, _collection[element]));
             }
 
+=======
+const printPreviewPost = (_collection, _favArray = [], option) => {
+    let collectionKeys = Object.keys(_collection);  
+    let container;
+    option === "main" ? container = viewSelectors.profileMain : container = viewSelectors.feedContainer;
+    if (Object.keys(collectionKeys.length > 0)) { //Verificar que no sea una coleccion vacia
+        container.innerHTML= ""
+        collectionKeys .forEach(element => {
+            if(_favArray.length > 0){
+                container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
+            } else {
+                container.appendChild(previewPostTemplate(element, _collection[element]), false);
+            } 
+>>>>>>> a4c9145715f7f67c240dbf47bad471aa630444ec
         });
     }
 };
 
 const previewPostTemplate = (postID, _element, _faved) => {
+<<<<<<< HEAD
     let classText = _faved === true ? "fa fa-check postTopButton" : "fa fa-bookmark-o postTopButton";
     let action = _faved === true ? "favPost" : "unFavPost";
+=======
+    let classText = _faved === true ?  "fa fa-check postTopButton" : "fa fa-bookmark-o postTopButton";
+    let action = _faved === true ? "unFavPost" : "favPost";
+>>>>>>> a4c9145715f7f67c240dbf47bad471aa630444ec
     _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
     <i class="${classText}" data-action="${action}" data-postId="${postID}"></i>
@@ -211,6 +231,7 @@ const printUserDataProfile = (_profileData) => {
 }
 
 const profileDataMainSection = (_collection, _favArray, _option) => {
+    console.log("Recibi: ", _collection, _favArray, _option);
     if (_option == "post") {
         viewSelectors.postSection.classList.add("active");
         viewSelectors.favSection.classList.remove("active");
@@ -219,7 +240,12 @@ const profileDataMainSection = (_collection, _favArray, _option) => {
         viewSelectors.postSection.classList.remove("active");
     }
     //aqui
-    printPreviewPost(_collection, _favArray, "main");
+    viewSelectors.profileMain.innerHTML = `<h3> Nothing to show yet. </h3>`;
+    console.log(Object.keys(_collection));
+    if(Object.keys(_collection).length > 0) {
+        console.log(Object.keys(_collection).length > 0);
+        printPreviewPost(_collection, _favArray, "main");
+    }
 };
 
 //Sticky menu top
@@ -265,7 +291,8 @@ const collectMainDataPost = () => {
             description: viewSelectors.postDescription.value,
             imgCover: _postPicture,
             topics: elementsName,
-            privacy: elementsPrivacy[0]
+            privacy: elementsPrivacy[0],
+            deleted: "false"
         };
     } else {
         viewSelectors.errorMainPost.setAttribute("style", "display:inline-block;");

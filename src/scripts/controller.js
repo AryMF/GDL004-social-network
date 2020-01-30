@@ -367,6 +367,20 @@ const loadFeed = () => {
                                     let favPostArray = profileData.data().post;
                                     printPreviewPost(collection, favPostArray, "feed");
                                 } else {
+                                    // In case there's not a "fave" collection
+                                    printPreviewPost(collection, [], "feed");
+                                }
+                            }).catch(function(error) {
+                                console.log("Erorr: ", error);
+                            });
+                        //TODO: Filtrar data por topics
+
+                        getDocumentData("fav", localStorage.getItem("email"))
+                            .then(function(profileData) {
+                                if (profileData.exists) {
+                                    let favPostArray = profileData.data().post;
+                                    printPreviewPost(collection, favPostArray, "feed");
+                                } else {
                                     // Start document
                                     //printPreviewPost(collection);
                                 }
@@ -417,6 +431,9 @@ const loadProfilePost = (option) => {
                         if (profileData.exists) {
                             let favPostArray = profileData.data().post;
                             profileDataMainSection(collection, favPostArray, "post");
+                        } else {
+                            // In case there's not a "fave" collection
+                            profileDataMainSection(collection, [], "post");
                         }
                     }).catch(function(error) {
                         console.log("Erorr: ", error);
@@ -426,38 +443,37 @@ const loadProfilePost = (option) => {
                 console.log('Error getting documents', err);
             });
     } else {
-        //Get fav collection and save it into array "favArray" Aqui
-        getDocumentData("fav", localStorage.getItem("email"))
-            .then(function(profileData) {
-                if (profileData.exists) {
-                    favArray = profileData.data().post;
-
-                    //Get post collection and save it into json "collection"
-                    getCollectionData("post").then(snapshot => {
-                        snapshot.forEach(doc => {
-                                collection[doc.id] = doc.data();
-                            })
+        //Get post collection and save it into json "collection"
+        getCollectionData("post")
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    collection[doc.id] = doc.data();
+                });
+                //Get fav collection and save it into array "favArray"
+                getDocumentData("fav", localStorage.getItem("email"))
+                    .then(function(profileData) {
+                        if (profileData.exists) {
+                            favArray = profileData.data().post;
+                            //If fav collection exist
                             //Keys arra
-                        let collectionKeys = Object.keys(collection);
-                        //Map de collection keys for favArrays elemnts, save the matches in a new collection
-                        let favePost = {}
-                        collectionKeys.map(element => {
-                            if (favArray.includes(element)) {
-                                favePost[element] = collection[element];
-                            }
-                        });
-                        profileDataMainSection(favePost, favArray, "favs");
-                        //Print new collection
+                            let collectionKeys = Object.keys(collection);
+                            //Map de collection keys for favArrays elements, save the matches in a new collection favePost
+                            let favePost = {};
+                            collectionKeys.map(element => {
+                                if (favArray.includes(element)) {
+                                    favePost[element] = collection[element];
+                                }
+                            });
+                            profileDataMainSection(favePost, favArray, "favs");
+                        } else {
+                            // In case there's not a "fave" collection
+                            profileDataMainSection([], [], "favs");
+                        }
                     }).catch(function(error) {
-                        console.error("Error fetching collection: ", error);
+                        console.log("Error fetching fave: ", error);
                     });
-
-                } else {
-                    // No such document
-                    console.log("No such document!", error);
-                }
             }).catch(function(error) {
-                console.log("Erorr: ", error);
+                console.error("Error fetching collection: ", error);
             });
     }
 };
