@@ -168,21 +168,27 @@ const printPreviewPost = (_collection, _favArray = [], option) => {
     if (Object.keys(collectionKeys.length > 0)) { //Verificar que no sea una coleccion vacia
         container.innerHTML= ""
         collectionKeys .forEach(element => {
-            if(_favArray.length > 0){
-                container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
-            } else {
-                container.appendChild(previewPostTemplate(element, _collection[element]), false);
-            } 
+            if(_collection[element].deleted === "false"){
+                if(_favArray.length > 0){
+                    container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
+                } else {
+                    container.appendChild(previewPostTemplate(element, _collection[element]), false);
+                } 
+            }
         });
     }     
 };
 
 const previewPostTemplate = (postID, _element, _faved) => {
+    let deleteButton = ``;
+    if(_element.email === localStorage.getItem("email")){
+        deleteButton = `<i class="fa fa-trash-o postTopButton" data-action="deletePost" data-postId="${postID}"></i>`;
+    }
     let classText = _faved === true ?  "fa fa-check postTopButton" : "fa fa-bookmark-o postTopButton";
     let action = _faved === true ? "unFavPost" : "favPost";
     _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
-    <i class="fa fa-trash-o postTopButton" data-action="deletePost" data-postId="${postID}"></i>
+    ${deleteButton}
     <i class="${classText}" data-action="${action}" data-postId="${postID}"></i>
     <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">
     <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element.title} </h4>

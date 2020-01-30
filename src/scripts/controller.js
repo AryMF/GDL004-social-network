@@ -156,6 +156,9 @@ const actionsHandler = (_clickedItem, _action) => {
             //aqui debe ir el modal
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
             break;
+        case "deletePost":
+            deletePost(_clickedItem);
+        break;
         case "newPost":
             newPostCreation();
             break;
@@ -345,7 +348,6 @@ const loadFeed = (option) => {
                         collectionKeys.map(element => {
                             collection[element].topics.forEach(topic => {
                                 if(topicsArray.includes(topic)){
-                                    console.log(topicsArray.includes(topic))
                                     flag = true;
                                 }
                             });
@@ -354,7 +356,7 @@ const loadFeed = (option) => {
                         });
                         collection = postByTopic;
                     }
-//1988
+
                     getDocumentData ("fav", localStorage.getItem("email"))
                         .then(function(profileData) {
                             if (profileData.exists) {
@@ -365,7 +367,7 @@ const loadFeed = (option) => {
                                 printPreviewPost(collection, [], "feed");
                             }
                         }).catch( function(error){
-                            console.log("Erorr: ", error);
+                            console.log("Error: ", error);
                         });
                   })
                   .catch(err => {
@@ -416,7 +418,7 @@ const loadProfilePost = (option) => {
                                 profileDataMainSection(collection, [], "post");
                             }
                         }).catch( function(error){
-                            console.log("Erorr: ", error);
+                            console.log("Error: ", error);
                         });
             })
             .catch(err => {
@@ -520,7 +522,7 @@ const favPost = (_clickedItem) => {
                 setDataInDB("fav", localStorage.getItem("email"), { post: [postID]});
             }
         }).catch( function(error){
-            console.log("Erorr: ", error);
+            console.log("Error: ", error);
         });
 };
 
@@ -544,6 +546,36 @@ const unFavPost = (_clickedItem) => {
                 console.log("No such document!");
             }
         }).catch( function(error){
-            console.log("Erorr: ", error);
+            console.log("Error: ", error);
         });
 }
+
+/************ Delete post ***************/
+const deletePost = (_clickedItem) => {
+    let postID = _clickedItem.getAttribute("data-postId");
+
+    if (confirm("Delete for all eternity?\nYou are about to delete the post #" + postID + ".\nAre you sure you want to permanently delete this post?")) {
+        getDocumentData("post", postID)
+        .then(function(profileData) {
+            if (profileData.exists) {
+                let document = profileData.data();
+                console.log("First: ", document);
+                document.deleted = "true";
+                console.log("Second: ", document);
+                //Save new data in db
+                setDataInDB("post", postID, document)
+                .then(function(){
+                    //Reload
+                    handleHashChange(location.hash.slice(2));
+                }).catch(function(error){
+                    console.log("Error saving document ", error);
+                });
+            } else {
+                // No such document
+                console.log("No such document!");
+            }
+        }).catch(function(error){
+            console.log("No such document! ", error);
+        });
+    } 
+};

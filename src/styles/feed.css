@@ -27,7 +27,8 @@
 .postContainer {
     display: grid;
     grid-template-columns: 10px repeat(6, 1fr) 10px;
-    grid-template-rows: 10px auto 10px repeat(5, auto) 30px repeat(2, auto) 10px;
+    grid-template-rows: 10px auto 10px repeat(5, auto) repeat(3, auto) 10px;
+    grid-row-gap: 5px;
     grid-template-areas:    ". . . . . . . ." 
                             ". deleteButton . . . . topButton ."
                             ". . . . . . . ."
