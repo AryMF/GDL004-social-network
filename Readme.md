@@ -39,7 +39,6 @@ DIYers was developed using MVC architecture, SPA and Mobile First design as the 
 Our main motivations lays on our passion for crafting, creating and learning how to make new projects (and our love for Pinterest®, of course).
 
 ## 3. User Stories
-In this project, user stories were defined in the project requirements,
 
 1. As a new user, I should be able to create an account and login with a valid email and password.
     #### Acceptance Criteria
@@ -62,25 +61,25 @@ In this project, user stories were defined in the project requirements,
     > * When logging in, it should send you to feed.
     > * Should send you to profile info edit section after creating an account.
 
-3. As a logged user, I should be able to create, save, modify and delete a private or public post (which can be a phrase or an image) in the same page (in place).
+3. As a logged user, I should be able to create, save and delete a private or public post in the same page (in place).
     #### Acceptance Criteria
     > * It should be SPA and responsive.
     > * Should allow to create a post with text and image.
     > * Should allow to select the privacy of the post.
     > * Post should require a title and description.
-    > * Should allow the user to modify a post he created.
     > * Should allow the user to delete a post he created.
     > * Functionality shouldn't reload the page (in place).
 
-4. As a logged user, I should be able to see all the private and public posts I have created so far, from the latest to the oldest, as well as having the option to change my posts privacy.
+4. As a logged user, I should be able to see all the posts I have created so far, from the latest to the oldest, as well as having the option to fave my own posts.
     #### Acceptance Criteria
     > * It should be SPA and responsive.
     > * It should allow to see all the user's posts.
-    > * It should allow to see the user's favorite posts.
-
-5. As a logged user, I can like and keep a "like's count" in my posts, as well as write, save, edit or delete a comment on it.
-    #### Acceptance Criteria
+    > * It should allow the user to fave his own posts.
+    
+5. As a logged user, I should be able to see all my favorite posts, as well as having the option to "unfav" them.   
     > * It should be SPA and responsive.
+    > * It should allow to see the user's favorite posts.
+    > * It should allow the user to remove the "favorite" mark on a post.
 
 6. As a logged user, I should be able to access the social media, see my profile data and edit it.
     #### Acceptance Criteria
@@ -95,7 +94,7 @@ In this project, user stories were defined in the project requirements,
 * Respects planned architecture.
 * Code reviewed.
 * Deployed.
-* User tested.
+* User tested*.
 * Feedback requested and applied.
 
 ## 4. Prototypes
