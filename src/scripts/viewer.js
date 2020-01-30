@@ -270,7 +270,8 @@ const collectMainDataPost = () => {
             description: viewSelectors.postDescription.value,
             imgCover: _postPicture,
             topics: elementsName,
-            privacy: elementsPrivacy[0]
+            privacy: elementsPrivacy[0],
+            deleted: "false"
         };
     } else {
         viewSelectors.errorMainPost.setAttribute("style", "display:inline-block;");
