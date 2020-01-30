@@ -44,7 +44,6 @@
 }
 
 .postTopButton {
-    justify-self: end;
     font-size: 24px;
     text-align: center;
     width: 24px;
@@ -58,10 +57,12 @@
 
 .fa-check,
 .fa-bookmark-o {
+    justify-self: end;
     grid-area: topButton;
 }
 
 .fa-trash-o {
+    justify-self: start;
     grid-area: deleteButton;
 }
 
