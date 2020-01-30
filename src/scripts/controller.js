@@ -34,25 +34,6 @@ const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 let topScreenNavBar;
 
-
-const scrollFunction = () => {
-    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-        mybutton.style.display = 'block';
-    } else {
-        mybutton.style.display = 'none';
-    }
-}
-let mybutton = document.getElementById('myBtn');
-window.onscroll = function() { scrollFunction() };
-
-const topFunction = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-document.getElementById('myBtn').addEventListener('click', topFunction)
-
-
 const main = () => {
     topScreenNavBar = initConfiguration();
 
@@ -369,20 +350,6 @@ const loadFeed = () => {
                                 } else {
                                     // In case there's not a "fave" collection
                                     printPreviewPost(collection, [], "feed");
-                                }
-                            }).catch(function(error) {
-                                console.log("Erorr: ", error);
-                            });
-                        //TODO: Filtrar data por topics
-
-                        getDocumentData("fav", localStorage.getItem("email"))
-                            .then(function(profileData) {
-                                if (profileData.exists) {
-                                    let favPostArray = profileData.data().post;
-                                    printPreviewPost(collection, favPostArray, "feed");
-                                } else {
-                                    // Start document
-                                    //printPreviewPost(collection);
                                 }
                             }).catch(function(error) {
                                 console.log("Erorr: ", error);
