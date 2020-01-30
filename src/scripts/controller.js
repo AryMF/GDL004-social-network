@@ -98,8 +98,11 @@ const handleHashChange = (_route) => {
         case "profileInfo":
             loadProfileInfoData();
             break;
-        case "feed": //1988
-            loadFeed();
+        case "feed":
+            loadFeed("home");
+            break;
+        case "explore":
+            loadFeed("explore");
             break;
         case "newPost":
             pictureNewPost();
@@ -324,17 +327,34 @@ const submitLoginForm = () => {
 }
 
 /************* Feed **************/
-const loadFeed = () => {
+const loadFeed = (option) => {
     let collection = [];
     getDocumentData("user", localStorage.getItem("email"))
         .then(function(profileData){
+            let topicsArray = profileData.data().topics;
             if (profileData.exists) {
                 getCollectionData("post").then(snapshot => {
                     snapshot.forEach(doc => {
                         collection[doc.id] = doc.data();
                     });
                     //TODO: Filtrar data por topics
-
+                    if(option === "home"){
+                        let collectionKeys = Object.keys(collection);
+                        let postByTopic = {};
+                        let flag = false;
+                        collectionKeys.map(element => {
+                            collection[element].topics.forEach(topic => {
+                                if(topicsArray.includes(topic)){
+                                    console.log(topicsArray.includes(topic))
+                                    flag = true;
+                                }
+                            });
+                            flag === true ? postByTopic[element] = collection[element]: flag = false;
+                            flag = false;
+                        });
+                        collection = postByTopic;
+                    }
+//1988
                     getDocumentData ("fav", localStorage.getItem("email"))
                         .then(function(profileData) {
                             if (profileData.exists) {

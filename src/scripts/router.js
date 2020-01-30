@@ -13,6 +13,7 @@ const router = (route) => {
             return views.profileInfo();
             break;
         case "feed":
+        case "explore":
             return views.feed();
             break;
         case "profile":

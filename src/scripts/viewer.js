@@ -25,6 +25,7 @@ const setViewSelectors = (_route) => {
             viewSelectors = profileInfoSelectors();
             break;
         case "feed":
+        case "explore":
             viewSelectors = feedSelectors();
             break;
         case "newPost":
