@@ -19,7 +19,6 @@
         <button id="homeButton" class="flamingo normalTextBold active" data-nav="/feed"> <span> Home </span> <i class="fa fa-paint-brush"></i></button>
         <button id="exploreButton" class="flamingo normalTextBold" data-nav="/feed"> <span> Explore </span> <i class="	fa fa-search"></i></button>
         <button id="createPost" class="flamingo normalTextBold" data-nav="/newPost"> <span> Create Post </span> <i class="fa fa-plus"></i></button>
-        <!--TODO: Borrar antes de deploy <button id="logoutButton" class="flamingo normalTextBold" data-nav="logout"> Logout </button> -->
     </nav>
 
     <div id="viewContainer"></div>
@@ -29,27 +28,13 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <!-- Firebase products -->
     <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
 
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDROFPzPW5vfLBcNdhzTDgQckscpjqWq2Y",
-            authDomain: "laboratoriadiyers.firebaseapp.com",
-            databaseURL: "https://laboratoriadiyers.firebaseio.com",
-            projectId: "laboratoriadiyers",
-            storageBucket: "laboratoriadiyers.appspot.com",
-            messagingSenderId: "914638901843",
-            appId: "1:914638901843:web:1132fcf7f0e0066d8b6ca6"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+    <!-- Your web app's Firebase configuration -->
+    <script type="module" src="src\config\dbConfig.js" async defer></script>
 
     <script type="module" src="src\scripts\controller.js" async defer></script>
 </body>
