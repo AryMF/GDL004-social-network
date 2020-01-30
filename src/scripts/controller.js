@@ -16,7 +16,6 @@ import {
     fileListenerElement,
     setPictureSRC,
     collectMainDataPost
-    //,addStep
 } from "./viewer.js";
 import { router } from "./router.js";
 import { loginWithProvider, emailRegistration, loginWithEmail, signOut } from "./authentication.js";
@@ -34,6 +33,25 @@ import {
 const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 let topScreenNavBar;
+
+
+const scrollFunction = () => {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        mybutton.style.display = 'block';
+    } else {
+        mybutton.style.display = 'none';
+    }
+}
+let mybutton = document.getElementById('myBtn');
+window.onscroll = function() { scrollFunction() };
+
+const topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+document.getElementById('myBtn').addEventListener('click', topFunction)
+
 
 const main = () => {
     topScreenNavBar = initConfiguration();
@@ -165,9 +183,6 @@ const actionsHandler = (_clickedItem, _action) => {
             newPostCreation();
             break;
             //Profile
-        case "newPostPage2":
-            addStep()
-            break;
         case "showUserPost":
             loadProfilePost("post");
             break;
@@ -468,24 +483,22 @@ const pictureNewPost = () => {
     });
 }
 
-
 const newPostCreation = (title, about) => {
-    //it should validate inputs
+    console.log("New Post")
+        //it should validate inputs
     if (postTitle.value != "" && postDescription.value != "") {
         //it should be able to add the data to the firestore
         let postMainData = collectMainDataPost();
         addDataInDB("post", postMainData)
             .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
-                //aqui debe ir la funcion de mostrar primer paso
                 location.hash = "/feed";
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
     } else {
-        console.log("fields empty")
-        printErrorMsj("errorMainPost", "All fields are required!", false);
+        printErrorMsj("errorMainPost", "Error", false);
     }
 };
 

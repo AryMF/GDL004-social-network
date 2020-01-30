@@ -2,15 +2,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 60px) 50px repeat(3, 1fr);
-    grid-template-areas:    "info info info info info"
-                            "info info info info info"
-                            "info info info info info"
-                            "info info info info info"
-                            "info info info info info"
-                            "configMenu nav nav nav nav"
-                            "postArea postArea postArea postArea postArea"
-                            "postArea postArea postArea postArea postArea"
-                            "postArea postArea postArea postArea postArea";
+    grid-template-areas: "info info info info info" "info info info info info" "info info info info info" "info info info info info" "info info info info info" "configMenu nav nav nav nav" "postArea postArea postArea postArea postArea" "postArea postArea postArea postArea postArea" "postArea postArea postArea postArea postArea";
     width: 100%;
     height: 100vh;
     overflow: scroll;
@@ -22,7 +14,6 @@
     width: 100%;
     height: 60px;
     background-color: var(--flamingo);
-
     /*Mobile*/
     position: absolute;
     bottom: 0px;
@@ -68,7 +59,7 @@
     justify-content: center;
 }
 
-.sideMenuBurger{
+.sideMenuBurger {
     width: 100%;
     height: 100%;
     display: flex;
@@ -76,6 +67,7 @@
     justify-content: center;
     align-self: center;
 }
+
 .sideMenuAll {
     display: none;
 }
@@ -124,29 +116,31 @@ aside.stayOnTop {
     align-items: center;
 }
 
-#userProfile{
+#userProfile {
     grid-area: info;
-    justify-self: center; /* horizontal*/
-    align-self: center; /* Vertical */
+    justify-self: center;
+    /* horizontal*/
+    align-self: center;
+    /* Vertical */
     position: relative;
-
     width: 100%;
     height: 100%;
     background-color: var(--backgroundWhite);
-
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
 /***** userProfile child elements *********/
+
 .userProfileTop {
     width: 100%;
     height: 110%;
     overflow: hidden;
 }
 
-.cover{
+.cover {
     width: 100%;
     height: 100%;
     border-radius: 10px 10px 0px 0px;
@@ -160,7 +154,7 @@ aside.stayOnTop {
     transform: translate(-50%);
 }
 
-.avatar128px{
+.avatar128px {
     height: 100%;
 }
 
@@ -177,27 +171,20 @@ aside.stayOnTop {
     margin: 3px;
 }
 
+
 /************** Desktop rules ******************/
+
 @media only screen and (min-width: 769px) {
     .profileScreen {
         width: 100vw;
         height: calc(100vh - 60px);
         border: 0px 0px;
-
         display: grid;
         grid-template-columns: 2fr 200px repeat(5, 1fr) repeat(2, 160px) 2fr;
         grid-template-rows: repeat(7, 1fr) repeat(2, 2fr);
         column-gap: 20px;
-        grid-template-areas:    /*". menuBar menuBar menuBar menuBar menuBar menuBar menuBar menuBar ."*/
-                                ". nav postArea postArea postArea postArea postArea info info ."
-                                ". nav postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea info info ."
-                                ". configMenu postArea postArea postArea postArea postArea . . ."
-                                ". configMenu postArea postArea postArea postArea postArea . . .";
+        grid-template-areas: /*". menuBar menuBar menuBar menuBar menuBar menuBar menuBar menuBar ."*/
+        ". nav postArea postArea postArea postArea postArea info info ." ". nav postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea info info ." ". configMenu postArea postArea postArea postArea postArea . . ." ". configMenu postArea postArea postArea postArea postArea . . .";
         overflow: hidden;
         background-color: var(--lightgray);
     }
@@ -216,14 +203,14 @@ aside.stayOnTop {
         height: 300px;
         margin: 20px;
     }
-    .profileScreen main::-webkit-scrollbar { display: none !important }
-
-    #userProfile{
+    .profileScreen main::-webkit-scrollbar {
+        display: none !important
+    }
+    #userProfile {
         width: 95%;
         height: 98%;
         border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-                0 10px 10px rgba(0,0,0,0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         margin-top: 20px;
     }
     /***** userProfile child elements *********/
@@ -241,7 +228,6 @@ aside.stayOnTop {
     /*********************************************/
     .menuNav {
         flex-direction: column;
-
     }
     .profileMenuElement.active {
         border-radius: 0;
@@ -250,7 +236,7 @@ aside.stayOnTop {
         width: 100%;
         height: 100%;
     }
-    .sideMenuBurger{
+    .sideMenuBurger {
         display: none;
     }
     .sideMenuAll {

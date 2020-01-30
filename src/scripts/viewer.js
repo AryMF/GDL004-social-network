@@ -72,6 +72,7 @@ const getInputValue = (arrayElements) => {
 
 const setDataInProfileDataScreen = (arrayValues) => {
     console.log("updating data in profile");
+
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
     arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
     arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
@@ -89,6 +90,7 @@ const fileListenerElement = (opcion) => {
 const setPictureSRC = (opcion, _downloadURL) => {
     opcion == "profile" ? viewSelectors.userPicture.setAttribute("src", _downloadURL) :
         viewSelectors.imagePost.setAttribute("src", _downloadURL);
+    console.log('termino')
 };
 
 const profileInfoNext = () => {
@@ -111,8 +113,10 @@ const finishAndCollectInputInfo = () => {
             return item.name
         })
         let profilePictureSrc = viewSelectors.userPicture.getAttribute("src");
+        console.log(typeof profilePictureSrc);
         let _profilePicture;
         profilePictureSrc == "src//assets//imgs//avatar128.png" ? _profilePicture = "null" : _profilePicture = profilePictureSrc;
+        console.log(typeof _profilePicture);
         profileInfo = {
             email: localStorage.getItem("email"),
             displayName: viewSelectors.userNameInput.value,
@@ -270,6 +274,8 @@ const collectMainDataPost = () => {
 
     return postMainInfo;
 }
+
+
 
 
 

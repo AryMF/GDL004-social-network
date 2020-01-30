@@ -26,6 +26,27 @@ body {
     color: var(--darkText);
 }
 
+#myBtn {
+    background-color: transparent;
+    display: none;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+    z-index: 99;
+    font-weight: bolder;
+    border: none;
+    outline: none;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 15%;
+    width: 5%;
+}
+
+#myBtn:hover {
+    background-color: rgba(238, 83, 52, 0.6);
+}
+
 #viewContainer {
     position: absolute;
     top: 0px;

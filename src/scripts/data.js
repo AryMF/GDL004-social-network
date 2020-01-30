@@ -90,5 +90,12 @@ const fileUpload = (opcion, file) => {
     });
 }
 
-export { setDataInDB, getDocumentData, fetchMockData, fileUpload, addDataInDB, getCollectionData, 
-    getCollectionDataWithCondition }
+export {
+    setDataInDB,
+    getDocumentData,
+    fetchMockData,
+    fileUpload,
+    addDataInDB,
+    getCollectionData,
+    getCollectionDataWithCondition
+}
