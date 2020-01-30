@@ -15,12 +15,12 @@ const getDocumentData = (_collection, _document) => {
 }
 
 const getCollectionData = (_collection) => {
-    let collectionRef = dataSource.collection(_collection).orderBy("creationDate");
+    let collectionRef = dataSource.collection(_collection).orderBy("creationDate", "desc");
     return collectionRef.get();
 }
 
 const getCollectionDataWithCondition = (_collection, field, value) => {
-    let collectionRef = dataSource.collection(_collection).where(field, '==', value);//.orderBy("creationDate");
+    let collectionRef = dataSource.collection(_collection).where(field, '==', value);//.orderBy("creationDate", "desc");
     return collectionRef.get();
 }
 

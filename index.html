@@ -14,18 +14,20 @@
 
 <body>
     <input type="image" src="src/assets/imgs/arrow.png" id="myBtn" title="Go to top">
-    <nav class="navigationBar">
-        <img src="src\assets\imgs\avatar128.png" data-nav="/profile">
-        <button id="profileButton" class="flamingo normalTextBold showInDesktop" data-nav="/profile"> <span> Profile  </span> </button>
-        <button id="homeButton" class="flamingo normalTextBold active" data-nav="/feed"> <span> Home </span> <i class="fa fa-paint-brush"></i></button>
-        <button id="exploreButton" class="flamingo normalTextBold" data-nav="/feed"> <span> Explore </span> <i class="	fa fa-search"></i></button>
-        <button id="createPost" class="flamingo normalTextBold" data-nav="/newPost"> <span> Create Post </span> <i class="fa fa-plus"></i></button>
-    </nav>
 
-    <div id="viewContainer"></div>
+    <body data-mode="light">
+        <nav class="navigationBar">
+            <img src="src\assets\imgs\avatar128.png" data-nav="/profile">
+            <button id="profileButton" class="flamingo normalTextBold showInDesktop" data-nav="/profile"> <span> Profile  </span> </button>
+            <button id="homeButton" class="flamingo normalTextBold active" data-nav="/feed"> <span> Home </span> <i class="fa fa-paint-brush"></i></button>
+            <button id="exploreButton" class="flamingo normalTextBold" data-nav="/explore"> <span> Explore </span> <i class="	fa fa-search"></i></button>
+            <button id="createPost" class="flamingo normalTextBold" data-nav="/newPost"> <span> Create Post </span> <i class="fa fa-plus"></i></button>
+        </nav>
+
+        <div id="viewContainer"></div>
 
 
-    <!-- <form id="stepScreen" style="display: block;">
+        <!-- <form id="stepScreen" style="display: block;">
         <h2 style="color: var(--bayOfMany);">Step by Step</h2>
         <input type="text" id="stepTitle" class="normalText" rows="5" placeholder="Step title">
         <textarea id="stepDescription" class="normalText" rows="20" placeholder="Describe this step in your process"></textarea>
@@ -35,19 +37,19 @@
     </form> -->
 
 
-    <!-- Firebase configuration -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+        <!-- Firebase configuration -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
 
-    <!-- Firebase products -->
-    <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+        <!-- Firebase products -->
+        <script defer src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
 
-    <!-- Your web app's Firebase configuration -->
-    <script type="module" src="src\config\dbConfig.js" async defer></script>
+        <!-- Your web app's Firebase configuration -->
+        <script type="module" src="src\config\dbConfig.js" async defer></script>
 
-    <script type="module" src="src\scripts\controller.js" async defer></script>
-</body>
+        <script type="module" src="src\scripts\controller.js" async defer></script>
+    </body>
 
-</html>
+    </html>

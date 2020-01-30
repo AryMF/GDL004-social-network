@@ -12,6 +12,9 @@ const initConfiguration = () => {
     return topMenuBarButtons;
 }
 
+
+
+
 const setViewSelectors = (_route) => {
     viewSelectors = {};
     switch (_route) {
@@ -25,6 +28,7 @@ const setViewSelectors = (_route) => {
             viewSelectors = profileInfoSelectors();
             break;
         case "feed":
+        case "explore":
             viewSelectors = feedSelectors();
             break;
         case "newPost":
@@ -71,8 +75,6 @@ const getInputValue = (arrayElements) => {
 }
 
 const setDataInProfileDataScreen = (arrayValues) => {
-    console.log("updating data in profile");
-
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
     arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
     arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
@@ -167,21 +169,27 @@ const printPreviewPost = (_collection, _favArray = [], option) => {
     if (Object.keys(collectionKeys.length > 0)) { //Verificar que no sea una coleccion vacia
         container.innerHTML = ""
         collectionKeys.forEach(element => {
-            if (_favArray.length > 0) {
-                container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
-            } else {
-                container.appendChild(previewPostTemplate(element, _collection[element]), false);
+            if (_collection[element].deleted === "false") {
+                if (_favArray.length > 0) {
+                    container.appendChild(previewPostTemplate(element, _collection[element], _favArray.includes(element)));
+                } else {
+                    container.appendChild(previewPostTemplate(element, _collection[element]), false);
+                }
             }
         });
     }
 };
 
 const previewPostTemplate = (postID, _element, _faved) => {
+    let deleteButton = ``;
+    if (_element.email === localStorage.getItem("email")) {
+        deleteButton = `<i class="fa fa-trash-o postTopButton" data-action="deletePost" data-postId="${postID}"></i>`;
+    }
     let classText = _faved === true ? "fa fa-check postTopButton" : "fa fa-bookmark-o postTopButton";
     let action = _faved === true ? "unFavPost" : "favPost";
     _element.imgCover === "null" ? _element.imgCover = "src//assets//imgs//avatar128.png" : _element.imgCover;
     let previewPost = `
-    <i class="fa fa-trash-o postTopButton" data-action="deletePost" data-postId="${postID}"></i>
+    ${deleteButton}
     <i class="${classText}" data-action="${action}" data-postId="${postID}"></i>
     <img class="postImage" src=${ _element.imgCover}  data-action="openPost" data-postId="${postID}">
     <h4 class="postTitle" data-action="openPost" data-postId="${postID}"> ${ _element.title} </h4>
@@ -197,8 +205,6 @@ const previewPostTemplate = (postID, _element, _faved) => {
 };
 
 /*********** Profile *********************************/
-// navigationBar.classList.add("sendToBottom");
-
 const printUserDataProfile = (_profileData) => {
     const { displayName, profilePicture, userAbout, userCountry } = _profileData.data();
     profilePicture != "null" ? userProfilePicture.setAttribute("src", profilePicture) : userProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
@@ -226,8 +232,6 @@ const profileDataMainSection = (_collection, _favArray, _option) => {
 };
 
 //Sticky menu top
-// let viewContainer = document.querySelector("#viewContainer"); Declarado arriba
-
 const stickyMenu = () => {
     let profileMenu = document.querySelectorAll(".stickyMenu");
     let offsetTop = 300;
@@ -241,6 +245,34 @@ const stickyMenu = () => {
             element.classList.remove("stayOnTop");
         })
     }
+}
+
+//Side menu
+const sideMenu = (option) => {
+    if (option === "open") {
+        viewSelectors.sideMenuAll.classList.add("open");
+        viewSelectors.sideMenuElement.forEach(element => {
+            element.classList.add("open");
+        });
+        viewSelectors.divDarkmodeElement.forEach(element => {
+            element.classList.add("open");
+        });
+    } else {
+        viewSelectors.sideMenuAll.classList.remove("open");
+        viewSelectors.sideMenuElement.forEach(element => {
+            element.classList.remove("open");
+        });
+        viewSelectors.divDarkmodeElement.forEach(element => {
+            element.classList.remove("open");
+        });
+    }
+}
+
+//Dark mode
+const toggleDarkMode = () => {
+    console.log("llegue aqui")
+    document.body.getAttribute("data-mode") === "light" ? document.body.setAttribute("data-mode", "dark") :
+        document.body.setAttribute("data-mode", "light");
 }
 
 
@@ -298,6 +330,8 @@ export {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
+    sideMenu,
+    toggleDarkMode,
     fileListenerElement,
     setPictureSRC,
     collectMainDataPost

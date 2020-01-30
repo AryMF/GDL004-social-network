@@ -1,5 +1,5 @@
 .feedContainer {
-    background-color: darksalmon;
+    background-color: var(--roseBud);
     position: absolute;
     top: 0px;
     left: 0px;
@@ -27,7 +27,8 @@
 .postContainer {
     display: grid;
     grid-template-columns: 10px repeat(6, 1fr) 10px;
-    grid-template-rows: 10px auto 10px repeat(5, auto) 30px repeat(2, auto) 10px;
+    grid-template-rows: 10px auto 10px repeat(5, auto) repeat(3, auto) 10px;
+    grid-row-gap: 5px;
     grid-template-areas: ". . . . . . . ." ". deleteButton . . . . topButton ." ". . . . . . . ." ". img img img img img img ." ". img img img img img img ." ". img img img img img img ." ". img img img img img img ." ". img img img img img img ." ". title title title title title title ." ". info info info info info info ." ". info info info info info info ." ". . . . . . . .";
     border-radius: 10px;
     -webkit-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);

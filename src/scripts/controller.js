@@ -13,6 +13,8 @@ import {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
+    sideMenu,
+    toggleDarkMode,
     fileListenerElement,
     setPictureSRC,
     collectMainDataPost
@@ -34,11 +36,27 @@ const viewContainer = document.querySelector("#viewContainer");
 const defaultView = "/";
 let topScreenNavBar;
 
+
+const scrollFunction = () => {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        mybutton.style.display = 'block';
+    } else {
+        mybutton.style.display = 'none';
+    }
+}
+let mybutton = document.getElementById('myBtn');
+window.onscroll = function() { scrollFunction() };
+
+const topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+document.getElementById('myBtn').addEventListener('click', topFunction)
+
 const main = () => {
     topScreenNavBar = initConfiguration();
 
-    /***********Quick fix para pruebas***************/
-    //TODO: arreglar antes de deploy
     topScreenNavBar.forEach(button => {
         button.addEventListener("click", () => {
             topScreenNavBar.forEach(element => {
@@ -48,9 +66,6 @@ const main = () => {
             location.hash = button.getAttribute("data-nav");
         });
     });
-
-    /*************************************************/
-
 };
 
 //Listener for loading
@@ -105,8 +120,11 @@ const handleHashChange = (_route) => {
         case "profileInfo":
             loadProfileInfoData();
             break;
-        case "feed": //1988
-            loadFeed();
+        case "feed":
+            loadFeed("home");
+            break;
+        case "explore":
+            loadFeed("explore");
             break;
         case "newPost":
             pictureNewPost();
@@ -160,10 +178,19 @@ const actionsHandler = (_clickedItem, _action) => {
             //aqui debe ir el modal
             alert("Post: " + _clickedItem.getAttribute("data-postId"));
             break;
+        case "deletePost":
+            deletePost(_clickedItem);
+            break;
         case "newPost":
             newPostCreation();
             break;
             //Profile
+        case "openSideMenu":
+            sideMenu("open"); //1988
+            break;
+        case "closeSideMenu":
+            sideMenu("close");
+            break;
         case "showUserPost":
             loadProfilePost("post");
             break;
@@ -173,6 +200,9 @@ const actionsHandler = (_clickedItem, _action) => {
         case "editProfile":
             topScreenNavBar[1].classList.remove("active");
             location.hash = "/profileInfo";
+            break;
+        case "toggleDarkMode":
+            toggleDarkMode();
             break;
         case "logoutOption":
             closeSession();
@@ -257,7 +287,6 @@ const loadProfileInfoData = () => {
         let loggedUser = localStorage.getItem("email");
         getDocumentData("user", loggedUser).then(function(profileData) {
             if (profileData.exists) {
-                console.log("profileData", profileData.data());
                 setDataInProfileDataScreen(profileData.data());
             } else {
                 // doc.data() will be undefined in this case
@@ -331,15 +360,61 @@ const submitLoginForm = () => {
 }
 
 /************* Feed **************/
-const loadFeed = () => {
+const loadFeed = (option) => {
     let collection = [];
     getDocumentData("user", localStorage.getItem("email"))
         .then(function(profileData) {
+            let topicsArray = profileData.data().topics;
             if (profileData.exists) {
                 getCollectionData("post").then(snapshot => {
                         snapshot.forEach(doc => {
                             collection[doc.id] = doc.data();
                         });
+                        let collectionKeys = Object.keys(collection);
+                        //Filtrar publicos
+                        let collectionPublic = [];
+                        let newCollectionKeys = [];
+                        collectionKeys.map(element => {
+                            if (collection[element].privacy === "true" || collection[element].email === localStorage.getItem("email")) {
+                                collectionPublic[element] = collection[element];
+                                newCollectionKeys.push(element);
+
+                            }
+                        });
+                        console.log("newCollectionKeys ", newCollectionKeys);
+                        newCollectionKeys.length > 0 ? collectionKeys = newCollectionKeys : collectionKeys;
+                        collection = collectionPublic;
+
+                        //Filtrar data por topics
+                        if (option === "home") {
+                            let postByTopic = {};
+                            let flag = false;
+                            collectionKeys.map(element => {
+                                // console.log("test ", collection[element]);
+                                collection[element].topics.forEach(topic => {
+                                    if (topicsArray.includes(topic)) {
+                                        flag = true;
+                                    }
+                                });
+                                flag === true ? postByTopic[element] = collection[element] : flag = false;
+                                flag = false;
+                            });
+                            collection = postByTopic;
+                            console.log("postByTopic: ", collection);
+                        }
+
+                        getDocumentData("fav", localStorage.getItem("email"))
+                            .then(function(profileData) {
+                                if (profileData.exists) {
+                                    let favPostArray = profileData.data().post;
+                                    printPreviewPost(collection, favPostArray, "feed");
+                                } else {
+                                    // In case there's not a "fave" collection
+                                    printPreviewPost(collection, [], "feed");
+                                }
+                            }).catch(function(error) {
+                                console.log("Error: ", error);
+                            });
                         //TODO: Filtrar data por topics
 
                         getDocumentData("fav", localStorage.getItem("email"))
@@ -403,7 +478,7 @@ const loadProfilePost = (option) => {
                             profileDataMainSection(collection, [], "post");
                         }
                     }).catch(function(error) {
-                        console.log("Erorr: ", error);
+                        console.log("Error: ", error);
                     });
             })
             .catch(err => {
@@ -507,7 +582,7 @@ const favPost = (_clickedItem) => {
                 setDataInDB("fav", localStorage.getItem("email"), { post: [postID] });
             }
         }).catch(function(error) {
-            console.log("Erorr: ", error);
+            console.log("Error: ", error);
         });
 };
 
@@ -521,7 +596,7 @@ const unFavPost = (_clickedItem) => {
             if (profileData.exists) {
                 let data = profileData.data().post;
                 console.log("data ", data);
-                if (data.includes(postID)) { //1988
+                if (data.includes(postID)) {
                     data.splice(data.indexOf(postID), 1);
                 }
                 console.log("profileData: ", data);
@@ -531,6 +606,36 @@ const unFavPost = (_clickedItem) => {
                 console.log("No such document!");
             }
         }).catch(function(error) {
-            console.log("Erorr: ", error);
+            console.log("Error: ", error);
         });
 }
+
+/************ Delete post ***************/
+const deletePost = (_clickedItem) => {
+    let postID = _clickedItem.getAttribute("data-postId");
+
+    if (confirm("Delete for all eternity?\nYou are about to delete the post #" + postID + ".\nAre you sure you want to permanently delete this post?")) {
+        getDocumentData("post", postID)
+            .then(function(profileData) {
+                if (profileData.exists) {
+                    let document = profileData.data();
+                    console.log("First: ", document);
+                    document.deleted = "true";
+                    console.log("Second: ", document);
+                    //Save new data in db
+                    setDataInDB("post", postID, document)
+                        .then(function() {
+                            //Reload
+                            handleHashChange(location.hash.slice(2));
+                        }).catch(function(error) {
+                            console.log("Error saving document ", error);
+                        });
+                } else {
+                    // No such document
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("No such document! ", error);
+            });
+    }
+};

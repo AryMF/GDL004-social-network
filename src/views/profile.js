@@ -1,18 +1,26 @@
 const profile = () => {
     const profileTemplate = `
     <nav class="menuNav stickyMenu">
-        <p id="postSection" class="profileMenuElement largeText active" data-action="showUserPost"> POST</p>
-        <p id="favSection" class="profileMenuElement largeText" data-action="showUserFav"> FAVORITES </p>
+        <p id="postSection" class="menuNavElement largeText active" data-action="showUserPost"> POST</p>
+        <p id="favSection" class="menuNavElement largeText" data-action="showUserFav"> FAVORITES </p>
     </nav>
     <aside class="sideMenu stickyMenu">
         <div class="sideMenuBurger">
-            <i class="fa fa-cog largeText"></i>
+            <i class="fa fa-cog largeText" data-action="openSideMenu"></i>
         </div>
         <div class="sideMenuAll">
-            <p class="profileMenuElement normalText" data-action="editProfile"> Edit profile</p>
-            <p id="darkMode" class="profileMenuElement normalText"> Dark mode </p>
-            <p  class="profileMenuElement normalText" data-action="logoutOption"> Logout</p>
-            <!-- <p id="deleteAccount" class="profileMenuElement normalText" style="margin-top: 10px;"> Delete account </p> --!>
+            <p  class="largeText sideMenuElement closeMenu" style="font-weight: bold;" data-action="closeSideMenu"> Close menu 
+                <br><i class="fa fa-times-circle-o largeText" data-action="closeSideMenu"></i></p>
+            <p class="normalText sideMenuElement" data-action="editProfile"> Edit profile</p>
+            <div class="sideMenuElement divDarkmode">
+                <p id="darkMode" class="normalText divDarkmodeElement"> Dark mode <br><br></p>
+                <label class="switch divDarkmodeElement">
+                    <input id="toggleDarkMode" type="checkbox" tabindex="0" data-action="toggleDarkMode">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <p  class="normalText sideMenuElement" data-action="logoutOption"> Logout</p>
         </div>
         
     </aside>
@@ -48,6 +56,10 @@ const profileSelectors = () => {
         "favSection": document.querySelector("#favSection"),
         //Configuration menu
         "logoutOption": document.querySelector("#logoutOption"),
+        //Side menu
+        "sideMenuAll" : document.querySelector(".sideMenuAll"),
+        "sideMenuElement" : document.querySelectorAll(".sideMenuElement"),
+        "divDarkmodeElement" : document.querySelectorAll(".divDarkmodeElement"),
         //Main area
         "profileMain": document.querySelector("#profileMain"),
         //User info area
