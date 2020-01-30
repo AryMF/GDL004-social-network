@@ -5,7 +5,7 @@
     z-index: 5;
     width: 100vw;
     height: 60px;
-    background-color: mintcream;
+    background-color: var(--backgroundWhite);
     border-bottom: 1px solid rgba(0,0,0,0.3);
     display: none;
 }

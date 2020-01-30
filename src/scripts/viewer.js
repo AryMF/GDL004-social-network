@@ -72,8 +72,6 @@ const getInputValue = (arrayElements) => {
 }
 
 const setDataInProfileDataScreen = (arrayValues) => {
-    console.log("updating data in profile");
-
     arrayValues.displayName != "null" ? viewSelectors.userNameInput.value = arrayValues.displayName : "";
     arrayValues.userAbout != "null" ? viewSelectors.userAboutInput.value = arrayValues.userAbout : "";
     arrayValues.userCountry != "null" ? viewSelectors.userCountryInput.value = arrayValues.userCountry : "";
@@ -204,8 +202,6 @@ const previewPostTemplate = (postID, _element, _faved) => {
 };
 
 /*********** Profile *********************************/
-// navigationBar.classList.add("sendToBottom");
-
 const printUserDataProfile = (_profileData) => {
     const { displayName, profilePicture, userAbout, userCountry } = _profileData.data();
     profilePicture != "null" ? userProfilePicture.setAttribute("src", profilePicture) : userProfilePicture.setAttribute("src", "src//assets//imgs//avatar128.png");
@@ -233,8 +229,6 @@ const profileDataMainSection = (_collection, _favArray, _option) => {
 };
 
 //Sticky menu top
-// let viewContainer = document.querySelector("#viewContainer"); Declarado arriba
-
 const stickyMenu = () => {
     let profileMenu = document.querySelectorAll(".stickyMenu");
     let offsetTop = 300;
@@ -248,6 +242,34 @@ const stickyMenu = () => {
             element.classList.remove("stayOnTop");
         })
     }
+}
+
+//Side menu
+const sideMenu = (option) => {
+    if(option === "open") {
+        viewSelectors.sideMenuAll.classList.add("open");
+        viewSelectors.sideMenuElement.forEach(element => {
+            element.classList.add("open");
+        });
+        viewSelectors.divDarkmodeElement.forEach(element => {
+            element.classList.add("open");
+        });
+    } else {
+        viewSelectors.sideMenuAll.classList.remove("open");
+        viewSelectors.sideMenuElement.forEach(element => {
+            element.classList.remove("open");
+        });
+        viewSelectors.divDarkmodeElement.forEach(element => {
+            element.classList.remove("open");
+        });
+    }
+}
+
+//Dark mode
+const toggleDarkMode = () => {
+    console.log("llegue aqui")
+    document.body.getAttribute("data-mode") === "light" ? document.body.setAttribute("data-mode", "dark"): 
+        document.body.setAttribute("data-mode", "light");
 }
 
 
@@ -305,6 +327,8 @@ export {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
+    sideMenu,
+    toggleDarkMode,
     fileListenerElement,
     setPictureSRC,
     collectMainDataPost

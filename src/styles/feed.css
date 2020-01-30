@@ -1,5 +1,5 @@
 .feedContainer {
-    background-color: darksalmon;
+    background-color: var(--roseBud);
     position: absolute;
     top: 0px;
     left: 0px;

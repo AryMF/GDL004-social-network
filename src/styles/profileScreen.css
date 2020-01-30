@@ -32,6 +32,7 @@
 .stickyMenu {
     width: 100%;
     height: 60px;
+    transition: all .8s;
 }
 
 .menuNav {
@@ -42,7 +43,7 @@
     justify-content: center;
 }
 
-.profileMenuElement {
+.menuNavElement {
     width: 100%;
     height: 100%;
     display: flex;
@@ -51,12 +52,12 @@
     cursor: pointer;
 }
 
-.profileMenuElement.active {
+.menuNavElement.active {
     border-radius: 10px 10px 0 0;
     background-color: var(--gullGray);
 }
 
-.profileMenuElement:hover {
+.menuNavElement:hover {
     color: var(--flamingo);
 }
 
@@ -76,10 +77,59 @@
     justify-content: center;
     align-self: center;
 }
+/*******************************/
 .sideMenuAll {
+    position: absolute;
+    top: -60px;
+    left: 0px;
+    z-index: 6;
+    width: 0%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--goldenGrass);
+    opacity: .95;
+    transition: all .8s;
+}
+
+.sideMenuAll.open {
+    width: 100%;
+}
+
+.sideMenuElement {
+    position: relative;
+    width: 100%;
+    height: 10%;
+    cursor: pointer;
+    display: none;
+    transition: all 1s;
+}
+
+.divDarkmode {
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divDarkmodeElement {
     display: none;
 }
 
+.sideMenuElement.open,
+.divDarkmodeElement.open {
+    display: block;
+}
+
+.profileScreen.sideMenuOpen {
+    overflow: hidden;
+}
+
+body.sideMenuOpen {/*Como?*/
+    overflow: hidden;
+}
+/*******************************/
 .stayOnTop {
     height: 40px;
     position: absolute;
@@ -113,15 +163,6 @@ aside.stayOnTop {
     transform: translate(-50%);
     width: 90%;
     margin-bottom: 20px;
-}
-
-.mockPost {
-    width: 90%;
-    height: 300px;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #userProfile{
@@ -188,8 +229,7 @@ aside.stayOnTop {
         grid-template-columns: 2fr 200px repeat(5, 1fr) repeat(2, 160px) 2fr;
         grid-template-rows: repeat(7, 1fr) repeat(2, 2fr);
         column-gap: 20px;
-        grid-template-areas:    /*". menuBar menuBar menuBar menuBar menuBar menuBar menuBar menuBar ."*/
-                                ". nav postArea postArea postArea postArea postArea info info ."
+        grid-template-areas:    ". nav postArea postArea postArea postArea postArea info info ."
                                 ". nav postArea postArea postArea postArea postArea info info ."
                                 ". configMenu postArea postArea postArea postArea postArea info info ."
                                 ". configMenu postArea postArea postArea postArea postArea info info ."
@@ -211,11 +251,7 @@ aside.stayOnTop {
         overflow-x: hidden;
         scrollbar-width: none;
     }
-    .mockPost {
-        width: 700px;
-        height: 300px;
-        margin: 20px;
-    }
+
     .profileScreen main::-webkit-scrollbar { display: none !important }
 
     #userProfile{
@@ -240,10 +276,11 @@ aside.stayOnTop {
     }
     /*********************************************/
     .menuNav {
+        grid-area: nav;
         flex-direction: column;
 
     }
-    .profileMenuElement.active {
+    .menuNavElement.active {
         border-radius: 0;
     }
     .stickyMenu {
@@ -254,11 +291,18 @@ aside.stayOnTop {
         display: none;
     }
     .sideMenuAll {
-        position: absolute;
-        bottom: 0px;
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        height: 40%;
+        grid-area: configMenu;
+        position: relative;
+        top: 30%;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        background-color: var(--backgroundWhite);
+    }
+    .sideMenuElement, .divDarkmodeElement {
+        display: block;
+    }
+    .closeMenu {
+        display: none;
     }
 }

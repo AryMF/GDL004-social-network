@@ -5,12 +5,14 @@
 @import "profileInfo.css";
 @import "feed.css";
 @import "newPost.css";
+@import "toggleDarkMode.css";
+
 :root {
     /*Background colors*/
     --gullGray: #93b0b6;
-    --roseBud: #f7aaad;
+    --roseBud: darksalmon;
     --goldenGrass: #dcaf25;
-    --backgroundWhite: #ffffff;
+    --backgroundWhite: mintcream;
     --lightgray: lightgray;
     /* Text colors */
     --darkText: #000000;
@@ -21,9 +23,26 @@
     --bayOfMany: #24367b;
 }
 
+[data-mode = "dark"] {
+    /*Background colors*/
+    --gullGray: #93b0b6;
+    --roseBud: #121212;
+    --goldenGrass: #dcaf25;
+    --backgroundWhite: #24367b;
+    --lightgray: #121212;
+    /* Text colors */
+    --darkText: lightgray;
+    --lightText: #000000;
+    /* Highlights */
+    --elephant: #14444b;
+    --flamingo: #ee5334;
+    --bayOfMany: #ee5334;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--darkText);
+    background-color: var(--lightgray);
 }
 
 #viewContainer {

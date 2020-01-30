@@ -13,6 +13,8 @@ import {
     printPreviewPost,
     profileDataMainSection,
     printUserDataProfile,
+    sideMenu,
+    toggleDarkMode,
     fileListenerElement,
     setPictureSRC,
     collectMainDataPost
@@ -30,8 +32,6 @@ let topScreenNavBar;
 const main = () => {
     topScreenNavBar = initConfiguration();
 
-    /***********Quick fix para pruebas***************/
-    //TODO: arreglar antes de deploy
     topScreenNavBar.forEach(button => {
         button.addEventListener("click", () => {
             topScreenNavBar.forEach(element => {
@@ -41,9 +41,6 @@ const main = () => {
             location.hash = button.getAttribute("data-nav");
         });
     });
-    
-    /*************************************************/
-
 };
 
 //Listener for loading
@@ -163,6 +160,12 @@ const actionsHandler = (_clickedItem, _action) => {
             newPostCreation();
             break;
             //Profile
+        case "openSideMenu":
+            sideMenu("open");//1988
+        break;
+        case "closeSideMenu":
+            sideMenu("close");
+        break;
         case "showUserPost":
             loadProfilePost("post");
             break;
@@ -173,6 +176,9 @@ const actionsHandler = (_clickedItem, _action) => {
             topScreenNavBar[1].classList.remove("active");
             location.hash = "/profileInfo";
             break;
+        case "toggleDarkMode":
+            toggleDarkMode();
+            break;   
         case "logoutOption":
             closeSession();
             break;
@@ -256,7 +262,6 @@ const loadProfileInfoData = () => {
         let loggedUser = localStorage.getItem("email");
         getDocumentData("user", loggedUser).then(function(profileData) {
             if (profileData.exists) {
-                console.log("profileData", profileData.data());
                 setDataInProfileDataScreen(profileData.data());
             } else {
                 // doc.data() will be undefined in this case
@@ -340,12 +345,27 @@ const loadFeed = (option) => {
                     snapshot.forEach(doc => {
                         collection[doc.id] = doc.data();
                     });
-                    //TODO: Filtrar data por topics
+                    let collectionKeys = Object.keys(collection);
+                    //Filtrar publicos
+                    let collectionPublic = [];
+                    let newCollectionKeys = [];
+                    collectionKeys.map(element => {
+                        if(collection[element].privacy === "true" || collection[element].email === localStorage.getItem("email")){
+                            collectionPublic[element] = collection[element];
+                            newCollectionKeys.push(element);
+
+                        }
+                    });
+                    console.log("newCollectionKeys ", newCollectionKeys);
+                    newCollectionKeys.length > 0 ? collectionKeys = newCollectionKeys : collectionKeys;
+                    collection = collectionPublic;
+                    
+                    //Filtrar data por topics
                     if(option === "home"){
-                        let collectionKeys = Object.keys(collection);
                         let postByTopic = {};
                         let flag = false;
                         collectionKeys.map(element => {
+                            // console.log("test ", collection[element]);
                             collection[element].topics.forEach(topic => {
                                 if(topicsArray.includes(topic)){
                                     flag = true;
@@ -355,6 +375,7 @@ const loadFeed = (option) => {
                             flag = false;
                         });
                         collection = postByTopic;
+                        console.log("postByTopic: ", collection);
                     }
 
                     getDocumentData ("fav", localStorage.getItem("email"))
@@ -536,7 +557,7 @@ const unFavPost = (_clickedItem) => {
             if (profileData.exists) {
                 let data = profileData.data().post ;
                 console.log("data ", data);
-                if(data.includes(postID)){//1988
+                if(data.includes(postID)){
                     data.splice( data.indexOf(postID), 1 );
                 }
                 console.log("profileData: ", data);

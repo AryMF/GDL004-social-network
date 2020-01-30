@@ -1,0 +1,63 @@
+/******* Toggle dark mode ***********/
+.switch {
+    /* position: relative;
+    display: inline-block; */
+    width: 100px;
+    height: 18px;
+    transition: all 1s;
+  }
+  
+  .switch input { 
+    /* visibility: hidden; */
+    display: none;
+  }
+  
+  .slider {
+    border-radius: 34px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0;
+    background-color: gray;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+  
+  .slider:before {
+    border-radius: 50%;
+    position: absolute;
+    content: "☀";
+    font-size: 30px;
+    text-align: center;
+    line-height: 36px;
+    color: black;
+    height: 32px;
+    width: 32px;
+    left: 2px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .6s;
+    transition: .6s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--flamingo);
+  }
+  
+  input:checked + .slider:before {
+    content: "☽";
+    color: white;
+    background-color: black;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(84px);
+    -ms-transform: translateX(84px);
+    transform: translateX(84px);
+  }
