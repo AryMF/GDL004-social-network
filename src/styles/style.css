@@ -39,7 +39,7 @@ body {
     transform: rotate(-90deg);
     cursor: pointer;
     padding: 10px;
-    border-radius: 15%;
+    border-radius: 50%;
     width: 5%;
 }
 
