@@ -211,7 +211,6 @@ const printUserDataProfile = (_profileData) => {
 }
 
 const profileDataMainSection = (_collection, _favArray, _option) => {
-    console.log("Recibi: ", _collection, _favArray, _option);
     if (_option == "post") {
         viewSelectors.postSection.classList.add("active");
         viewSelectors.favSection.classList.remove("active");
@@ -221,9 +220,7 @@ const profileDataMainSection = (_collection, _favArray, _option) => {
     }
     //aqui
     viewSelectors.profileMain.innerHTML = `<h3> Nothing to show yet. </h3>`;
-    console.log(Object.keys(_collection));
     if(Object.keys(_collection).length > 0) {
-        console.log(Object.keys(_collection).length > 0);
         printPreviewPost(_collection, _favArray, "main");
     }
 };

@@ -15,12 +15,12 @@ const getDocumentData = (_collection, _document) => {
 }
 
 const getCollectionData = (_collection) => {
-    let collectionRef = dataSource.collection(_collection);
+    let collectionRef = dataSource.collection(_collection).orderBy("creationDate");
     return collectionRef.get();
 }
 
 const getCollectionDataWithCondition = (_collection, field, value) => {
-    let collectionRef = dataSource.collection(_collection).where(field, '==', value);
+    let collectionRef = dataSource.collection(_collection).where(field, '==', value);//.orderBy("creationDate");
     return collectionRef.get();
 }
 
@@ -36,6 +36,7 @@ const setDataInDB = (_collection, document, _profileInfo) => {
 
 const addDataInDB = (_collection,  _info) => {
     // Add a new document with a generated id.
+    _info["creationDate"] = firebase.firestore.FieldValue.serverTimestamp();
     return dataSource.collection(_collection).add(_info);
 }
 
