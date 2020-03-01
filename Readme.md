@@ -1,4 +1,4 @@
-![logo](src/assets/imgs/logo.PNG)
+![logo](public/src/assets/imgs/logo.PNG)
 # DIYers
 >The visual discovery engine for people who enjoy DIY.
 
@@ -100,37 +100,37 @@ Our main motivations lays on our passion for crafting, creating and learning how
 ## 4. Prototypes
 
 ### Sketched Prototypes
-<img src="src/assets/imgs/readme/proto1.jpg" width="700"><br>
-<img src="src/assets/imgs/readme/proto2.jpg" width="700"><br>
-<img src="src/assets/imgs/readme/proto3.jpg" width="700"><br>
+<img src="public/src/assets/imgs/readme/proto1.jpg" width="700"><br>
+<img src="public/src/assets/imgs/readme/proto2.jpg" width="700"><br>
+<img src="public/src/assets/imgs/readme/proto3.jpg" width="700"><br>
 
 ### High Fidelity Prototypes
 High fidelity Prototypes were made using Figma®. The color palette was created with Coolors.com<br>
 
 Color Palette.<br>
-<img src="src/assets/imgs/readme/colorPalette.png" width="900" height="300">
+<img src="public/src/assets/imgs/readme/colorPalette.png" width="900" height="300">
 
 Prototypes.<br>
-![DIYers HF Proto1](src/assets/imgs/readme/HDproto1.png)<br>
-![DIYers HF Proto2](src/assets/imgs/readme/HDproto2.png)<br>
-![DIYers HF Proto2](src/assets/imgs/readme/HDproto3.png)<br>
+![DIYers HF Proto1](public/src/assets/imgs/readme/HDproto1.png)<br>
+![DIYers HF Proto2](public/src/assets/imgs/readme/HDproto2.png)<br>
+![DIYers HF Proto2](public/src/assets/imgs/readme/HDproto3.png)<br>
 
 
 ## 5. Finished Product
 Welcome Screen:<br>
-<img src="src/assets/imgs/readme/FirstScreen.png" width="400"><img src="src/assets/imgs/readme/signUpScreen.png" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/FirstScreen.png" width="400"><img src="public/src/assets/imgs/readme/signUpScreen.png" width="400"><br><br>
 Error Messages when logging in (examples of some):<br>
-<img src="src/assets/imgs/readme/errorMsg.png" width="400"><img src="src/assets/imgs/readme/errorMsg2.PNG" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/errorMsg.png" width="400"><img src="public/src/assets/imgs/readme/errorMsg2.PNG" width="400"><br><br>
 Feed View when logging in:<br>
-<img src="src/assets/imgs/readme/feed.png" width="400"><img src="src/assets/imgs/readme/feed2.png" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/feed.png" width="400"><img src="public/src/assets/imgs/readme/feed2.png" width="400"><br><br>
 Feed View on Web:<br>
-<img src="src/assets/imgs/readme/feedOnWeb.png" width="900"><br><br>
+<img src="public/src/assets/imgs/readme/feedOnWeb.png" width="900"><br><br>
 Create Post page:<br>
-<img src="src/assets/imgs/readme/createPost.png" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/createPost.png" width="400"><br><br>
 Profile view:<br>
-<img src="src/assets/imgs/readme/profile.png" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/profile.png" width="400"><br><br>
 Edit profile view:<br>
-<img src="src/assets/imgs/readme/editProfile.png" width="400"><img src="src/assets/imgs/readme/editProfile2.png" width="400"><br><br>
+<img src="public/src/assets/imgs/readme/editProfile.png" width="400"><img src="public/src/assets/imgs/readme/editProfile2.png" width="400"><br><br>
 
 
 ## 6. Authors
