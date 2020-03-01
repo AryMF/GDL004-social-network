@@ -15,7 +15,7 @@ const profile = () => {
             <div class="sideMenuElement divDarkmode">
                 <p id="darkMode" class="normalText divDarkmodeElement"> Dark mode <br><br></p>
                 <label class="switch divDarkmodeElement">
-                    <input id="toggleDarkMode" type="checkbox" tabindex="0" data-action="toggleDarkMode">
+                    <input id="toggleButton" type="checkbox" tabindex="0" data-action="toggleDarkMode">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -25,7 +25,7 @@ const profile = () => {
         
     </aside>
     <main id="profileMain">
-        <h3> Nothing to show yet. </h3>
+            <h2 style="color: var(--bayOfMany);"> Wow, such empty! </h2>
     </main>
     <div id="userProfile">
         <div class="userProfileTop"> 
@@ -45,7 +45,7 @@ const profile = () => {
     profileDiv.classList.add("profileScreen");
     profileDiv.innerHTML = profileTemplate;
 
-    return profileDiv; 
+    return profileDiv;
 };
 
 const profileSelectors = () => {
@@ -60,6 +60,7 @@ const profileSelectors = () => {
         "sideMenuAll" : document.querySelector(".sideMenuAll"),
         "sideMenuElement" : document.querySelectorAll(".sideMenuElement"),
         "divDarkmodeElement" : document.querySelectorAll(".divDarkmodeElement"),
+        "toggleButton" : document.querySelector("#toggleButton"),
         //Main area
         "profileMain": document.querySelector("#profileMain"),
         //User info area

@@ -5,7 +5,7 @@
 .newPostScreen {
     position: relative;
     left: 50%;
-    top: 20px;
+    top: 0px;
     transform: translate(-50%);
     width: 95%;
     padding-bottom: 20px;
@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--lightgray);
+    background-color: var(--gullGray);
 }
 
 #errorMainPost {

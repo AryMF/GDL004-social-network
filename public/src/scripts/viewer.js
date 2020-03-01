@@ -167,7 +167,7 @@ const printPreviewPost = (_collection, _favArray = [], option) => {
     let container;
     option === "main" ? container = viewSelectors.profileMain : container = viewSelectors.feedContainer;
     if (Object.keys(collectionKeys.length > 0)) { //Verificar que no sea una coleccion vacia
-        container.innerHTML = ""
+        container.innerHTML = "";
         collectionKeys.forEach(element => {
             if (_collection[element].deleted === "false") {
                 if (_favArray.length > 0) {
@@ -214,6 +214,12 @@ const printUserDataProfile = (_profileData) => {
     viewSelectors.userProfileCountry.innerHTML = "From " + userCountry;
 
     viewSelectors.profileScreen.addEventListener("scroll", stickyMenu);
+
+    //Dark mode toggle validation
+    if(document.body.getAttribute("data-mode") === "dark"){
+        console.log("Hola");
+        viewSelectors.toggleButton.checked = true;
+    }
 }
 
 const profileDataMainSection = (_collection, _favArray, _option) => {
@@ -224,8 +230,10 @@ const profileDataMainSection = (_collection, _favArray, _option) => {
         viewSelectors.favSection.classList.add("active");
         viewSelectors.postSection.classList.remove("active");
     }
-    //aqui
-    viewSelectors.profileMain.innerHTML = `<h3> Nothing to show yet. </h3>`;
+
+    viewSelectors.profileMain.innerHTML = `
+        <h2 style="color: var(--bayOfMany);"> Wow, such empty! </h2>`;
+        
     if (Object.keys(_collection).length > 0) {
         printPreviewPost(_collection, _favArray, "main");
     }
@@ -270,7 +278,6 @@ const sideMenu = (option) => {
 
 //Dark mode
 const toggleDarkMode = () => {
-    console.log("llegue aqui")
     document.body.getAttribute("data-mode") === "light" ? document.body.setAttribute("data-mode", "dark") :
         document.body.setAttribute("data-mode", "light");
 }

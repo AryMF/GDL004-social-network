@@ -27,11 +27,11 @@
     --gullGray: #93b0b6;
     --roseBud: #121212;
     --goldenGrass: #dcaf25;
-    --backgroundWhite: #24367b;
+    --backgroundWhite: #93b0b6;
     --lightgray: #121212;
     /* Text colors */
-    --darkText: lightgray;
-    --lightText: #000000;
+    --darkText: #000000;
+    --lightText: lightgray;
     /* Highlights */
     --elephant: #14444b;
     --flamingo: #ee5334;
@@ -41,7 +41,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--darkText);
-    background-color: var(--lightgray);
+    background-color: var(--gullGray);
 }
 
 #myBtn {

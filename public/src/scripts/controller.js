@@ -381,7 +381,7 @@ const loadFeed = (option) => {
 
                             }
                         });
-                        console.log("newCollectionKeys ", newCollectionKeys);
+
                         newCollectionKeys.length > 0 ? collectionKeys = newCollectionKeys : collectionKeys;
                         collection = collectionPublic;
 
@@ -400,7 +400,6 @@ const loadFeed = (option) => {
                                 flag = false;
                             });
                             collection = postByTopic;
-                            console.log("postByTopic: ", collection);
                         }
 
                         getDocumentData("fav", localStorage.getItem("email"))

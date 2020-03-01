@@ -1,21 +1,18 @@
 <!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <title> DIYers </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="src\styles\style.css">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title> DIYers </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="src\styles\style.css">
-
-</head>
-
-<body>
-    <input type="image" src="src/assets/imgs/arrow.png" id="myBtn" title="Go to top">
-
+    </head>
     <body data-mode="light">
+        <input type="image" src="src/assets/imgs/arrow.png" id="myBtn" title="Go to top">
+
         <nav class="navigationBar">
             <img src="src\assets\imgs\avatar128.png" data-nav="/profile">
             <button id="profileButton" class="flamingo normalTextBold showInDesktop" data-nav="/profile"> <span> Profile  </span> </button>
@@ -25,17 +22,6 @@
         </nav>
 
         <div id="viewContainer"></div>
-
-
-        <!-- <form id="stepScreen" style="display: block;">
-        <h2 style="color: var(--bayOfMany);">Step by Step</h2>
-        <input type="text" id="stepTitle" class="normalText" rows="5" placeholder="Step title">
-        <textarea id="stepDescription" class="normalText" rows="20" placeholder="Describe this step in your process"></textarea>
-        <img id="imageStep" src="src/assets/imgs/imagePlaceholder.png" alt="add images to step" style="display:flex;">
-        <input id="stepPicture" class="stepPicture" type="file" accept="image/*">
-        <button id="addStep" class="flamingo normalTextBold" data-action="addStep">Add Step</button>
-    </form> -->
-
 
         <!-- Firebase configuration -->
         <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -52,4 +38,4 @@
         <script type="module" src="src\scripts\controller.js" async defer></script>
     </body>
 
-    </html>
+</html>
